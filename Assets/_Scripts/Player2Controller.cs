@@ -13,7 +13,7 @@ public class Player2Controller : MonoBehaviour
 {
     //private InputManager inputManager;
 
-    // Szybkoœæ ruchu i rotacja
+    // Szybkoï¿½ï¿½ ruchu i rotacja
     public float speed = 3f;
     public float rotationSpeed = 200f;
     public float horizontal = 0.3f;
@@ -24,7 +24,7 @@ public class Player2Controller : MonoBehaviour
 
     public float camOffset;
     public Camera cam;
-    // Obiekt; Prefab do testów
+    // Obiekt; Prefab do testï¿½w
     public GameObject obj;
 
     [SerializeField]
@@ -45,7 +45,7 @@ public class Player2Controller : MonoBehaviour
     private GameSettings gameSettings;
 
 
-
+    private int count = 1;
     public int i = 0;
     bool IsBonus1Active = false;
     int bonus1Reps = 0;
@@ -55,6 +55,7 @@ public class Player2Controller : MonoBehaviour
     {
         tr = GetComponentInChildren<TrailRenderer>();
         cam.fieldOfView = gameSettings.pOneFOV;
+        StartCoroutine(TurnTact(1.2f));
     }
 
     public void FixedUpdate()
@@ -102,9 +103,36 @@ public class Player2Controller : MonoBehaviour
 
     }
 
+    public IEnumerator TurnTact(float duration)
+    {
+        
+        if(count < 2)
+            yield return new WaitForSeconds(5f);
+        var end = Time.time + duration;
+        var leftRight = Random.Range(0, 1f);
+        if (leftRight < 0.5f)
+        {
+            while (Time.time < end)
+            {
+                transform.Rotate(Vector3.up * -0.3f * rotationSpeed /** Time.deltaTime*/);
+                yield return null;
+            }
+        }
+        else
+        {
+            while (Time.time < end)
+            {
+                transform.Rotate(Vector3.up * 0.3f * rotationSpeed /** Time.deltaTime*/);
+                yield return null;
+            }
+        }
+        yield return new WaitForSeconds(Random.Range(0.3f, 0.9f));
+        count++;
+        yield return StartCoroutine(TurnTact(duration));
 
+    }
 
-
+   
 
 
 
@@ -120,7 +148,7 @@ public class Player2Controller : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationX;
 
         // Destroy(FindObjectOfType());
-        Debug.Log("Mia³o byæ STOP." + collision.collider.name);
+        Debug.Log("Miaï¿½o byï¿½ STOP." + collision.collider.name);
 
     }
 
@@ -161,7 +189,7 @@ public class Player2Controller : MonoBehaviour
         text.text = speed.ToString();
     }
 
-    
+
 
 
 }

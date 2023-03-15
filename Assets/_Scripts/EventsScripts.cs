@@ -98,6 +98,7 @@ public class EventsScripts : MonoBehaviour
 
         playerOne.GetComponent<PlayerController>().speed = gameSettings.pOneSpeed;
         playerTwo.GetComponent<Player2Controller>().speed = gameSettings.pTwoSpeed;
+        //StartCoroutine(playerTwo.GetComponent<Player2Controller>().TurnTact(2f));
         
         StopCoroutine(Wait());
     }
