@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using TMPro;
 
-public class GoToSettings : MonoBehaviour
+public class GoToSettings : MonoBehaviour, IPointerDownHandler
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+      [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _audioClip;
+    [SerializeField] private GameObject _menuPanel;
+    [SerializeField] private GameObject _settingsPanel;
 
-    // Update is called once per frame
-    void Update()
+    public void OnPointerDown(PointerEventData eventData)
     {
+        _audioSource.PlayOneShot(_audioClip);
         
+        if(_menuPanel.activeSelf == true)
+            _menuPanel.SetActive(false);
+        
+        if(_menuPanel.activeSelf == false)
+            _settingsPanel.SetActive(true);
+    
     }
 }
