@@ -41,7 +41,7 @@ public class OnCollision : MonoBehaviour
             else if (GetComponentInParent<Player2Controller>() != null)
                 GetComponentInParent<Player2Controller>().speed = 0;
             GetComponentInParent<Rigidbody>().Sleep();
-            //Debug.Log($"{this.name} - Pauza {collision.collider.name}");
+            Debug.Log($"{this.name} - Pauza {collision.collider.name}");
             return;
         }
     }

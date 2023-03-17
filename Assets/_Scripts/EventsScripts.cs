@@ -15,6 +15,10 @@ public class EventsScripts : MonoBehaviour
 
     [SerializeField]
     private GameObject       playerTwo;
+    [SerializeField]
+    private GameObject       playerThree;
+    [SerializeField]
+    private GameObject       playerFour;
 
     [SerializeField]
     private TMPro.TMP_Text   text;
@@ -76,11 +80,18 @@ public class EventsScripts : MonoBehaviour
     IEnumerator Wait()
     {
 
-        playerTwo.GetComponent<Rigidbody>().Sleep();
-        playerTwo.GetComponent<Player2Controller>().speed = 0f;
 
         playerOne.GetComponent<PlayerController>().speed = 0f;
         playerOne.GetComponent<Rigidbody>().Sleep();
+        
+        //playerTwo.GetComponent<Player2Controller>().speed = 0f;
+        //playerTwo.GetComponent<Rigidbody>().Sleep();
+//
+        //playerThree.GetComponent<Player2Controller>().speed = 0f;
+        //playerThree.GetComponent<Rigidbody>().Sleep();
+        //
+        //playerFour.GetComponent<Player2Controller>().speed = 0f;
+        //playerFour.GetComponent<Rigidbody>().Sleep();
 
 
         text.text = "3";
@@ -94,10 +105,12 @@ public class EventsScripts : MonoBehaviour
         text.text = "";
 
         scoreCounts[0].StartCoroutine(scoreCounts[0].ScoreCounter());
-        scoreCounts[1].StartCoroutine(scoreCounts[1].ScoreCounter());
+        //scoreCounts[1].StartCoroutine(scoreCounts[1].ScoreCounter());
 
         playerOne.GetComponent<PlayerController>().speed = gameSettings.pOneSpeed;
-        playerTwo.GetComponent<Player2Controller>().speed = gameSettings.pTwoSpeed;
+       // playerTwo.GetComponent<Player2Controller>().speed = gameSettings.pTwoSpeed;
+       // playerThree.GetComponent<Player2Controller>().speed = gameSettings.pTwoSpeed;
+       // playerFour.GetComponent<Player2Controller>().speed = gameSettings.pTwoSpeed;
         //StartCoroutine(playerTwo.GetComponent<Player2Controller>().TurnTact(2f));
         
         StopCoroutine(Wait());
@@ -126,8 +139,5 @@ public class EventsScripts : MonoBehaviour
         //Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene("Options");
     }
-    public void Explosion()
-    {
-        playerOne.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, playerOne.transform.position, explosionRadius);
-    }
+   
 }

@@ -12,7 +12,7 @@ public class SphereVerts : MonoBehaviour
     public int VertsMultiplier = 1; 
     public int Count = 1;
 
-
+    
     public Mesh mesh;
     
     

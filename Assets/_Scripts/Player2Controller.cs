@@ -18,18 +18,14 @@ public class Player2Controller : MonoBehaviour
     public float rotationSpeed = 200f;
     public float horizontal = 0.3f;
 
-    [Header("Czynnik alfa. xD")]
-    public float czynnik = 1f;
-    public PlanetScript2 mg;
+    
 
     public float camOffset;
-    public Camera cam;
-    // Obiekt; Prefab do test�w
+   
     public GameObject obj;
 
-    [SerializeField]
-    private Joystick joystick;
-    //Photon View.
+    
+   
 
 
     [SerializeField]
@@ -54,25 +50,25 @@ public class Player2Controller : MonoBehaviour
     private void Start()
     {
         tr = GetComponentInChildren<TrailRenderer>();
-        cam.fieldOfView = gameSettings.pOneFOV;
+        //cam.fieldOfView = gameSettings.pOneFOV;
         StartCoroutine(TurnTact(1.2f));
+        StartCoroutine(Wait());
     }
 
     public void FixedUpdate()
     {
-        horizontal = joystick.Vertical;
+        //horizontal = joystick.Vertical;
         transform.Translate(Vector3.forward * speed /** Time.deltaTime*/);
-        transform.Rotate(Vector3.up * horizontal * rotationSpeed /** Time.deltaTime*/);
+        //transform.Rotate(Vector3.up * horizontal * rotationSpeed /** Time.deltaTime*/);
 
-        if (cam != null)
-            cam.transform.Rotate(Vector3.forward * horizontal * rotationSpeed /** Time.deltaTime*/);
+        
     }
 
     public void TrailTactBonus()
     {
         if (IsBonus1Active == false)
         {
-            StartCoroutine(TrailTact());
+            //StartCoroutine(TrailTact());
             IsBonus1Active = true;
             Debug.Log("Trailtactbonus petla");
 
@@ -80,6 +76,38 @@ public class Player2Controller : MonoBehaviour
 
 
     }
+    IEnumerator Wait()
+    {
+
+
+        GetComponent<Player2Controller>().speed = 0f;
+        GetComponent<Rigidbody>().Sleep();
+        
+        
+
+
+        
+        yield return new WaitForSeconds(0.7f);
+        //3
+        yield return new WaitForSeconds(0.7f);
+        //2
+        yield return new WaitForSeconds(0.7f);
+        //1
+        yield return new WaitForSeconds(0.3f);
+        //GO
+
+        //scoreCounts[0].StartCoroutine(scoreCounts[0].ScoreCounter());
+        //scoreCounts[1].StartCoroutine(scoreCounts[1].ScoreCounter());
+
+        GetComponent<Player2Controller>().speed = 0.2f;
+        
+        //StartCoroutine(playerTwo.GetComponent<Player2Controller>().TurnTact(2f));
+        
+        StopCoroutine(Wait());
+    }
+
+    
+    /*
     IEnumerator TrailTact()
     {
         if (bonus1Reps < 12)
@@ -102,7 +130,7 @@ public class Player2Controller : MonoBehaviour
 
 
     }
-
+    */
     public IEnumerator TurnTact(float duration)
     {
         
@@ -157,50 +185,8 @@ public class Player2Controller : MonoBehaviour
 
 
 
-    public void OnClick_AddSpeed()
-    {
-
-        speed = 0.15f;
-        TextSpeed();
-
-
-    }
-    public void OnClick_LowSpeed()
-    {
-        speed--;
-        TextSpeed();
-
-    }
-    public void OnClick_AddSpeed10()
-    {
-        speed += 10f;
-        TextSpeed();
-
-
-    }
-    public void OnClick_LowSpeed10()
-    {
-        speed -= 10f;
-        TextSpeed();
-
-    }
-    public void TextSpeed()
-    {
-        text.text = speed.ToString();
-    }
-
 
 
 
 }
 
-//float movementInput = inputManager.Newactionmap.Movement.ReadValue<float>();
-//Debug.Log(Convert.ToBoolean(movementInput));
-
-//cam.transform.rotation = transform.rotation;
-//cam.transform.Rotate(cam.transform.forward * movementInput * rotationSpeed * Time.deltaTime);
-//cam.transform.Rotate(90, 0, 0);
-//cam.transform.position = transform.position * camOffset;
-//cam.transform.LookAt(Vector3.zero, cam.transform.position);
-//transform.localScale *= (czynnik * Time.deltaTime);
-//bool meshi = inputManager.Newactionmap.Mesh.triggered;
