@@ -18,14 +18,14 @@ public class Player2Controller : MonoBehaviour
     public float rotationSpeed = 200f;
     public float horizontal = 0.3f;
 
-    
+
 
     public float camOffset;
-   
+
     public GameObject obj;
 
-    
-   
+
+
 
 
     [SerializeField]
@@ -41,7 +41,9 @@ public class Player2Controller : MonoBehaviour
     private GameSettings gameSettings;
 
 
-    private int count = 1;
+    [SerializeField] private float _duration = 1.2f;
+    private bool _firstIterationPassed = false;
+
     public int i = 0;
     bool IsBonus1Active = false;
     int bonus1Reps = 0;
@@ -51,7 +53,7 @@ public class Player2Controller : MonoBehaviour
     {
         tr = GetComponentInChildren<TrailRenderer>();
         //cam.fieldOfView = gameSettings.pOneFOV;
-        StartCoroutine(TurnTact(1.2f));
+        StartCoroutine(TurnTact(_duration));
         StartCoroutine(Wait());
     }
 
@@ -61,7 +63,7 @@ public class Player2Controller : MonoBehaviour
         transform.Translate(Vector3.forward * speed /** Time.deltaTime*/);
         //transform.Rotate(Vector3.up * horizontal * rotationSpeed /** Time.deltaTime*/);
 
-        
+
     }
 
     public void TrailTactBonus()
@@ -82,11 +84,11 @@ public class Player2Controller : MonoBehaviour
 
         GetComponent<Player2Controller>().speed = 0f;
         GetComponent<Rigidbody>().Sleep();
-        
-        
 
 
-        
+
+
+
         yield return new WaitForSeconds(0.7f);
         //3
         yield return new WaitForSeconds(0.7f);
@@ -100,13 +102,13 @@ public class Player2Controller : MonoBehaviour
         //scoreCounts[1].StartCoroutine(scoreCounts[1].ScoreCounter());
 
         GetComponent<Player2Controller>().speed = 0.2f;
-        
+
         //StartCoroutine(playerTwo.GetComponent<Player2Controller>().TurnTact(2f));
-        
+
         StopCoroutine(Wait());
     }
 
-    
+
     /*
     IEnumerator TrailTact()
     {
@@ -133,10 +135,18 @@ public class Player2Controller : MonoBehaviour
     */
     public IEnumerator TurnTact(float duration)
     {
+        //First bool check; for bot to avoid false start.
+        if (_firstIterationPassed == false)
+        {
+
+            var timeBeforeWake = Random.Range(4f,6f);
+            yield return new WaitForSeconds(timeBeforeWake);
+        }
         
-        if(count < 2)
-            yield return new WaitForSeconds(5f);
+        //Time for the turn duration.
         var end = Time.time + duration;
+        
+        //Randomized decision. Shall turn right or left.
         var leftRight = Random.Range(0, 1f);
         if (leftRight < 0.5f)
         {
@@ -154,13 +164,14 @@ public class Player2Controller : MonoBehaviour
                 yield return null;
             }
         }
+        //Random idle duration before the next turn. No turning than, only moving forward.
         yield return new WaitForSeconds(Random.Range(0.3f, 0.9f));
-        count++;
-        yield return StartCoroutine(TurnTact(duration));
+        _firstIterationPassed = true;
+        yield return StartCoroutine(TurnTact(_duration));
 
     }
 
-   
+
 
 
 
