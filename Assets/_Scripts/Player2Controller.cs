@@ -17,7 +17,7 @@ public class Player2Controller : MonoBehaviour
     public float speed = 3f;
     public float rotationSpeed = 200f;
     public float horizontal = 0.3f;
-
+    public bool CanTurn = true;
 
 
     public float camOffset;
@@ -135,10 +135,11 @@ public class Player2Controller : MonoBehaviour
     */
     public IEnumerator TurnTact(float duration)
     {
+        if(CanTurn == false)
+            yield break;
         //First bool check; for bot to avoid false start.
         if (_firstIterationPassed == false)
         {
-
             var timeBeforeWake = Random.Range(4f,6f);
             yield return new WaitForSeconds(timeBeforeWake);
         }
@@ -171,27 +172,15 @@ public class Player2Controller : MonoBehaviour
 
     }
 
-
-
-
-
-
-
-    /*
-     * 
-    private void OnCollisionEnter(Collision collision)
-    {
-
-        rb.Sleep();
-        Destroy(controller);
-        rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationX;
-
-        // Destroy(FindObjectOfType());
-        Debug.Log("Mia�o by� STOP." + collision.collider.name);
-
+    public void StopAutoTurning(){
+        StopCoroutine(TurnTact(_duration));
     }
 
-    */
+
+
+
+
+   
 
 
 

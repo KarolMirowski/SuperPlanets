@@ -58,6 +58,18 @@ public class PlayerController : MonoBehaviour
     
     public void FixedUpdate()
     {
+        //Turn left 90 degrees
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            transform.Rotate(Vector3.up * -90f);
+            // tutaj umieść swoje instrukcje, które mają być wykonane po wciśnięciu klawisza "A"
+        }
+        //Turn right 90 degrees
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            transform.Rotate(Vector3.up * 90f);
+            // tutaj umieść swoje instrukcje, które mają być wykonane po wciśnięciu klawisza "A"
+        }
         horizontal = -joystick.Vertical;
         transform.Translate(Vector3.forward * speed);
         transform.Rotate(Vector3.up * horizontal * rotationSpeed);
