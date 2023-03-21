@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Jobs;
@@ -11,11 +11,11 @@ public class TrailMesh : MonoBehaviour
     
 
     
-    [SerializeField]
-    private TrailRenderer tr;
+    
+    public TrailRenderer tr;
 
     private Mesh mesh;
-
+    
 
     private bool collisionBool;
     public void trInit()
