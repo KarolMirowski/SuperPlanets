@@ -14,13 +14,13 @@ public class PlayerController : MonoBehaviour
     //private InputManager inputManager;
 
     // Szybkość ruchu i rotacja
-    public float         speed = 3f;
-    public float         rotationSpeed = 200f;
-    public float         horizontal = 0.3f;
-    private Camera cam;
-    
+    public float speed = 3f;
+    public float rotationSpeed = 200f;
+    public float horizontal = 0.3f;
+    private Camera camera;
+
     [SerializeField]
-    private Joystick joystick;    
+    private Joystick joystick;
     [SerializeField]
     private TextMeshProUGUI text;
     [SerializeField]
@@ -33,29 +33,36 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameSettings gameSettings;
 
-
+    private bool CanTurnLeft = true;
+    private bool CanTurnRight = true;
 
     bool IsBonus1Active = false;
     int bonus1Reps = 0;
 
-    public int i = 0;
+    
 
 
 
     private void Start()
     {
-        cam = GetComponentInChildren<Camera>();
-        tr = GetComponentInChildren<TrailRenderer>();
-        cam.fieldOfView = gameSettings.pOneFOV;
+        if (GetComponentInChildren<Camera>() != null)
+        {
+            camera = GetComponentInChildren<Camera>();
+            camera.fieldOfView = gameSettings.pOneFOV;
+        }
+        if (GetComponentInChildren<TrailRenderer>() != null)
+        {
+            tr = GetComponentInChildren<TrailRenderer>();
+        }
 
         if (this.gameObject.tag == "PlayerOne")
             speed = gameSettings.pOneSpeed;
         else
             speed = gameSettings.pTwoSpeed;
 
-        
+
     }
-    
+
     public void FixedUpdate()
     {
         //Turn left 90 degrees
@@ -74,9 +81,9 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector3.forward * speed);
         transform.Rotate(Vector3.up * horizontal * rotationSpeed);
 
-        if(cam != null)
-            cam.transform.Rotate(Vector3.forward * horizontal * rotationSpeed); 
-        
+        if (camera != null)
+            camera.transform.Rotate(Vector3.forward * horizontal * rotationSpeed);
+
     }
     public void TrailTactBonus()
     {
@@ -88,7 +95,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Trailtactbonus petla");
 
         }
-            
+
 
     }
     IEnumerator TrailTact()
@@ -109,13 +116,13 @@ public class PlayerController : MonoBehaviour
             StopCoroutine(TrailTact());
             IsBonus1Active = false;
         }
-        
-        
+
+
 
     }
 
 
-    
+
 
 
 
@@ -143,11 +150,11 @@ public class PlayerController : MonoBehaviour
 
     public void OnClick_AddSpeed()
     {
-        
+
         speed = 0.15f;
         TextSpeed();
 
-        
+
     }
     public void OnClick_LowSpeed()
     {
@@ -172,9 +179,9 @@ public class PlayerController : MonoBehaviour
     {
         text.text = speed.ToString();
     }
-    
 
 
-    
+
+
 }
-        
+

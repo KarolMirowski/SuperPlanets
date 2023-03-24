@@ -18,24 +18,15 @@ public class Player2Controller : MonoBehaviour
     public float rotationSpeed = 200f;
     public float horizontal = 0.3f;
     public bool CanTurn = true;
+    public bool CanTurnRight = true;
+    public bool CanTurnLeft = true;
+
+    public int TurnRepeats = 0;
 
 
-    public float camOffset;
+  
 
-    public GameObject obj;
-
-
-
-
-
-    [SerializeField]
-    private TextMeshProUGUI text;
-    [SerializeField]
-    private GameObject trailon;
-    //public static PlayerController playerController;
-    //public static PlayerController playerController;
-    private GameObject planet;
-    private TrailRenderer tr;
+    
 
     [SerializeField]
     private GameSettings gameSettings;
@@ -43,15 +34,19 @@ public class Player2Controller : MonoBehaviour
 
     [SerializeField] private float _duration = 1.2f;
     private bool _firstIterationPassed = false;
+    [SerializeField] private float _minTimeBeforeWake = 2f;
+    [SerializeField] private float _maxTimeBeforeWake = 4f;
+    [SerializeField] private float _minTimeNextTurn = 0.5f;
+    [SerializeField] private float _maxTimeNextTurn = 1.5f;
 
-    public int i = 0;
+    
     bool IsBonus1Active = false;
-    int bonus1Reps = 0;
+    
 
 
     private void Start()
     {
-        tr = GetComponentInChildren<TrailRenderer>();
+        
         //cam.fieldOfView = gameSettings.pOneFOV;
         StartCoroutine(TurnTact(_duration));
         StartCoroutine(Wait());
@@ -135,12 +130,13 @@ public class Player2Controller : MonoBehaviour
     */
     public IEnumerator TurnTact(float duration)
     {
+        Debug.Log($"TurnTact ruszyło. Name:{this.gameObject.name}");
         if(CanTurn == false)
             yield break;
         //First bool check; for bot to avoid false start.
         if (_firstIterationPassed == false)
         {
-            var timeBeforeWake = Random.Range(4f,6f);
+            var timeBeforeWake = Random.Range(_minTimeBeforeWake, _maxTimeBeforeWake);
             yield return new WaitForSeconds(timeBeforeWake);
         }
         
@@ -149,7 +145,9 @@ public class Player2Controller : MonoBehaviour
         
         //Randomized decision. Shall turn right or left.
         var leftRight = Random.Range(0, 1f);
-        if (leftRight < 0.5f)
+        Debug.Log($"leftRight wynosi : {leftRight}");
+        
+        if (leftRight < 0.5f )
         {
             while (Time.time < end)
             {
@@ -157,7 +155,7 @@ public class Player2Controller : MonoBehaviour
                 yield return null;
             }
         }
-        else
+        else 
         {
             while (Time.time < end)
             {
@@ -166,15 +164,17 @@ public class Player2Controller : MonoBehaviour
             }
         }
         //Random idle duration before the next turn. No turning than, only moving forward.
-        yield return new WaitForSeconds(Random.Range(0.3f, 0.9f));
+        yield return new WaitForSeconds(Random.Range(_minTimeNextTurn, _maxTimeNextTurn));
+        
         _firstIterationPassed = true;
-        yield return StartCoroutine(TurnTact(_duration));
+        if (CanTurn == true)
+            StartCoroutine(TurnTact(_duration));
+        
+        TurnRepeats++;
 
     }
 
-    public void StopAutoTurning(){
-        StopCoroutine(TurnTact(_duration));
-    }
+   
 
 
 
