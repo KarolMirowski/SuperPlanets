@@ -8,10 +8,14 @@ public class PlanetGrav : MonoBehaviour {
     public Transform sphereTransform;
     private Transform _playerTransform;
     
-    void Start()
+    void Awake()
     {
         GetComponent<Rigidbody>().useGravity = false;
         _playerTransform = transform;
+        if(sphereTransform == null){
+            sphereTransform = transform;
+        }
+
     }
 
     void FixedUpdate()

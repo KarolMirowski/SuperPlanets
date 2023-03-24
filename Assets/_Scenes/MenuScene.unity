@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1679286, g: 0.1986138, b: 0.2303365, a: 1}
+  m_IndirectSpecularColor: {r: 0.43087548, g: 0.46609288, b: 0.49856758, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -886,7 +886,7 @@ GameObject:
   - component: {fileID: 203868189}
   - component: {fileID: 203868188}
   - component: {fileID: 203868192}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Back Sphere Left (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1359,7 +1359,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a6cf7fefb81ef214480d029fc65d288c, type: 2}
+      objectReference: {fileID: 2100000, guid: 14eebf8574bf12a44b9164b346362078, type: 2}
     - target: {fileID: 868027974495913816, guid: 14c469b2e0293ab47bf406f2a70df9cc,
         type: 3}
       propertyPath: m_RootOrder
@@ -1439,12 +1439,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a6cf7fefb81ef214480d029fc65d288c, type: 2}
+      objectReference: {fileID: 2100000, guid: 14eebf8574bf12a44b9164b346362078, type: 2}
     - target: {fileID: 868027976278531954, guid: 14c469b2e0293ab47bf406f2a70df9cc,
         type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: a6cf7fefb81ef214480d029fc65d288c, type: 2}
+      objectReference: {fileID: 2100000, guid: 14eebf8574bf12a44b9164b346362078, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14c469b2e0293ab47bf406f2a70df9cc, type: 3}
 --- !u!4 &305545893 stripped
@@ -1641,7 +1641,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3a865f046fced9c408ad17e74e17cd32, type: 2}
+      objectReference: {fileID: 2100000, guid: d0c4b08b9ae082a45a68d967d6768a4d, type: 2}
     - target: {fileID: 868027974495913816, guid: 14c469b2e0293ab47bf406f2a70df9cc,
         type: 3}
       propertyPath: m_RootOrder
@@ -1721,12 +1721,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3a865f046fced9c408ad17e74e17cd32, type: 2}
+      objectReference: {fileID: 2100000, guid: d0c4b08b9ae082a45a68d967d6768a4d, type: 2}
     - target: {fileID: 868027976278531954, guid: 14c469b2e0293ab47bf406f2a70df9cc,
         type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 3a865f046fced9c408ad17e74e17cd32, type: 2}
+      objectReference: {fileID: 2100000, guid: d0c4b08b9ae082a45a68d967d6768a4d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14c469b2e0293ab47bf406f2a70df9cc, type: 3}
 --- !u!4 &419834108 stripped
@@ -1793,7 +1793,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Super \nPlanet"
+  m_text: "Super \nPlanets"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 718eed31ac5b0c248a70a5ff481fe2d2, type: 2}
   m_sharedMaterial: {fileID: -5902771325691188349, guid: 718eed31ac5b0c248a70a5ff481fe2d2,
@@ -2178,6 +2178,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 649071572}
+  - component: {fileID: 649071573}
   m_Layer: 0
   m_Name: StageManager
   m_TagString: Untagged
@@ -2200,6 +2201,18 @@ Transform:
   m_Father: {fileID: 1154912607}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &649071573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649071571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96e8e1de0904adb489688815615c5877, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &728997760
 GameObject:
   m_ObjectHideFlags: 0
@@ -3670,7 +3683,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Super \nPlanet"
+  m_text: "Super \nPlanets"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 718eed31ac5b0c248a70a5ff481fe2d2, type: 2}
   m_sharedMaterial: {fileID: -5902771325691188349, guid: 718eed31ac5b0c248a70a5ff481fe2d2,
@@ -4336,7 +4349,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Super \nPlanet"
+  m_text: "Super \nPlanets"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 718eed31ac5b0c248a70a5ff481fe2d2, type: 2}
   m_sharedMaterial: {fileID: -5902771325691188349, guid: 718eed31ac5b0c248a70a5ff481fe2d2,
@@ -5145,7 +5158,7 @@ GameObject:
   - component: {fileID: 1237673836}
   - component: {fileID: 1237673840}
   - component: {fileID: 1237673841}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Back Sphere Right (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5160,7 +5173,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1237673834}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.7753048}
+  m_LocalPosition: {x: 0, y: 0, z: 16.9}
   m_LocalScale: {x: 0.84211916, y: 0.84211916, z: 0.84211916}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -5169,7 +5182,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 66.08182, y: 45.759186}
+  m_AnchoredPosition: {x: 67.88, y: 38.06}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1237673836

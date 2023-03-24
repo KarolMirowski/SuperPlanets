@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //using UnityEngine.InputSystem;
@@ -33,8 +33,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameSettings gameSettings;
 
-    private bool CanTurnLeft = true;
-    private bool CanTurnRight = true;
+    
 
     bool IsBonus1Active = false;
     int bonus1Reps = 0;
@@ -62,9 +61,7 @@ public class PlayerController : MonoBehaviour
 
 
     }
-
-    public void FixedUpdate()
-    {
+    public void Update(){
         //Turn left 90 degrees
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -77,6 +74,10 @@ public class PlayerController : MonoBehaviour
             transform.Rotate(Vector3.up * 90f);
             // tutaj umieść swoje instrukcje, które mają być wykonane po wciśnięciu klawisza "A"
         }
+
+    }
+    public void FixedUpdate()
+    {
         horizontal = -joystick.Vertical;
         transform.Translate(Vector3.forward * speed);
         transform.Rotate(Vector3.up * horizontal * rotationSpeed);

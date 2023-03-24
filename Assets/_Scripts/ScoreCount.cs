@@ -19,7 +19,7 @@ public class ScoreCount : MonoBehaviour
     public IEnumerator ScoreCounter()
     {
         score += 1 ;
-        text.text = Convert.ToString(score);
+        text.text = "Score: " + Convert.ToString(score);
         yield return new WaitForSecondsRealtime(1);
         StartCoroutine(ScoreCounter());
     }
