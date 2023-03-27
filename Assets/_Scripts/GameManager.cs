@@ -7,11 +7,29 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     void Awake()
     {
-        Instance = this;
+        if (Instance == null) Instance = this;
     }
-    // Update is called once per frame
+
     void Update()
     {
 
     }
+
+    public enum GameState
+    {
+        MainMenu,
+        Settings,
+        GamePlay,
+        CreditsPanel
+        
+    }
+
+    public enum BotsNumber{
+        OneBot,
+        TwoBots,
+        ThreeBots,
+        FourBots
+    }
+
+
 }
