@@ -7,7 +7,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -62,20 +62,30 @@ public class PlayerController : MonoBehaviour
 
     }
     public void Update(){
+        Rotate90Degrees();
+
+    }
+
+    private void Rotate90Degrees()
+    {
         //Turn left 90 degrees
         if (Input.GetKeyDown(KeyCode.A))
         {
+            
             transform.Rotate(Vector3.up * -90f);
+            transform.position += transform.forward * 0.5f;
             // tutaj umieść swoje instrukcje, które mają być wykonane po wciśnięciu klawisza "A"
         }
         //Turn right 90 degrees
         if (Input.GetKeyDown(KeyCode.D))
         {
             transform.Rotate(Vector3.up * 90f);
+            transform.position += transform.forward * 0.5f;
+            
             // tutaj umieść swoje instrukcje, które mają być wykonane po wciśnięciu klawisza "A"
         }
-
     }
+
     public void FixedUpdate()
     {
         horizontal = -joystick.Vertical;
