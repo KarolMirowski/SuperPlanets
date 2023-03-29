@@ -1,3 +1,4 @@
+using static UnityEngine.Debug;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,22 +47,23 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        Rotate90Degrees();
-
+        
     }
 
     void FixedUpdate()
     {
-        ConstantMoveForward();
-        //JoystickMovement();
-        //Rotate90Degrees();
+        ConstantMoveForward();                          
+        //JoystickRotate();                 
+        //Rotate90Degrees();                  
+        //RotateCamera90Degrees();                    
     }
     void LateUpdate()
     {
-
+        Rotate90Degrees();
+        RotateCamera90Degrees();
     }
 
-    private void Rotate90Degrees()
+    void Rotate90Degrees()
     {
 
         //Constant move forward function call here to check eficancy.
@@ -70,24 +72,30 @@ public class PlayerController : MonoBehaviour
         //Turn left 90 degrees
         if (Input.GetKeyDown(KeyCode.A))
         {
-
             transform.Rotate(Vector3.up * -90f);
-            if (camera != null) camera.transform.Rotate(Vector3.forward * -90f);
             transform.position += transform.forward * 0.5f;
-            // tutaj umieść swoje instrukcje, które mają być wykonane po wciśnięciu klawisza "A"
         }
+
         //Turn right 90 degrees
         if (Input.GetKeyDown(KeyCode.D))
         {
             transform.Rotate(Vector3.up * 90f);
-            if (camera != null) camera.transform.Rotate(Vector3.forward * 90f);
             transform.position += transform.forward * 0.5f;
-
-            // tutaj umieść swoje instrukcje, które mają być wykonane po wciśnięciu klawisza "A"
         }
     }
+    void RotateCamera90Degrees()
+    {
+        //Turn left 90 degrees
+        if (Input.GetKeyDown(KeyCode.A))
+            camera.transform.Rotate(Vector3.forward * -90f); 
+        
+        //Turn right 90 degrees
+        if (Input.GetKeyDown(KeyCode.D))
+            camera.transform.Rotate(Vector3.forward * 90f);
+        
 
-    private void JoystickMovement()
+    }
+    void JoystickRotate()
     {
         horizontal = -joystick.Vertical;
         transform.Rotate(Vector3.up * horizontal * rotationSpeed);
@@ -96,7 +104,7 @@ public class PlayerController : MonoBehaviour
             camera.transform.Rotate(Vector3.forward * horizontal * rotationSpeed);
     }
 
-    private void ConstantMoveForward()
+    void ConstantMoveForward()
     {
         transform.Translate(Vector3.forward * speed);
 
