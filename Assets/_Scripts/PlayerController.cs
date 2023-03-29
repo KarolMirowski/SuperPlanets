@@ -11,36 +11,19 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
-    //private InputManager inputManager;
 
-    // Szybkość ruchu i rotacja
+
+
     public float speed = 3f;
     public float rotationSpeed = 200f;
     public float horizontal = 0.3f;
-    private Camera camera;
-
-    [SerializeField]
-    private Joystick joystick;
-    [SerializeField]
-    private TextMeshProUGUI text;
-    [SerializeField]
-    private GameObject trailon;
-    //public static PlayerController playerController;
-    //public static PlayerController playerController;
-    private GameObject planet;
+    [SerializeField] private Camera camera;
+    [SerializeField] private Joystick joystick;
+    [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private GameSettings gameSettings;
     private TrailRenderer tr;
-    private GameObject col;
-    [SerializeField]
-    private GameSettings gameSettings;
-
-    
-
     bool IsBonus1Active = false;
     int bonus1Reps = 0;
-
-    
-
-
 
     private void Start()
     {
@@ -61,18 +44,35 @@ public class PlayerController : MonoBehaviour
 
 
     }
-    public void Update(){
+    void Update()
+    {
         Rotate90Degrees();
+
+    }
+
+    void FixedUpdate()
+    {
+        ConstantMoveForward();
+        //JoystickMovement();
+        //Rotate90Degrees();
+    }
+    void LateUpdate()
+    {
 
     }
 
     private void Rotate90Degrees()
     {
+
+        //Constant move forward function call here to check eficancy.
+
+
         //Turn left 90 degrees
         if (Input.GetKeyDown(KeyCode.A))
         {
-            
+
             transform.Rotate(Vector3.up * -90f);
+            if (camera != null) camera.transform.Rotate(Vector3.forward * -90f);
             transform.position += transform.forward * 0.5f;
             // tutaj umieść swoje instrukcje, które mają być wykonane po wciśnięciu klawisza "A"
         }
@@ -80,22 +80,28 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D))
         {
             transform.Rotate(Vector3.up * 90f);
+            if (camera != null) camera.transform.Rotate(Vector3.forward * 90f);
             transform.position += transform.forward * 0.5f;
-            
+
             // tutaj umieść swoje instrukcje, które mają być wykonane po wciśnięciu klawisza "A"
         }
     }
 
-    public void FixedUpdate()
+    private void JoystickMovement()
     {
         horizontal = -joystick.Vertical;
-        transform.Translate(Vector3.forward * speed);
         transform.Rotate(Vector3.up * horizontal * rotationSpeed);
 
         if (camera != null)
             camera.transform.Rotate(Vector3.forward * horizontal * rotationSpeed);
+    }
+
+    private void ConstantMoveForward()
+    {
+        transform.Translate(Vector3.forward * speed);
 
     }
+
     public void TrailTactBonus()
     {
         Debug.Log("TrailTactBonus przed petla");
@@ -131,68 +137,10 @@ public class PlayerController : MonoBehaviour
 
 
     }
-
-
-
-
-
-
-
-
-
-    /*
-     * 
-    private void OnCollisionEnter(Collision collision)
-    {
-
-        rb.Sleep();
-        Destroy(controller);
-        rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationX;
-
-        // Destroy(FindObjectOfType());
-        Debug.Log("Miało być STOP." + collision.collider.name);
-
-    }
-
-    */
-
-
-
-
-    public void OnClick_AddSpeed()
-    {
-
-        speed = 0.15f;
-        TextSpeed();
-
-
-    }
-    public void OnClick_LowSpeed()
-    {
-        speed--;
-        TextSpeed();
-
-    }
-    public void OnClick_AddSpeed10()
-    {
-        speed += 10f;
-        TextSpeed();
-
-
-    }
-    public void OnClick_LowSpeed10()
-    {
-        speed -= 10f;
-        TextSpeed();
-
-    }
     public void TextSpeed()
     {
         text.text = speed.ToString();
     }
-
-
-
 
 }
 
