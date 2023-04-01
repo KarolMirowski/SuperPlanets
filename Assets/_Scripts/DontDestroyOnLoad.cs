@@ -9,5 +9,6 @@ public class DontDestroyOnLoad : MonoBehaviour
     private void Awake() {
         if(_dontDestroyOnLoad == true)
             DontDestroyOnLoad(gameObject);
+        
     }
 }

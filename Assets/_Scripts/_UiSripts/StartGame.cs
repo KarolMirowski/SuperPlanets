@@ -17,7 +17,7 @@ public class StartGame : MonoBehaviour, IPointerDownHandler
     {
         _audioSource.PlayOneShot(_audioClip);
         SceneManager.LoadScene("WorkingScene");
-    
+        GameManager.Instance.UpdateGameState(GameManager.GameState.GamePlay);
     }
 
 

@@ -15,9 +15,7 @@ MonoBehaviour:
   _gameVersion: 1.0.0
   _nickName: Karol
   pOneSpeed: 0.20000002
-  pTwoSpeed: 0.20000002
+  pTwoSpeed: 4.14
   pOneFOV: 63
   pTwoFOV: 63
   RotationSpeed: 5
-  colors:
-  - {r: 0.023529412, g: 0.32156864, b: 0.8666667, a: 1}

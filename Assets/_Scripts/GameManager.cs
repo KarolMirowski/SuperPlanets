@@ -3,23 +3,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public GameState State;
+    
+    
+    [Header("GENERAL SETTINGS")] public GameState State ;//= //GameManager.GameState;
     public static event Action<GameState> OnGameStateChange;
+   
     public string JakisNapis;
 
 
     void Awake()
     {
-        if (Instance == null) Instance = this;
-        DontDestroyOnLoad(gameObject);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+
     }
+    
 
     public void UpdateGameState(GameState nextState)
     {
+        State = nextState;
+
         switch (nextState)
         {
             case GameState.MainMenu:
@@ -37,23 +53,23 @@ public class GameManager : MonoBehaviour
         OnGameStateChange?.Invoke(nextState);
     }
     public void UpdateBotNumber(BotsNumber nextState)
-{
-    switch (nextState)
     {
-        case BotsNumber.OneBot:
-            // ...
-            break;
-        case BotsNumber.TwoBots:
-            // ...
-            break;
-        case BotsNumber.ThreeBots:
-            // ...
-            break;
-        case BotsNumber.FourBots:
-            // ...
-            break;
+        switch (nextState)
+        {
+            case BotsNumber.OneBot:
+                // ...
+                break;
+            case BotsNumber.TwoBots:
+                // ...
+                break;
+            case BotsNumber.ThreeBots:
+                // ...
+                break;
+            case BotsNumber.FourBots:
+                // ...
+                break;
+        }
     }
-}
 
 
 
@@ -76,3 +92,4 @@ public class GameManager : MonoBehaviour
 
 
 }
+public enum ShareState {ShareStateOne, ShareStateTwo}
