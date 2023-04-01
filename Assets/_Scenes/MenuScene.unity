@@ -2311,7 +2311,6 @@ GameObject:
   - component: {fileID: 735462304}
   - component: {fileID: 735462303}
   - component: {fileID: 735462302}
-  - component: {fileID: 735462301}
   m_Layer: 5
   m_Name: Back To Menu
   m_TagString: Untagged
@@ -2340,23 +2339,6 @@ RectTransform:
   m_AnchoredPosition: {x: -1.2, y: 54.6}
   m_SizeDelta: {x: 257.3, y: 47.156}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &735462301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 735462299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cec13e11f01f8748bb27e88103646ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioSource: {fileID: 59724040}
-  _audioClip: {fileID: 8300000, guid: 890660fed0f9b1244ba22dcfa2657da9, type: 3}
-  _menuPanel: {fileID: 1409784771}
-  _settingsPanel: {fileID: 986327807}
-  _creditsPanel: {fileID: 1794019515}
 --- !u!114 &735462302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3809,7 +3791,6 @@ GameObject:
   - component: {fileID: 967975638}
   - component: {fileID: 967975637}
   - component: {fileID: 967975636}
-  - component: {fileID: 967975640}
   m_Layer: 5
   m_Name: Settings Button
   m_TagString: Untagged
@@ -3896,7 +3877,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 967975638}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1155111071}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &967975638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3935,22 +3928,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 967975634}
   m_CullTransparentMesh: 1
---- !u!114 &967975640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 967975634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8638c160d594b847934dcc2655be4c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioSource: {fileID: 59724040}
-  _audioClip: {fileID: 8300000, guid: 890660fed0f9b1244ba22dcfa2657da9, type: 3}
-  _menuPanel: {fileID: 1409784771}
-  _settingsPanel: {fileID: 986327807}
 --- !u!1 &977534811
 GameObject:
   m_ObjectHideFlags: 0
@@ -4898,7 +4875,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 097e83cd3a3340b41a6ddca1bd3378da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Checker: 1
+  _startButton: {fileID: 1834330835}
+  _goToSettingsButton: {fileID: 967975637}
+  _goToCreditsButton: {fileID: 1379454970}
+  _backToMenuButton:
+  - {fileID: 1555490093}
+  - {fileID: 735462303}
+  _menuPanel: {fileID: 1409784771}
+  _settingsPanel: {fileID: 986327807}
+  _creditsPanel: {fileID: 1794019515}
+  _audioSource: {fileID: 59724040}
+  _audioClip: {fileID: 8300000, guid: 890660fed0f9b1244ba22dcfa2657da9, type: 3}
 --- !u!1001 &1177949044
 PrefabInstance:
   m_ObjectHideFlags: 0

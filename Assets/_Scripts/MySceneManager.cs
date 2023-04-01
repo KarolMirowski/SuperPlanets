@@ -30,8 +30,8 @@ public class MySceneManager : MonoBehaviour
 
 
     //Tu były testy, usunąć niepotrzebne
-    public void LoadScene(){
-        SceneManager.LoadScene("WorkingScene");
+    public void LoadScene(string sceneName){
+        SceneManager.LoadScene(sceneName);
         GameManager.Instance.UpdateGameState(GameManager.GameState.GamePlay);
         
         //Zatrzymanie sceny np dla loading screenu.
