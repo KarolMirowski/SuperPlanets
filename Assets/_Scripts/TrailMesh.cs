@@ -38,7 +38,9 @@ public class TrailMesh : MonoBehaviour
         tr.BakeMesh(mesh, useTransform: true);
 
         GetComponent<MeshFilter>().mesh = mesh;
-        GetComponent<MeshCollider>().sharedMesh = mesh;
+        if(mesh.vertexCount > 5)
+            GetComponent<MeshCollider>().sharedMesh = mesh;
+    
     }
         
 

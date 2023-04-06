@@ -1,18 +1,35 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SphereSpawner : MonoBehaviour
 {
-    public GameObject spawnObject; // prefab to spawn
-    public int numSpawns; // number of times for prefab to spawn    
-    public float minDistance; // minimalna odległość między spawnami
-    public float maxDistance; // maksymalna odległość między spawnami
 
-    void Start()
+    //Here script with longer naming convention to avoid commants. Just example
+    [SerializeField] private GameObject _prefabToSpawn;
+    [SerializeField] private int _numberOfSpawns;
+    [SerializeField] private float _minSpawnDistance;
+    [SerializeField] private float _maxSpawnDistance;
+    [SerializeField] private float _minDistanceBetweenPoints;
+    [SerializeField] private List<Vector3> _listForDistCheck;
+    void Awake()
     {
-        for (int i = 0; i < numSpawns; i++)
+        GenRandSpherePositions();
+    }
+
+    void GenRandSpherePositions()
+    {
+        _listForDistCheck = new List<Vector3>();
+        var parentTransform = GameObject.Find("Bots").transform;
+        for (int i = 0; i < _numberOfSpawns; i++)
         {
-            Vector3 spawnPos = Random.onUnitSphere * Random.Range(minDistance, maxDistance); // losowa pozycja na powierzchni sfery
-            Instantiate(spawnObject, spawnPos, Quaternion.identity); // tworzenie obiektu na wylosowanej pozycji
+            Vector3 randomSpawnPosition = Random.onUnitSphere * Random.Range(_minSpawnDistance, _maxSpawnDistance);
+            
+            
+            _listForDistCheck.Add(randomSpawnPosition);
+            
+            Instantiate(_prefabToSpawn, randomSpawnPosition, Quaternion.identity,parentTransform);
         }
     }
+
+
 }

@@ -403,6 +403,7 @@ GameObject:
   - component: {fileID: 3362431009943233237}
   - component: {fileID: 3362431009943233236}
   - component: {fileID: 3362431009943233235}
+  - component: {fileID: 6829425246714393136}
   m_Layer: 6
   m_Name: BotPlayer
   m_TagString: PlayerTwo
@@ -537,13 +538,31 @@ MonoBehaviour:
   speed: 0
   rotationSpeed: 5
   horizontal: 0
-  camOffset: 0
-  obj: {fileID: 0}
-  text: {fileID: 0}
-  trailon: {fileID: 0}
+  CanTurn: 1
+  CanTurnRight: 1
+  CanTurnLeft: 1
+  TurnRepeats: 0
   gameSettings: {fileID: 11400000, guid: ec580792bba39f6478c3552c8a75a685, type: 2}
   _duration: 0.7
-  i: 0
+  _minTimeBeforeWake: 2
+  _maxTimeBeforeWake: 4
+  _minTimeNextTurn: 0.5
+  _maxTimeNextTurn: 1.5
+--- !u!114 &6829425246714393136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3362431009943233234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0adb3c3a0bc8414b908c5869bcf1851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _trailonPrefab: {fileID: 375110473259021272, guid: 03c4493cfc4babc4b8ae1be5fa91c7e4,
+    type: 3}
+  _trailonGroup: {fileID: 0}
 --- !u!1 &3362431009958481425
 GameObject:
   m_ObjectHideFlags: 0
