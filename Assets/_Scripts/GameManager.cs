@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public static event Action<GameState> OnGameStateChange;
     //public static event Action<BotsNumber> OnBotCountChange;
 
-    private int _scoreCount;
+    [SerializeField] private int _scoreCount;
     public int ScoreCount { get { return _scoreCount; } set { _scoreCount = value; } }
 
     [SerializeField] private int _botCountNumber;

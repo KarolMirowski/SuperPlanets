@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1158498052874266992}
   m_Layer: 0
   m_Name: addPointsBonus
-  m_TagString: BonusOne
+  m_TagString: Add5Points
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 7003832972822981136}
   m_Layer: 0
   m_Name: Mball
-  m_TagString: BonusOne
+  m_TagString: Add5Points
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

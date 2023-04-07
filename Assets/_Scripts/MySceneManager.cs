@@ -28,7 +28,9 @@ public class MySceneManager : MonoBehaviour
 
    
 
-
+    public void LoadMainMenuScene(){
+        SceneManager.LoadScene("MenuScene");
+    }
     //Tu były testy, usunąć niepotrzebne
     public void LoadScene(string sceneName){
         SceneManager.LoadScene(sceneName);

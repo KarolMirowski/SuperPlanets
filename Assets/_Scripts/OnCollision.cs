@@ -7,6 +7,14 @@ public class OnCollision : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.collider.CompareTag("Add5Points") == true && gameObject.transform.parent.name == "PlayerOne")
+        {
+            GameManager.Instance.ScoreCount += 5;
+            Destroy(collision.collider.gameObject);
+            print("5 points should be added");
+        }
+
+
         if (collision.collider.CompareTag("BonusOne") == true)
         {
 
@@ -15,6 +23,7 @@ public class OnCollision : MonoBehaviour
             {
                 GetComponentInParent<PlayerController>().TrailTactBonus();
                 Destroy(collision.collider.gameObject);
+                
                 Debug.Log("player one bonus hit");
 
             }
@@ -26,14 +35,6 @@ public class OnCollision : MonoBehaviour
                 Debug.Log("player two bonus hit");
 
             }
-
-
-
-
-
-
-            // Debug.Log("Oj bonusa  Kolizja czyta taga ");
-
         }
 
         if (collision.collider.CompareTag("Trailon") == true)
@@ -49,6 +50,9 @@ public class OnCollision : MonoBehaviour
                 GetComponentInParent<Player2Controller>().CanTurn = false;
             }
             GetComponentInParent<Rigidbody>().Sleep();
+
+            //print game over
+            //stop counter
             /*
             if(GetComponentInParent<Player2Controller>() != null)
                 GetComponentInParent<Player2Controller>().StopCoroutine("TurnTact");

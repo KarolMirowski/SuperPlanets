@@ -10,6 +10,8 @@ TagManager:
   - PlayerTwo
   - BonusOne
   - Planet
+  - Add5Points
+  - 5
   layers:
   - Default
   - TransparentFX

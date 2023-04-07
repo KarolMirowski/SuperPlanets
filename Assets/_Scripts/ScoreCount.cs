@@ -18,10 +18,11 @@ public class ScoreCount : MonoBehaviour
 
     public IEnumerator ScoreCounter()
     {
-        score += 1 ;
-        text.text = "Score: " + Convert.ToString(score);
+        GameManager.Instance.ScoreCount += 1 ;
+        text.text = "Score: " + GameManager.Instance.ScoreCount.ToString();
         yield return new WaitForSecondsRealtime(1);
         StartCoroutine(ScoreCounter());
+        
     }
 
 }
