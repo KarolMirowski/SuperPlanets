@@ -30,6 +30,12 @@ public class Spawner : MonoBehaviour
         Instantiate(obj, Random.onUnitSphere * 18f, Quaternion.identity);
         StartCoroutine(ObjectOne());
     }
+    IEnumerator ObjectTwo()
+    {
+        yield return new WaitForSecondsRealtime(firstTime);
+        Instantiate(obj, Random.onUnitSphere * 18f, Quaternion.identity);
+        StartCoroutine(ObjectTwo());
+    }
 
 
 

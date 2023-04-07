@@ -6,31 +6,21 @@ using UnityEngine.SceneManagement;
 public class EventsScripts : MonoBehaviour
 {
     // Start is called before the first frame update
-    public bool GenerateBonus   = true;
-    public bool GenerateLetters = true;
+    [SerializeField] private bool GenerateBonus   = true;
+    [SerializeField] private bool GenerateLetters = true;
+    [SerializeField] private bool GenerateAddPointsBonus = true;
 
 
-    [SerializeField]
-    private GameObject       playerOne;
-
-    [SerializeField]
-    private GameObject       playerTwo;
-    [SerializeField]
-    private GameObject       playerThree;
-    [SerializeField]
-    private GameObject       playerFour;
-
-    [SerializeField]
-    private TMPro.TMP_Text   text;
-
-    [SerializeField]
-    private GameSettings     gameSettings;
-
-    [SerializeField]
-    private GameObject       speedBonus;
-
-    [SerializeField]
-    private GameObject       letter;
+    [SerializeField] private GameObject playerOne;
+    [SerializeField] private GameObject playerTwo;
+    [SerializeField] private GameObject playerThree;
+    [SerializeField] private GameObject playerFour;
+    [SerializeField] private TMPro.TMP_Text   text;
+    [SerializeField] private GameSettings gameSettings;
+    [SerializeField] private GameObject speedBonus;
+    [SerializeField] private GameObject addPointsBonus;
+    [SerializeField] private GameObject letter;
+    
 
     private ScoreCount[] scoreCounts;
     private int looper = 0;
@@ -40,22 +30,17 @@ public class EventsScripts : MonoBehaviour
     void Start()
     {
         StartCoroutine(Wait());
-        if(GenerateBonus)
-            StartCoroutine(SpeedBonus());
-        if(GenerateLetters)
-            StartCoroutine(LettersGen());
+        if(GenerateBonus) StartCoroutine(SpeedBonus());
+            
+        if(GenerateAddPointsBonus) StartCoroutine(addPointsBonusRoutine());
+            
+        if(GenerateLetters) StartCoroutine(LettersGen());
+            
         scoreCounts = FindObjectsOfType<ScoreCount>();
 
     }
 
-    private void OnValidate()
-    {
-        if(speedBonus)
-        StopCoroutine(SpeedBonus());
-
-
-
-    }
+    
     IEnumerator LettersGen()
     {
         Vector3 letterPosition = playerOne.transform.position - playerOne.transform.forward + new Vector3(0, 0.1f, 0);
@@ -121,8 +106,16 @@ public class EventsScripts : MonoBehaviour
         MeshRenderer instance = Instantiate(speedBonus, Random.onUnitSphere * 50, Quaternion.identity).GetComponentInChildren<MeshRenderer>();
         Color color = Random.ColorHSV();
         instance.material.color = color;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2f);
         StartCoroutine(SpeedBonus());
+    }
+    public IEnumerator addPointsBonusRoutine()
+    {
+        MeshRenderer instance = Instantiate(addPointsBonus, Random.onUnitSphere * 50, Quaternion.identity).GetComponentInChildren<MeshRenderer>();
+        Color color = Random.ColorHSV();
+        instance.material.color = color;
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(addPointsBonusRoutine());
     }
     public void ResetScene()
     {

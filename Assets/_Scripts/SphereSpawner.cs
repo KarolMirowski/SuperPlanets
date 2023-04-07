@@ -11,9 +11,11 @@ public class SphereSpawner : MonoBehaviour
     [SerializeField] private float _maxSpawnDistance;
     [SerializeField] private float _minDistanceBetweenPoints;
     [SerializeField] private List<Vector3> _listForDistCheck;
+    [SerializeField] private List<MeshRenderer> _listOfRenderers;
 
     void Awake()
     {
+        _listOfRenderers = new();
         GenRandSpherePositions();
     }
 
@@ -46,7 +48,13 @@ public class SphereSpawner : MonoBehaviour
             }
             print(safetyCount);
             _listForDistCheck.Add(randomSpawnPosition);
-            Instantiate(_prefabToSpawn, randomSpawnPosition, Quaternion.identity, parentTransform);
+            var nextPlayer = Instantiate(_prefabToSpawn, randomSpawnPosition, Quaternion.identity, parentTransform);
+            _listOfRenderers.Add(nextPlayer.GetComponent<MeshRenderer>());
+
+        }
+        foreach (var renderer in _listOfRenderers)
+        {
+            renderer.material.SetColor("randomcolor", Random.ColorHSV());
         }
     }
 
