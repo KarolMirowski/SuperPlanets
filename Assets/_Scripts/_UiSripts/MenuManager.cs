@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -13,6 +14,9 @@ public class MenuManager : MonoBehaviour, IPointerDownHandler
     [SerializeField] private Button _startButton;
     [SerializeField] private Button _goToSettingsButton;
     [SerializeField] private Button _goToCreditsButton;
+    [SerializeField] private Button _addBotButton;
+    [SerializeField] private Button _removeBotButton;
+    [SerializeField] private TextMeshProUGUI _botCounter;
     [SerializeField] private Button[] _backToMenuButton;
     [SerializeField] private GameObject _menuPanel;
     [SerializeField] private GameObject _settingsPanel;
@@ -32,6 +36,8 @@ public class MenuManager : MonoBehaviour, IPointerDownHandler
 
         _startButton.onClick.AddListener(StartGame);
         _goToSettingsButton.onClick.AddListener(GoToSettings);
+        _addBotButton.onClick.AddListener(AddOneBot);
+        _removeBotButton.onClick.AddListener(RemoveOneBot);
         for (int i = 0; i < _backToMenuButton.Length; i++)
         {
             int buttonIndex = i; // utworzenie lokalnej zmiennej przechowującej aktualny indeks przycisku
@@ -53,6 +59,12 @@ public class MenuManager : MonoBehaviour, IPointerDownHandler
                 GoToSettings();
                 break;
             case "_goToCreditsButton":
+                GoToCredits();
+                break;
+            case "_addOneBotButton":
+                GoToCredits();
+                break;
+            case "_removeBotButton":
                 GoToCredits();
                 break;
             default:
@@ -113,4 +125,14 @@ public class MenuManager : MonoBehaviour, IPointerDownHandler
         if (_creditsPanel.activeSelf == false)
             _creditsPanel.SetActive(true);
     }
+
+    void AddOneBot(){
+        GameManager.Instance.BotCountNumber += 1;
+        _botCounter.text = GameManager.Instance.BotCountNumber.ToString();
+    }
+    void RemoveOneBot(){
+        GameManager.Instance.BotCountNumber -= 1;
+        _botCounter.text = GameManager.Instance.BotCountNumber.ToString();
+    }
+
 }

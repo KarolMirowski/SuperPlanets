@@ -15,7 +15,7 @@ public class SphereSpawner : MonoBehaviour
 
     void Awake()
     {
-        _listOfRenderers = new();
+        _numberOfSpawns = GameManager.Instance.BotCountNumber;
         GenRandSpherePositions();
     }
 
@@ -49,13 +49,12 @@ public class SphereSpawner : MonoBehaviour
             print(safetyCount);
             _listForDistCheck.Add(randomSpawnPosition);
             var nextPlayer = Instantiate(_prefabToSpawn, randomSpawnPosition, Quaternion.identity, parentTransform);
+            var newMeshRenderer = new MeshRenderer();
+            //nextPlayer.GetComponent<MeshRenderer>() = newMeshRenderer;
             _listOfRenderers.Add(nextPlayer.GetComponent<MeshRenderer>());
 
         }
-        foreach (var renderer in _listOfRenderers)
-        {
-            renderer.material.SetColor("randomcolor", Random.ColorHSV());
-        }
+        
     }
 
 

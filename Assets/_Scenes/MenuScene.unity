@@ -581,7 +581,7 @@ GameObject:
   - component: {fileID: 180313548}
   - component: {fileID: 180313547}
   m_Layer: 5
-  m_Name: Number of Bots
+  m_Name: BotsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1171,9 +1171,8 @@ GameObject:
   - component: {fileID: 240442972}
   - component: {fileID: 240442971}
   - component: {fileID: 240442970}
-  - component: {fileID: 240442969}
   m_Layer: 5
-  m_Name: OneBot
+  m_Name: BotCounter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1200,22 +1199,6 @@ RectTransform:
   m_AnchoredPosition: {x: 10.489, y: -29.000004}
   m_SizeDelta: {x: 114.064, y: 47.156}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &240442969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 240442967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: debff1cd361a59948bfa59e17434ebd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioSource: {fileID: 59724040}
-  _audioClip: {fileID: 8300000, guid: 890660fed0f9b1244ba22dcfa2657da9, type: 3}
-  _twoBots: {fileID: 1412788639}
-  _threeBots: {fileID: 2115514733}
 --- !u!114 &240442970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2463,8 +2446,8 @@ RectTransform:
   m_GameObject: {fileID: 752356555}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.13, y: 1.13, z: 1.13}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1412788636}
   m_RootOrder: 0
@@ -2494,7 +2477,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2
+  m_text: +
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 718eed31ac5b0c248a70a5ff481fe2d2, type: 2}
   m_sharedMaterial: {fileID: -5902771325691188349, guid: 718eed31ac5b0c248a70a5ff481fe2d2,
@@ -4878,6 +4861,9 @@ MonoBehaviour:
   _startButton: {fileID: 1834330835}
   _goToSettingsButton: {fileID: 967975637}
   _goToCreditsButton: {fileID: 1379454970}
+  _addBotButton: {fileID: 1412788638}
+  _removeBotButton: {fileID: 2115514732}
+  _botCounter: {fileID: 829960810}
   _backToMenuButton:
   - {fileID: 1555490093}
   - {fileID: 735462303}
@@ -5265,7 +5251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
-  JakisNapis: sdcc
+  _botCountNumber: 0
 --- !u!1 &1274512322
 GameObject:
   m_ObjectHideFlags: 0
@@ -5768,9 +5754,8 @@ GameObject:
   - component: {fileID: 1412788639}
   - component: {fileID: 1412788638}
   - component: {fileID: 1412788637}
-  - component: {fileID: 1412788641}
   m_Layer: 5
-  m_Name: TwoBots
+  m_Name: AddBot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5894,22 +5879,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1412788635}
   m_CullTransparentMesh: 1
---- !u!114 &1412788641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1412788635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddac33fe865584f4bb31285cca6887a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioSource: {fileID: 59724040}
-  _audioClip: {fileID: 8300000, guid: 890660fed0f9b1244ba22dcfa2657da9, type: 3}
-  _oneBot: {fileID: 240442972}
-  _threeBots: {fileID: 2115514733}
 --- !u!1 &1448649093
 GameObject:
   m_ObjectHideFlags: 0
@@ -6537,8 +6506,8 @@ RectTransform:
   m_GameObject: {fileID: 1663090964}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.13, y: 1.13, z: 1.13}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2115514730}
   m_RootOrder: 0
@@ -6568,7 +6537,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 718eed31ac5b0c248a70a5ff481fe2d2, type: 2}
   m_sharedMaterial: {fileID: -5902771325691188349, guid: 718eed31ac5b0c248a70a5ff481fe2d2,
@@ -7626,9 +7595,8 @@ GameObject:
   - component: {fileID: 2115514733}
   - component: {fileID: 2115514732}
   - component: {fileID: 2115514731}
-  - component: {fileID: 2115514735}
   m_Layer: 5
-  m_Name: ThreeBots
+  m_Name: RemoveBot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7752,19 +7720,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115514729}
   m_CullTransparentMesh: 1
---- !u!114 &2115514735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2115514729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f08ab3b0784dafc4790326dfdcba03fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioSource: {fileID: 59724040}
-  _audioClip: {fileID: 8300000, guid: 890660fed0f9b1244ba22dcfa2657da9, type: 3}
-  _oneBot: {fileID: 240442972}
-  _twoBots: {fileID: 1412788639}

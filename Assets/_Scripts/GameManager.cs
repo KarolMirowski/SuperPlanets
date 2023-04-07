@@ -5,15 +5,24 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
+public enum ShareState { ShareStateOne, ShareStateTwo }
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    
-    
-    [Header("GENERAL SETTINGS")] public GameState State ;//= //GameManager.GameState;
+
+    public GameState State;
     public static event Action<GameState> OnGameStateChange;
-   
-    public string JakisNapis;
+    //public static event Action<BotsNumber> OnBotCountChange;
+
+    private int _scoreCount;
+    public int ScoreCount { get { return _scoreCount; } set { _scoreCount = value; } }
+
+    [SerializeField] private int _botCountNumber;
+    public int BotCountNumber
+    {
+        get { return _botCountNumber; }
+        set { _botCountNumber = Mathf.Clamp(value, 1, 20); }
+    }
 
 
     void Awake()
@@ -30,7 +39,7 @@ public class GameManager : MonoBehaviour
 
 
     }
-    
+
 
     public void UpdateGameState(GameState nextState)
     {
@@ -52,20 +61,22 @@ public class GameManager : MonoBehaviour
 
         OnGameStateChange?.Invoke(nextState);
     }
-    public void UpdateBotNumber(BotsNumber nextState)
+    public void UpdateBotCount(BotCount newBotCount)
     {
-        switch (nextState)
+
+
+        switch (newBotCount)
         {
-            case BotsNumber.OneBot:
+            case BotCount.OneBot:
                 // ...
                 break;
-            case BotsNumber.TwoBots:
+            case BotCount.TwoBots:
                 // ...
                 break;
-            case BotsNumber.ThreeBots:
+            case BotCount.ThreeBots:
                 // ...
                 break;
-            case BotsNumber.FourBots:
+            case BotCount.FourBots:
                 // ...
                 break;
         }
@@ -82,7 +93,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public enum BotsNumber
+    public enum BotCount
     {
         OneBot,
         TwoBots,
@@ -92,4 +103,3 @@ public class GameManager : MonoBehaviour
 
 
 }
-public enum ShareState {ShareStateOne, ShareStateTwo}
