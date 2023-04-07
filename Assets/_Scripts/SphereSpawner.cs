@@ -11,6 +11,7 @@ public class SphereSpawner : MonoBehaviour
     [SerializeField] private float _maxSpawnDistance;
     [SerializeField] private float _minDistanceBetweenPoints;
     [SerializeField] private List<Vector3> _listForDistCheck;
+
     void Awake()
     {
         GenRandSpherePositions();
@@ -20,16 +21,35 @@ public class SphereSpawner : MonoBehaviour
     {
         _listForDistCheck = new List<Vector3>();
         var parentTransform = GameObject.Find("Bots").transform;
+        int safetyCount = 0;
         for (int i = 0; i < _numberOfSpawns; i++)
         {
             Vector3 randomSpawnPosition = Random.onUnitSphere * Random.Range(_minSpawnDistance, _maxSpawnDistance);
-            
-            
+
+            // Sprawdzanie odległości między nowo wylosowanym punktem a już wylosowanymi
+            bool isTooClose = true;
+            while (isTooClose)
+            {
+                isTooClose = false;
+                foreach (Vector3 position in _listForDistCheck)
+                {
+                    safetyCount++;
+                    if (safetyCount > 5000)
+                        break;
+                    if (Vector3.Distance(position, randomSpawnPosition) < _minDistanceBetweenPoints)
+                    {
+                        isTooClose = true;
+                        randomSpawnPosition = Random.onUnitSphere * Random.Range(_minSpawnDistance, _maxSpawnDistance);
+                        break;
+                    }
+                }
+            }
+            print(safetyCount);
             _listForDistCheck.Add(randomSpawnPosition);
-            
-            Instantiate(_prefabToSpawn, randomSpawnPosition, Quaternion.identity,parentTransform);
+            Instantiate(_prefabToSpawn, randomSpawnPosition, Quaternion.identity, parentTransform);
         }
     }
+
 
 
 }
