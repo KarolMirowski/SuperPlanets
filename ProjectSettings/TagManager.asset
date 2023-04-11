@@ -12,6 +12,7 @@ TagManager:
   - Planet
   - Add5Points
   - 5
+  - Managers
   layers:
   - Default
   - TransparentFX

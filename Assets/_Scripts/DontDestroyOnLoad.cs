@@ -13,14 +13,22 @@ public class DontDestroyOnLoad : MonoBehaviour
         if (_dontDestroyOnLoad == true)
             DontDestroyOnLoad(gameObject);
 
+        if(FindObjectsOfType<DontDestroyOnLoad>().Length > 1)
+            Destroy(this.gameObject);
+        
+        
+        
+        /*
         GameObject[] managersObjectArray = GameObject.FindGameObjectsWithTag("Managers");
         managersObjectArray = managersObjectArray.Reverse().ToArray();
 
         if (managersObjectArray.Length > 1)
         {
-            for(int i = 0; i < managersObjectArray.Length - 1 ;i++){
+            for (int i = 0; i < managersObjectArray.Length - 1; i++)
+            {
                 Destroy(managersObjectArray[i]);
             }
         }
+        */
     }
 }

@@ -32,7 +32,8 @@ public class MenuManager : MonoBehaviour, IPointerDownHandler
     {
         if (instance == null) { instance = this; }
         else { Destroy(gameObject); }
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(this);
 
         _startButton.onClick.AddListener(StartGame);
         _goToSettingsButton.onClick.AddListener(GoToSettings);
