@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class BackToMainMenu : MonoBehaviour
 {
-    public void BackToMainMenuButton(){
+    GameManager _gameManager;
+    private void OnEnable()
+    {
+        _gameManager = GameManager.Instance;
+    }
+    public void BackToMainMenuButton()
+    {
         MySceneManager.Instance.LoadMainMenuScene();
+
+        _gameManager.UpdateGameState(GameManager.GameState.MainMenu);
     }
 }

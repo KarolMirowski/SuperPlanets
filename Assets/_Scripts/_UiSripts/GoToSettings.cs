@@ -6,7 +6,7 @@ using TMPro;
 
 public class GoToSettings : MonoBehaviour, IPointerDownHandler
 {
-      [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _audioClip;
     [SerializeField] private GameObject _menuPanel;
     [SerializeField] private GameObject _settingsPanel;

@@ -42,7 +42,13 @@ public class OnCollision : MonoBehaviour
             if (GetComponentInParent<PlayerController>() != null)
             {
                 GetComponentInParent<PlayerController>().speed = 0;
-                
+                //Show Game Over Sign.
+                CanvasManager.Instance.OnGameOver();
+                //Show score.    
+            
+            
+            
+            
             }
             else if (GetComponentInParent<Player2Controller>() != null)
             {
@@ -51,15 +57,7 @@ public class OnCollision : MonoBehaviour
             }
             GetComponentInParent<Rigidbody>().Sleep();
 
-            //print game over
-            //stop counter
-            /*
-            if(GetComponentInParent<Player2Controller>() != null)
-                GetComponentInParent<Player2Controller>().StopCoroutine("TurnTact");
-            //This does not work.
-            */
-
-            //Debug.Log($"{this.name} - Pauza {collision.collider.name}");
+            
             return;
         }
     }

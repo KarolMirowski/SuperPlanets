@@ -130,7 +130,7 @@ public class Player2Controller : MonoBehaviour
     */
     public IEnumerator TurnTact(float duration)
     {
-        //Debug.Log($"TurnTact ruszyło. Name:{this.gameObject.name}");
+        
         if(CanTurn == false)
             yield break;
         //First bool check; for bot to avoid false start.
@@ -145,7 +145,7 @@ public class Player2Controller : MonoBehaviour
         
         //Randomized decision. Shall turn right or left.
         var leftRight = Random.Range(0, 1f);
-        //Debug.Log($"leftRight wynosi : {leftRight}");
+        
         
         if (leftRight < 0.5f )
         {
