@@ -9,10 +9,25 @@ public class ScoreCount : MonoBehaviour
     public TextMeshProUGUI text;
     private int score = 0;
     private float speedMultiplier = 1f;
+    private bool _shouldAddPoint;
+    public bool ShouldAddPoint {get{return _shouldAddPoint;}set{_shouldAddPoint = value;}}
+
+    
+    public static ScoreCount Instance;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        //StartCoroutine(ScoreCounter());
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         
     }
 
@@ -21,7 +36,9 @@ public class ScoreCount : MonoBehaviour
         GameManager.Instance.ScoreCount += 1 ;
         text.text = "Score: " + GameManager.Instance.ScoreCount.ToString();
         yield return new WaitForSecondsRealtime(1);
-        StartCoroutine(ScoreCounter());
+        
+        if(ShouldAddPoint == false)
+            StartCoroutine(ScoreCounter());
         
     }
 

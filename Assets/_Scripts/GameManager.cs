@@ -6,6 +6,8 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 public enum ShareState { ShareStateOne, ShareStateTwo }
+
+public enum GameState{MainMenu, Settings, GamePlay, CreditsPanel}
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -84,14 +86,11 @@ public class GameManager : MonoBehaviour
 
 
 
-    public enum GameState
-    {
-        MainMenu,
-        Settings,
-        GamePlay,
-        CreditsPanel
-
-    }
+        
+    
+     
+        
+        
 
     public enum BotCount
     {

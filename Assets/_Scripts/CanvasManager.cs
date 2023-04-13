@@ -7,6 +7,9 @@ public class CanvasManager : MonoBehaviour
     public static CanvasManager Instance;
     [SerializeField] private GameObject _gameOverSign;
     [SerializeField] private GameObject _yourScoreSign;
+    [SerializeField] private GameObject _backToMenuButton;
+    [SerializeField] private GameObject _resetSceneButton;
+    [SerializeField] private GameObject _scoreCounter;
 
     void Awake()
     {

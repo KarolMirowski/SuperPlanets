@@ -41,12 +41,16 @@ public class OnCollision : MonoBehaviour
         {
             if (GetComponentInParent<PlayerController>() != null)
             {
+                //Stop player movement.
                 GetComponentInParent<PlayerController>().speed = 0;
-                //Show Game Over Sign.
+                
+                //Show Game Over Sign, score number, and disable player canvas     
                 CanvasManager.Instance.OnGameOver();
-                //Show score.    
-            
-            
+                
+                //Stop score counter
+                ScoreCount.Instance.ShouldAddPoint = false;
+                StopCoroutine(ScoreCount.Instance.ScoreCounter());
+                ScoreCount.Instance.gameObject.SetActive(false);
             
             
             }

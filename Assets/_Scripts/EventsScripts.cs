@@ -121,6 +121,7 @@ public class EventsScripts : MonoBehaviour
     {
         //Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene("WorkingScene");
+        GameManager.Instance.ScoreCount = 0;
     }
     public void BackToMenu()
     {

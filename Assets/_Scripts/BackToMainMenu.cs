@@ -13,6 +13,6 @@ public class BackToMainMenu : MonoBehaviour
     {
         MySceneManager.Instance.LoadMainMenuScene();
 
-        _gameManager.UpdateGameState(GameManager.GameState.MainMenu);
+        _gameManager.UpdateGameState(GameState.MainMenu);
     }
 }

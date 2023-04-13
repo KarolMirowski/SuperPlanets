@@ -44,6 +44,9 @@ public class MenuManager : MonoBehaviour, IPointerDownHandler
             int buttonIndex = i; // utworzenie lokalnej zmiennej przechowującej aktualny indeks przycisku
             _backToMenuButton[buttonIndex].onClick.AddListener(GoBackToMenu);
         }
+
+        if(_botCounter != null)
+            _botCounter.text = GameManager.Instance.BotCountNumber.ToString();
     }
 
 
@@ -79,7 +82,7 @@ public class MenuManager : MonoBehaviour, IPointerDownHandler
     {
         _audioSource.PlayOneShot(_audioClip);
         MySceneManager.Instance.LoadScene("WorkingScene");
-        GameManager.Instance.UpdateGameState(GameManager.GameState.GamePlay);
+        GameManager.Instance.UpdateGameState(GameState.GamePlay);
     }
 
     
