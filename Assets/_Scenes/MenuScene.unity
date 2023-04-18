@@ -7170,10 +7170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4dfecc935fc9541882b5cd7c879179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 59724040}
-  _audioClip: {fileID: 8300000, guid: 890660fed0f9b1244ba22dcfa2657da9, type: 3}
-  _menuPanel: {fileID: 0}
-  _settingsPanel: {fileID: 0}
 --- !u!1001 &1878455299
 PrefabInstance:
   m_ObjectHideFlags: 0

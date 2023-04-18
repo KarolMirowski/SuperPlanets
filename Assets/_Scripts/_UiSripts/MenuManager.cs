@@ -45,8 +45,12 @@ public class MenuManager : MonoBehaviour, IPointerDownHandler
             _backToMenuButton[buttonIndex].onClick.AddListener(GoBackToMenu);
         }
 
-        if(_botCounter != null)
+    }
+    void Start()
+    {
+        if (_botCounter != null)
             _botCounter.text = GameManager.Instance.BotCountNumber.ToString();
+
     }
 
 
@@ -85,7 +89,7 @@ public class MenuManager : MonoBehaviour, IPointerDownHandler
         GameManager.Instance.UpdateGameState(GameState.GamePlay);
     }
 
-    
+
     void GoBackToMenu()
     {
         _audioSource.PlayOneShot(_audioClip);
@@ -130,11 +134,13 @@ public class MenuManager : MonoBehaviour, IPointerDownHandler
             _creditsPanel.SetActive(true);
     }
 
-    void AddOneBot(){
+    void AddOneBot()
+    {
         GameManager.Instance.BotCountNumber += 1;
         _botCounter.text = GameManager.Instance.BotCountNumber.ToString();
     }
-    void RemoveOneBot(){
+    void RemoveOneBot()
+    {
         GameManager.Instance.BotCountNumber -= 1;
         _botCounter.text = GameManager.Instance.BotCountNumber.ToString();
     }

@@ -8,8 +8,10 @@ public class RandColor : MonoBehaviour
 
     private void Start()
     {
+        //Nowy materiał.
         Material newMaterial = new Material(Shader.Find("Standard"));
 
+        //Pętla. Dla unikalności każdego z kolorów pobranych z listy.
         Color randomColor;
         do
         {
@@ -19,8 +21,8 @@ public class RandColor : MonoBehaviour
         while (assignedColors.Contains(randomColor));
         assignedColors.Add(randomColor);
 
+        //Przypisanie koloru do materiału, materiału do Renderera i TrailRenderera.
         newMaterial.color = randomColor;
-
         var meshRenderer = GetComponent<MeshRenderer>();
         meshRenderer.material = newMaterial;
 
