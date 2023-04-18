@@ -8,6 +8,8 @@ public class RandColor : MonoBehaviour
 
     private void Start()
     {
+        Material newMaterial = new Material(Shader.Find("Standard"));
+
         Color randomColor;
         do
         {
@@ -15,11 +17,19 @@ public class RandColor : MonoBehaviour
             randomColor = colors[randomColorIndex];
         }
         while (assignedColors.Contains(randomColor));
-
         assignedColors.Add(randomColor);
 
+        newMaterial.color = randomColor;
+
         var meshRenderer = GetComponent<MeshRenderer>();
-        meshRenderer.sharedMaterial.color = randomColor;
-        GetComponentInChildren<TrailRenderer>().material.color = randomColor;
+        meshRenderer.material = newMaterial;
+
+        var trailRenderer = GetComponentInChildren<TrailRenderer>();
+        if (trailRenderer != null)
+        {
+            trailRenderer.material = new Material(Shader.Find("Standard"));
+            trailRenderer.material.color = randomColor;
+            trailRenderer.materials = new Material[] { trailRenderer.material };
+        }
     }
 }
