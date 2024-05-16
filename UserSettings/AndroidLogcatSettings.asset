@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "HVA5HNA3",
     "m_SelectedProcess": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "HVA5HNA3",
+        "name": "com.DefaultCompany.PlanetsMobile",
+        "processId": 27619,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -36,6 +36,24 @@
             "deviceId": "HVA5HNA3",
             "name": "com.tblenovo.launcher",
             "processId": 2091,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 24533,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 26801,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 27619,
             "exited": false
         }
     ],

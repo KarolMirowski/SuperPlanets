@@ -16,6 +16,7 @@ public class MenuManager : MonoBehaviour, IPointerDownHandler
     [SerializeField] private Button _goToCreditsButton;
     [SerializeField] private Button _addBotButton;
     [SerializeField] private Button _removeBotButton;
+    [SerializeField] private Button _exitGameButton;
     [SerializeField] private TextMeshProUGUI _botCounter;
     [SerializeField] private Button[] _backToMenuButton;
     [SerializeField] private GameObject _menuPanel;
@@ -39,6 +40,7 @@ public class MenuManager : MonoBehaviour, IPointerDownHandler
         _goToSettingsButton.onClick.AddListener(GoToSettings);
         _addBotButton.onClick.AddListener(AddOneBot);
         _removeBotButton.onClick.AddListener(RemoveOneBot);
+        _exitGameButton.onClick.AddListener(ExitGame);
         for (int i = 0; i < _backToMenuButton.Length; i++)
         {
             int buttonIndex = i; // utworzenie lokalnej zmiennej przechowującej aktualny indeks przycisku
@@ -143,6 +145,12 @@ public class MenuManager : MonoBehaviour, IPointerDownHandler
     {
         GameManager.Instance.BotCountNumber -= 1;
         _botCounter.text = GameManager.Instance.BotCountNumber.ToString();
+    }
+
+    void ExitGame()
+    {
+        Application.Quit();
+        print("ExitGame naciśnięto");
     }
 
 }

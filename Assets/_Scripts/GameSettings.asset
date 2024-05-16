@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameVersion: 1.0.0
   _nickName: Karol
-  pOneSpeed: 0.20000002
+  pOneSpeed: 0.2
   pTwoSpeed: 4.14
   pOneFOV: 63
   pTwoFOV: 63
