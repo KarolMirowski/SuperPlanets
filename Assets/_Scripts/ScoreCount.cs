@@ -10,9 +10,9 @@ public class ScoreCount : MonoBehaviour
     private int score = 0;
     private float speedMultiplier = 1f;
     private bool _shouldAddPoint;
-    public bool ShouldAddPoint {get{return _shouldAddPoint;}set{_shouldAddPoint = value;}}
+    public bool ShouldAddPoint { get { return _shouldAddPoint; } set { _shouldAddPoint = value; } }
 
-    
+
     public static ScoreCount Instance;
 
     // Start is called before the first frame update
@@ -28,18 +28,22 @@ public class ScoreCount : MonoBehaviour
             Destroy(gameObject);
         }
 
-        
+
     }
 
     public IEnumerator ScoreCounter()
     {
-        GameManager.Instance.ScoreCount += 1 ;
-        text.text = "Score: " + GameManager.Instance.ScoreCount.ToString();
-        yield return new WaitForSecondsRealtime(1);
-        
-        if(ShouldAddPoint == false)
-            StartCoroutine(ScoreCounter());
-        
+        if (GameManager.Instance != null)
+        {
+
+            GameManager.Instance.ScoreCount += 1;
+            text.text = "Score: " + GameManager.Instance.ScoreCount.ToString();
+            yield return new WaitForSecondsRealtime(1);
+
+            if (ShouldAddPoint == false)
+                StartCoroutine(ScoreCounter());
+
+        }
     }
 
 }

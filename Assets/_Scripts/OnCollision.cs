@@ -45,7 +45,10 @@ public class OnCollision : MonoBehaviour
                 GetComponentInParent<PlayerController>().speed = 0;
                 
                 //Show Game Over Sign, score number, and disable player canvas     
-                CanvasManager.Instance.OnGameOver();
+                if (CanvasManager.Instance.isActiveAndEnabled)
+                {
+                    CanvasManager.Instance.OnGameOver();
+                }
                 
                 //Stop score counter
                 ScoreCount.Instance.ShouldAddPoint = false;

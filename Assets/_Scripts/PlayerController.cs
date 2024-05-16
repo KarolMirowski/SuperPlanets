@@ -25,7 +25,8 @@ public class PlayerController : MonoBehaviour
     private TrailRenderer tr;
     bool IsBonus1Active = false;
     int bonus1Reps = 0;
-
+    public GameObject turnLeftButton;
+    public GameObject turnRightButton;
     private void Start()
     {
         if (GetComponentInChildren<Camera>() != null)
@@ -43,7 +44,9 @@ public class PlayerController : MonoBehaviour
         else
             speed = gameSettings.pTwoSpeed;
 
-
+        turnLeftButton.GetComponent<Button>().onClick.AddListener(OnTurnLeftButtonPressed);
+        turnRightButton.GetComponent<Button>().onClick.AddListener(OnTurnRightButtonPressed);
+    
     }
     void Update()
     {
@@ -70,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
 
         //Turn left 90 degrees
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A) )
         {
             transform.Rotate(Vector3.up * -90f);
             transform.position += transform.forward * 0.5f;
@@ -149,6 +152,27 @@ public class PlayerController : MonoBehaviour
     {
         text.text = speed.ToString();
     }
+    // Metody obsługi przycisków
+    public void OnTurnLeftButtonPressed()
+    {
+        TurnLeft();
+    }
 
+    public void OnTurnRightButtonPressed()
+    {
+        TurnRight();
+    }
+
+    private void TurnLeft()
+    {
+        transform.Rotate(Vector3.up * -90f);
+        transform.position += transform.forward * 0.5f;
+    }
+
+    private void TurnRight()
+    {
+        transform.Rotate(Vector3.up * 90f);
+        transform.position += transform.forward * 0.5f;
+    }
 }
 

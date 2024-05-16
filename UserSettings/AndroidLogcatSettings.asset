@@ -1,23 +1,41 @@
 {
-    "m_SelectedDeviceId": "2UPNW20103002042",
-    "m_SelectedPackage": {
-        "deviceId": "2UPNW20103002042",
-        "name": "com.DefaultCompany.PlanetsMobile",
-        "processId": 6840,
+    "m_SelectedDeviceId": "HVA5HNA3",
+    "m_SelectedProcess": {
+        "deviceId": "",
+        "name": "",
+        "processId": 0,
         "exited": false
     },
     "m_SelectedPriority": 0,
-    "m_KnownPackagesForSerialization": [
+    "m_KnownProcessesForSerialization": [
         {
-            "deviceId": "HEKNU18C04100545",
+            "deviceId": "HVA5HNA3",
             "name": "com.DefaultCompany.PlanetsMobile",
-            "processId": 27235,
-            "exited": false
+            "processId": 10338,
+            "exited": true
         },
         {
-            "deviceId": "2UPNW20103002042",
+            "deviceId": "HVA5HNA3",
             "name": "com.DefaultCompany.PlanetsMobile",
-            "processId": 6840,
+            "processId": 22683,
+            "exited": true
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 23398,
+            "exited": true
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 23797,
+            "exited": true
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.tblenovo.launcher",
+            "processId": 2091,
             "exited": false
         }
     ],
@@ -53,8 +71,11 @@
             }
         ]
     },
+    "m_ExtraWindowState": {
+        "Type": 0,
+        "Height": 0.0
+    },
     "m_MemoryViewerState": {
-        "MemoryWindowHeight": 300.0,
         "MemoryWindowWidth": 170.0,
         "MemoryTypeEnabled": [
             true,
@@ -69,9 +90,35 @@
             true
         ],
         "MemoryGroup": 2,
-        "Behavior": 0
+        "AutoCapture": true
     },
-    "m_Filter": "",
-    "m_FilterIsRegularExpression": false,
-    "m_SymbolPaths": []
+    "m_FilterOptions": {
+        "m_Filter": "",
+        "m_UseRegularExpressions": false,
+        "m_MatchCase": false
+    },
+    "m_SymbolPaths": [],
+    "m_CaptureVideoSettings": {
+        "TimeLimitEnabled": false,
+        "TimeLimit": 180,
+        "VideoSizeEnabled": false,
+        "VideoSizeX": 1280,
+        "VideoSizeY": 720,
+        "BitRateEnabled": false,
+        "BitRateK": 20000,
+        "DisplayIdEnabled": false,
+        "DisplayId": ""
+    },
+    "m_InputSettings": {
+        "ShiftModifier": false,
+        "SendText": "",
+        "PosixKillSignal": 0,
+        "TargetProcess": {
+            "deviceId": "",
+            "name": "",
+            "processId": 0,
+            "exited": false
+        }
+    },
+    "m_AutoScroll": 0
 }

@@ -20,13 +20,13 @@ public class TrailMesh : MonoBehaviour
     private bool collisionBool;
     public void trInit()
     {
-
+        
         //GameObject player = GameObject.FindGameObjectWithTag("Player");
         
         
         
     }
-    public void Start()
+    public void Awake()
     {
         mesh = new Mesh();
         mesh.MarkDynamic();
