@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     public int BotCountNumber
     {
         get { return _botCountNumber; }
-        set { _botCountNumber = Mathf.Clamp(value, 1, 20); }
+        set { _botCountNumber = Mathf.Clamp(value, 0, 20); }
     }
 
 

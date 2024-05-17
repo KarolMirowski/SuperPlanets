@@ -71,19 +71,19 @@ public class PlayerController : MonoBehaviour
 
         //Constant move forward function call here to check eficancy.
 
-
+        //Moving forward a littl
         //Turn left 90 degrees
         if (Input.GetKeyDown(KeyCode.A) )
         {
             transform.Rotate(Vector3.up * -90f);
-            transform.position += transform.forward * 0.5f;
+            //transform.position += transform.forward * 0.5f;
         }
 
         //Turn right 90 degrees
         if (Input.GetKeyDown(KeyCode.D))
         {
             transform.Rotate(Vector3.up * 90f);
-            transform.position += transform.forward * 0.5f;
+            //transform.position += transform.forward * 0.5f;
         }
     }
     void RotateCamera90Degrees()
@@ -166,13 +166,13 @@ public class PlayerController : MonoBehaviour
     private void TurnLeft()
     {
         transform.Rotate(Vector3.up * -90f);
-        transform.position += transform.forward * 0.5f;
+        //transform.position += transform.forward * 0.5f;
     }
 
     private void TurnRight()
     {
         transform.Rotate(Vector3.up * 90f);
-        transform.position += transform.forward * 0.5f;
+        //transform.position += transform.forward * 0.5f;
     }
 }
 
