@@ -125,12 +125,11 @@ public class EventsScripts : MonoBehaviour
     }
     public void BackToMenu()
     {
-        //Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("MenuScene");
+        
     }
     public void GoToOptions()
     {
-        //Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene("Options");
     }
    

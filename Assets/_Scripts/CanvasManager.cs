@@ -40,4 +40,10 @@ public class CanvasManager : MonoBehaviour
     {
 
     }
+    public void BackToMainMenuButton()
+    {
+        MySceneManager.Instance.LoadMainMenuScene();
+
+        GameManager.Instance.UpdateGameState(GameState.MainMenu);
+    }
 }

@@ -75,14 +75,14 @@ public class PlayerController : MonoBehaviour
         //Turn left 90 degrees
         if (Input.GetKeyDown(KeyCode.A) )
         {
-            transform.Rotate(Vector3.up * -90f);
+            TurnLeft();
             //transform.position += transform.forward * 0.5f;
         }
 
         //Turn right 90 degrees
         if (Input.GetKeyDown(KeyCode.D))
         {
-            transform.Rotate(Vector3.up * 90f);
+            TurnRight();
             //transform.position += transform.forward * 0.5f;
         }
     }
@@ -172,7 +172,19 @@ public class PlayerController : MonoBehaviour
     private void TurnRight()
     {
         transform.Rotate(Vector3.up * 90f);
+        TurnCameraLeft90();
         //transform.position += transform.forward * 0.5f;
     }
+
+
+    void TurnCameraLeft90(){
+        camera.transform.Rotate(Vector3.forward * -90f); 
+    }
+    
+    void TurnCameraRight90(){
+        camera.transform.Rotate(Vector3.forward * 90f); 
+    }
+
 }
+
 
