@@ -3,7 +3,7 @@
     "m_SelectedProcess": {
         "deviceId": "HVA5HNA3",
         "name": "com.DefaultCompany.PlanetsMobile",
-        "processId": 7302,
+        "processId": 17861,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -60,6 +60,36 @@
             "deviceId": "HVA5HNA3",
             "name": "com.DefaultCompany.PlanetsMobile",
             "processId": 7302,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 25545,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 26652,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 27181,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 28873,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 17861,
             "exited": false
         }
     ],
