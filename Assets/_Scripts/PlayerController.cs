@@ -139,18 +139,14 @@ public class PlayerController : MonoBehaviour
     {
         transform.Rotate(Vector3.up * -90f);
         TurnCameraRight90();
-        if (!IsTurning())
-        {
-        }
+
     }
 
     private void TurnRight()
     {
-        if (!IsTurning())
-        {
-            transform.Rotate(Vector3.up * 90f);
-            TurnCameraLeft90();
-        }
+        transform.Rotate(Vector3.up * 90f);
+        TurnCameraLeft90();
+        
     }
     public void OnTurnLeft(InputAction.CallbackContext context)
     {

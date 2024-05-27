@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public enum ShareState { ShareStateOne, ShareStateTwo }
 
-public enum GameState{MainMenu, Settings, GamePlay, CreditsPanel}
+public enum GameState { MainMenu, Settings, GamePlay, SplitScreenGameplay, CreditsPanel }
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -20,10 +20,16 @@ public class GameManager : MonoBehaviour
     public int ScoreCount { get { return _scoreCount; } set { _scoreCount = value; } }
 
     [SerializeField] private int _botCountNumber;
+    [SerializeField] private int _playCountNumber;
     public int BotCountNumber
     {
         get { return _botCountNumber; }
         set { _botCountNumber = Mathf.Clamp(value, 0, 20); }
+    }
+    public int PlayerCountNumber
+    {
+        get { return _playCountNumber; }
+        set { _playCountNumber = Mathf.Clamp(value, 1, 4); }
     }
 
 
@@ -56,6 +62,8 @@ public class GameManager : MonoBehaviour
             case GameState.Settings:
                 break;
             case GameState.GamePlay:
+                break;
+            case GameState.SplitScreenGameplay:
                 break;
             case GameState.CreditsPanel:
                 break;

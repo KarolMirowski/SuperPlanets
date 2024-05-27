@@ -7,6 +7,9 @@ public class OnCollision : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
+        //Test buga pauzy,
+        print(collision.collider.name);
+        
         if (collision.collider.CompareTag("Add5Points") == true && gameObject.transform.parent.name == "PlayerOne")
         {
             GameManager.Instance.ScoreCount += 5;
@@ -48,6 +51,7 @@ public class OnCollision : MonoBehaviour
                 if (CanvasManager.Instance.isActiveAndEnabled)
                 {
                     CanvasManager.Instance.OnGameOver();
+                    
                 }
                 
                 //Stop score counter

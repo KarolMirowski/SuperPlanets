@@ -17,11 +17,15 @@ public class MenuManager : MonoBehaviour, IPointerDownHandler
     [SerializeField] private Button _addBotButton;
     [SerializeField] private Button _removeBotButton;
     [SerializeField] private Button _exitGameButton;
+    [SerializeField] private Button _addPlayerButton;
+    [SerializeField] private Button _removePlayerButton;
     [SerializeField] private TextMeshProUGUI _botCounter;
+    [SerializeField] private TextMeshProUGUI _playerCounter;
     [SerializeField] private Button[] _backToMenuButton;
     [SerializeField] private GameObject _menuPanel;
     [SerializeField] private GameObject _settingsPanel;
     [SerializeField] private GameObject _creditsPanel;
+    
     #endregion
     #region Audio
     [SerializeField] private AudioSource _audioSource;
@@ -40,6 +44,8 @@ public class MenuManager : MonoBehaviour, IPointerDownHandler
         _goToSettingsButton.onClick.AddListener(GoToSettings);
         _addBotButton.onClick.AddListener(AddOneBot);
         _removeBotButton.onClick.AddListener(RemoveOneBot);
+        _addPlayerButton.onClick.AddListener(AddOnePlayer);
+        _removePlayerButton.onClick.AddListener(RemoveOnePlayer);
         _exitGameButton.onClick.AddListener(ExitGame);
         for (int i = 0; i < _backToMenuButton.Length; i++)
         {
@@ -52,7 +58,8 @@ public class MenuManager : MonoBehaviour, IPointerDownHandler
     {
         if (_botCounter != null)
             _botCounter.text = GameManager.Instance.BotCountNumber.ToString();
-
+        if (_playerCounter != null)
+            _playerCounter.text = GameManager.Instance.PlayerCountNumber.ToString();
     }
 
 
@@ -94,6 +101,7 @@ public class MenuManager : MonoBehaviour, IPointerDownHandler
 
     void GoBackToMenu()
     {
+        GameManager.Instance.UpdateGameState(GameState.MainMenu);
         _audioSource.PlayOneShot(_audioClip);
 
         if (_menuPanel.activeSelf == false)
@@ -145,6 +153,16 @@ public class MenuManager : MonoBehaviour, IPointerDownHandler
     {
         GameManager.Instance.BotCountNumber -= 1;
         _botCounter.text = GameManager.Instance.BotCountNumber.ToString();
+    }
+    void AddOnePlayer()
+    {
+        GameManager.Instance.PlayerCountNumber += 1;
+        _playerCounter.text = GameManager.Instance.PlayerCountNumber.ToString();
+    }
+    void RemoveOnePlayer()
+    {
+        GameManager.Instance.PlayerCountNumber -= 1;
+        _playerCounter.text = GameManager.Instance.PlayerCountNumber.ToString();
     }
 
     void ExitGame()
