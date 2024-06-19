@@ -9374,6 +9374,7 @@ MonoBehaviour:
   _scoreCount: 0
   _botCountNumber: 1
   _playCountNumber: 1
+  _fpsLocker: 60
 --- !u!1 &1269193015
 GameObject:
   m_ObjectHideFlags: 0
@@ -14355,14 +14356,14 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1963202345}
-  - {fileID: 182536744}
-  - {fileID: 606143293}
-  - {fileID: 1734026156}
   - {fileID: 1609177585}
-  - {fileID: 1122075415}
+  - {fileID: 182536744}
   - {fileID: 1690418144}
+  - {fileID: 1122075415}
+  - {fileID: 606143293}
   - {fileID: 2058265621}
   - {fileID: 1154912607}
+  - {fileID: 1734026156}
+  - {fileID: 1963202345}
   - {fileID: 2031904087}
   - {fileID: 313921963}
