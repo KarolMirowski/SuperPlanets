@@ -16,6 +16,6 @@ MonoBehaviour:
   _nickName: Karol
   pOneSpeed: 0.15
   pTwoSpeed: 0.15
-  pOneFOV: 72.8
+  pOneFOV: 63
   pTwoFOV: 63
-  RotationSpeed: 0
+  RotationSpeed: 5

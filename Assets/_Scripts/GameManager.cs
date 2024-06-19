@@ -3,21 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public enum ShareState { ShareStateOne, ShareStateTwo }
 
 public enum GameState { MainMenu, Settings, GamePlay, SplitScreenGameplay, CreditsPanel }
-public enum NumberOfPlayers { OnePlayer, TwoPlayers }
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public PlayerController _playerOneObject;
-    public PlayerController _playerTwoObject;
-
-    public Button playerTurnLeftButton;
-    public Button playerTutnRightButton;
 
     public GameState State;
     public static event Action<GameState> OnGameStateChange;
@@ -27,8 +20,7 @@ public class GameManager : MonoBehaviour
     public int ScoreCount { get { return _scoreCount; } set { _scoreCount = value; } }
 
     [SerializeField] private int _botCountNumber;
-    [SerializeField] private int _playCountNumber = 1;
-    [SerializeField] private int _fpsLocker = 60;
+    [SerializeField] private int _playCountNumber;
     public int BotCountNumber
     {
         get { return _botCountNumber; }
@@ -37,7 +29,7 @@ public class GameManager : MonoBehaviour
     public int PlayerCountNumber
     {
         get { return _playCountNumber; }
-        set { _playCountNumber = Mathf.Clamp(value, 1, 2); }
+        set { _playCountNumber = Mathf.Clamp(value, 1, 4); }
     }
 
 
@@ -53,32 +45,10 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        //Setting for a framerate to be checked later.
-    }
-    void OnValidate()
-    {
-        Application.targetFrameRate = _fpsLocker;
-        
-        if (GameObject.Find("PlayerOne") != null)
-        {
-            _playerOneObject = GameObject.Find("PlayerOne").gameObject.GetComponent<PlayerController>();
-        }
-        if (GameObject.Find("PlayerTwo (Clone)") != null)
-        {
-           print("Czy znalazł prefaba game manager");
-           PlayerController playerController = GameObject.Find("PlayerTwo (Clone)").GetComponent<PlayerController>();
-           print(this.name + ": " +playerController.gameObject.name);
-           //playerController.turnLeftButton = CanvasManager.Instance.TurnLeftButton;
-           //playerController.turnRightButton = CanvasManager.Instance.TurnRightButton;
-        }
-        
-    }
-    public void ValidateGameManager()
-    {
-        OnValidate();
 
     }
-    //Switch for managing state of a game: mainmenu_scene, gameplay etc.
+
+
     public void UpdateGameState(GameState nextState)
     {
         State = nextState;
@@ -93,26 +63,14 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.GamePlay:
                 break;
+            case GameState.SplitScreenGameplay:
+                break;
             case GameState.CreditsPanel:
                 break;
         }
 
         OnGameStateChange?.Invoke(nextState);
     }
-    //Switch for maanaging number of players
-    public void UpdateNumberOfPlayers(NumberOfPlayers numberOfPlayers)
-    {
-        switch (numberOfPlayers)
-        {
-            case NumberOfPlayers.OnePlayer:
-                _playCountNumber = 1;
-                break;
-            case NumberOfPlayers.TwoPlayers:
-                _playCountNumber = 2;
-                break;
-        }
-    }
-
     public void UpdateBotCount(BotCount newBotCount)
     {
 
@@ -133,6 +91,14 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+
+
+
+        
+    
+     
+        
+        
 
     public enum BotCount
     {

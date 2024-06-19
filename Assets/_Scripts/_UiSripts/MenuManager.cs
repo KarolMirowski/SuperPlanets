@@ -117,6 +117,7 @@ public class MenuManager : MonoBehaviour, IPointerDownHandler
 
     void GoToSettings()
     {
+        print("Gotosettings poszlo");
         _audioSource.PlayOneShot(_audioClip);
 
         if (_menuPanel.activeSelf == true)

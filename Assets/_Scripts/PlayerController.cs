@@ -19,23 +19,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerInput _playerInput;
     bool IsBonus1Active = false;
     int bonus1Reps = 0;
-    public Button turnLeftButton;
-    public Button turnRightButton;
+    public GameObject turnLeftButton;
+    public GameObject turnRightButton;
     public InputAction turnAction;
     private float tempHorizontal;
     private TrailRenderer tr;
-
+    
     void OnValidate()
     {
         _playerInput = GetComponent<PlayerInput>();
-        
     }
 
     private void Start()
     {
-        //Calling empty function to Validate GameManager so that it can see second player. 
-        GameManager.Instance.ValidateGameManager();
-
         if (GetComponentInChildren<Camera>() != null)
         {
             camera = GetComponentInChildren<Camera>();
@@ -52,29 +48,19 @@ public class PlayerController : MonoBehaviour
             speed = gameSettings.pTwoSpeed;
 
         //Rejestracja eventów starego systemu inpput
-        if (this.gameObject.CompareTag("PlayerTwo"))
-        {
-            turnLeftButton = CanvasManager.Instance.TurnLeftButton.GetComponent<Button>();
-            turnRightButton = CanvasManager.Instance.TurnRightButton.GetComponent<Button>();
-            CanvasManager.Instance.trailMesh.tr = tr;
-        }
-        
         turnLeftButton.GetComponent<Button>().onClick.AddListener(OnTurnLeftButtonPressed);
         turnRightButton.GetComponent<Button>().onClick.AddListener(OnTurnRightButtonPressed);
-
         //var gamepad = Game
-        //var gamepad = Game
-
+        
     }
 
     void Update()
     {
         //tempHorizontal = _playerInput.actions["Move"].ReadValue<Vector2>().x;
         //Debug.Log($"Horizontal Input: {tempHorizontal}");
-        if (turnAction.WasPressedThisFrame())
-        {
+        if (turnAction.WasPressedThisFrame()){
             TurnLeft();
-            
+            print("TURN ACTION DZIAŁĄ");
         }
     }
 
@@ -94,7 +80,6 @@ public class PlayerController : MonoBehaviour
         else if (tempHorizontal > threshold)
         {
             TurnRight();
-
         }
     }
 
@@ -105,12 +90,12 @@ public class PlayerController : MonoBehaviour
 
     public void TrailTactBonus()
     {
-        //Debug.Log("TrailTactBonus przed petla");
+        Debug.Log("TrailTactBonus przed petla");
         if (!IsBonus1Active)
         {
             StartCoroutine(TrailTact());
             IsBonus1Active = true;
-            //Debug.Log("Trailtactbonus petla");
+            Debug.Log("Trailtactbonus petla");
         }
     }
 
@@ -141,13 +126,13 @@ public class PlayerController : MonoBehaviour
     public void OnTurnLeftButtonPressed()
     {
         TurnLeft();
-        //print("moved left!");
+        print("moved left!");
     }
 
     public void OnTurnRightButtonPressed()
     {
         TurnRight();
-        //print("A teraz nam poszło right");
+        print("A teraz nam poszło right");
     }
 
     private void TurnLeft()
@@ -155,14 +140,13 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(Vector3.up * -90f);
         TurnCameraRight90();
 
-
     }
 
     private void TurnRight()
     {
         transform.Rotate(Vector3.up * 90f);
         TurnCameraLeft90();
-
+        
     }
     public void OnTurnLeft(InputAction.CallbackContext context)
     {
@@ -187,13 +171,10 @@ public class PlayerController : MonoBehaviour
     void TurnCameraLeft90()
     {
         camera.transform.Rotate(Vector3.forward * 90f);
-        //camera.transform.LookAt(Vector3.zero, Vector3.up);
     }
 
     void TurnCameraRight90()
     {
-        //Lookat as a method to stop camera from slight jitter
-        //camera.transform.LookAt(Vector3.zero, Vector3.up);
         camera.transform.Rotate(Vector3.forward * -90f);
     }
 }
