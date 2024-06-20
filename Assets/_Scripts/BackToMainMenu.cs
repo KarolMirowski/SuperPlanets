@@ -14,5 +14,6 @@ public class BackToMainMenu : MonoBehaviour
         MySceneManager.Instance.LoadMainMenuScene();
 
         _gameManager.UpdateGameState(GameState.MainMenu);
+        
     }
 }

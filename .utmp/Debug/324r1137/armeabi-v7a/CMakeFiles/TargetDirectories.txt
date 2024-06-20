@@ -1,0 +1,5 @@
+/home/karol/Dokumenty/GitHub/SuperPlanets/.utmp/Debug/324r1137/armeabi-v7a/CMakeFiles/edit_cache.dir
+/home/karol/Dokumenty/GitHub/SuperPlanets/.utmp/Debug/324r1137/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+/home/karol/Dokumenty/GitHub/SuperPlanets/.utmp/Debug/324r1137/armeabi-v7a/FramePacing/CMakeFiles/swappywrapper.dir
+/home/karol/Dokumenty/GitHub/SuperPlanets/.utmp/Debug/324r1137/armeabi-v7a/FramePacing/CMakeFiles/edit_cache.dir
+/home/karol/Dokumenty/GitHub/SuperPlanets/.utmp/Debug/324r1137/armeabi-v7a/FramePacing/CMakeFiles/rebuild_cache.dir
