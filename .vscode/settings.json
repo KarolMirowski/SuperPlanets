@@ -51,5 +51,9 @@
         "temp/": true,
         "Temp/": true
     },
+<<<<<<< HEAD
     "dotnet.defaultSolution": "SuperPlanets.sln"
+=======
+    "dotnet.defaultSolution": "SuperPlanets3.sln"
+>>>>>>> 5cc586b7071224472a0f357d5624fb202224c98e
 }

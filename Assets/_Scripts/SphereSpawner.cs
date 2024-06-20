@@ -15,7 +15,8 @@ public class SphereSpawner : MonoBehaviour
 
     void Awake()
     {
-        _numberOfSpawns = GameManager.Instance.BotCountNumber;
+        if (GameManager.Instance.isActiveAndEnabled)
+            _numberOfSpawns = GameManager.Instance.BotCountNumber;
         GenRandSpherePositions();
     }
 

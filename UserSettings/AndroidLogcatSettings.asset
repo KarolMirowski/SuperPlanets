@@ -2,16 +2,194 @@
     "m_SelectedDeviceId": "HVA5HNA3",
     "m_SelectedProcess": {
         "deviceId": "HVA5HNA3",
+<<<<<<< HEAD
         "name": "com.KarolCompany.PlanetsMobile",
         "processId": 25051,
+=======
+        "name": "com.DefaultCompany.PlanetsMobile",
+        "processId": 23529,
+>>>>>>> 5cc586b7071224472a0f357d5624fb202224c98e
         "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownProcessesForSerialization": [
         {
             "deviceId": "HVA5HNA3",
+<<<<<<< HEAD
             "name": "com.KarolCompany.PlanetsMobile",
             "processId": 25051,
+=======
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 10338,
+            "exited": true
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 22683,
+            "exited": true
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 23398,
+            "exited": true
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 23797,
+            "exited": true
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.tblenovo.launcher",
+            "processId": 2091,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 24533,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 26801,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 27619,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 7302,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 25545,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 26652,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 27181,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 28873,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 17861,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 8424,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 9351,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 16395,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 18057,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 12998,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 15641,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 16401,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 2634,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 14806,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 15146,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 27149,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 27789,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 28562,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 11392,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 23529,
+>>>>>>> 5cc586b7071224472a0f357d5624fb202224c98e
             "exited": false
         }
     ],

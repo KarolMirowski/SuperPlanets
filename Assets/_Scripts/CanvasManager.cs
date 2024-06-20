@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
@@ -10,6 +12,11 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private GameObject _backToMenuButton;
     [SerializeField] private GameObject _resetSceneButton;
     [SerializeField] private GameObject _scoreCounter;
+    [SerializeField] private bool Sprawdzenie;
+    public TrailMesh trailMesh;
+
+    public Button TurnLeftButton;
+    public Button TurnRightButton;
 
     void Awake()
     {
@@ -22,15 +29,29 @@ public class CanvasManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+
+
+    }
+    void Start()
+    {
+        if (GameManager.Instance != null)
+        {
+            UpdateUi();
+            GameManager.Instance.ValidateGameManager();
+        }
+
     }
     public void OnGameOver()
     {
-        if (_gameOverSign != null && !_gameOverSign.activeInHierarchy){
+        if (_gameOverSign != null && !_gameOverSign.activeInHierarchy)
+        {
 
             _gameOverSign.SetActive(true);
         }
 
-        if (_yourScoreSign != null && !_yourScoreSign.activeInHierarchy){
+        if (_yourScoreSign != null && !_yourScoreSign.activeInHierarchy)
+        {
             _yourScoreSign.GetComponent<TMPro.TMP_Text>().text += GameManager.Instance.ScoreCount.ToString();
             _yourScoreSign.SetActive(true);
         }
@@ -40,4 +61,30 @@ public class CanvasManager : MonoBehaviour
     {
 
     }
+    public void BackToMainMenuButton()
+    {
+        MySceneManager.Instance.LoadMainMenuScene();
+
+        GameManager.Instance.UpdateGameState(GameState.MainMenu);
+    }
+    void UpdateUi()
+    {
+
+        if (GameManager.Instance.PlayerCountNumber == 1)
+        {
+
+            TurnLeftButton.gameObject.SetActive(false);
+            TurnRightButton.gameObject.SetActive(false);
+        }
+        if (GameManager.Instance.PlayerCountNumber == 2)
+        {
+
+
+            TurnLeftButton.gameObject.SetActive(true);
+            TurnRightButton.gameObject.SetActive(true);
+
+        }
+
+    }
+
 }

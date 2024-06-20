@@ -3,7 +3,11 @@
 --- !u!129 &1
 PlayerSettings:
   m_ObjectHideFlags: 0
+<<<<<<< HEAD
   serializedVersion: 27
+=======
+  serializedVersion: 26
+>>>>>>> 5cc586b7071224472a0f357d5624fb202224c98e
   productGUID: 64f0bd6fee9a9b449b323be0f71f1b2d
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
@@ -77,7 +81,10 @@ PlayerSettings:
   androidMinimumWindowHeight: 300
   androidFullscreenMode: 1
   androidAutoRotationBehavior: 1
+<<<<<<< HEAD
   androidApplicationEntry: 1
+=======
+>>>>>>> 5cc586b7071224472a0f357d5624fb202224c98e
   defaultIsNativeResolution: 1
   macRetinaSupport: 1
   runInBackground: 1
@@ -90,7 +97,11 @@ PlayerSettings:
   submitAnalytics: 1
   usePlayerLog: 1
   dedicatedServerOptimizations: 0
+<<<<<<< HEAD
   bakeCollisionMeshes: 0
+=======
+  bakeCollisionMeshes: 1
+>>>>>>> 5cc586b7071224472a0f357d5624fb202224c98e
   forceSingleInstance: 0
   useFlipModelSwapchain: 1
   resizableWindow: 0
@@ -129,14 +140,26 @@ PlayerSettings:
   switchAllowGpuScratchShrinking: 0
   switchNVNMaxPublicTextureIDCount: 0
   switchNVNMaxPublicSamplerIDCount: 0
+<<<<<<< HEAD
   switchMaxWorkerMultiple: 8
   switchNVNGraphicsFirmwareMemory: 32
+=======
+  switchNVNGraphicsFirmwareMemory: 32
+  switchMaxWorkerMultiple: 8
+  stadiaPresentMode: 0
+  stadiaTargetFramerate: 0
+>>>>>>> 5cc586b7071224472a0f357d5624fb202224c98e
   vulkanNumSwapchainBuffers: 3
   vulkanEnableSetSRGBWrite: 0
   vulkanEnablePreTransform: 0
   vulkanEnableLateAcquireNextImage: 0
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
+<<<<<<< HEAD
+=======
+  visionOSBundleVersion: 1.0
+  tvOSBundleVersion: 1.0
+>>>>>>> 5cc586b7071224472a0f357d5624fb202224c98e
   bundleVersion: 1.0.2
   preloadedAssets: []
   metroInputSource: 0
@@ -158,19 +181,30 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
+<<<<<<< HEAD
   androidMinAspectRatio: 1
   applicationIdentifier:
     Android: com.KarolCompany.PlanetsMobile
+=======
+  applicationIdentifier:
+    Android: com.DefaultCompany.PlanetsMobile
+>>>>>>> 5cc586b7071224472a0f357d5624fb202224c98e
   buildNumber:
     Bratwurst: 0
     Standalone: 0
+    VisionOS: 0
     iPhone: 0
     tvOS: 0
   overrideDefaultApplicationIdentifier: 0
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 33
+<<<<<<< HEAD
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 0
+=======
+  AndroidTargetSdkVersion: 33
+  AndroidPreferredInstallLocation: 1
+>>>>>>> 5cc586b7071224472a0f357d5624fb202224c98e
   aotOptions: 
   stripEngineCode: 1
   iPhoneStrippingLevel: 0
@@ -184,12 +218,21 @@ PlayerSettings:
   strictShaderVariantMatching: 0
   VertexChannelCompressionMask: 4054
   iPhoneSdkVersion: 988
+<<<<<<< HEAD
   iOSTargetOSVersionString: 13.0
   tvOSSdkVersion: 0
   tvOSRequireExtendedGameController: 0
   tvOSTargetOSVersionString: 13.0
   bratwurstSdkVersion: 0
   bratwurstTargetOSVersionString: 13.0
+=======
+  iOSTargetOSVersionString: 12.0
+  tvOSSdkVersion: 0
+  tvOSRequireExtendedGameController: 0
+  tvOSTargetOSVersionString: 12.0
+  VisionOSSdkVersion: 0
+  VisionOSTargetOSVersionString: 1.0
+>>>>>>> 5cc586b7071224472a0f357d5624fb202224c98e
   uIPrerenderedIcon: 0
   uIRequiresPersistentWiFi: 0
   uIRequiresFullScreen: 1
@@ -232,15 +275,23 @@ PlayerSettings:
   iOSMetalForceHardShadows: 0
   metalEditorSupport: 1
   metalAPIValidation: 1
+  metalCompileShaderBinary: 0
   iOSRenderExtraFrameOnPause: 0
   iosCopyPluginsCodeInsteadOfSymlink: 0
   appleDeveloperTeamID: 
   iOSManualSigningProvisioningProfileID: 
   tvOSManualSigningProvisioningProfileID: 
+<<<<<<< HEAD
   bratwurstManualSigningProvisioningProfileID: 
   iOSManualSigningProvisioningProfileType: 0
   tvOSManualSigningProvisioningProfileType: 0
   bratwurstManualSigningProvisioningProfileType: 0
+=======
+  VisionOSManualSigningProvisioningProfileID: 
+  iOSManualSigningProvisioningProfileType: 0
+  tvOSManualSigningProvisioningProfileType: 0
+  VisionOSManualSigningProvisioningProfileType: 0
+>>>>>>> 5cc586b7071224472a0f357d5624fb202224c98e
   appleEnableAutomaticSigning: 0
   iOSRequireARKit: 0
   iOSAutomaticallyDetectAndAddCapabilities: 1
@@ -258,13 +309,20 @@ PlayerSettings:
   useCustomGradleSettingsTemplate: 0
   useCustomProguardFile: 0
   AndroidTargetArchitectures: 3
+<<<<<<< HEAD
   AndroidTargetDevices: 0
+=======
+  AndroidTargetDevices: 1
+>>>>>>> 5cc586b7071224472a0f357d5624fb202224c98e
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: 
   AndroidKeyaliasName: 
   AndroidEnableArmv9SecurityFeatures: 0
+<<<<<<< HEAD
   AndroidEnableArm64MTE: 0
+=======
+>>>>>>> 5cc586b7071224472a0f357d5624fb202224c98e
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
@@ -625,7 +683,10 @@ PlayerSettings:
   switchSocketBufferEfficiency: 4
   switchSocketInitializeEnabled: 1
   switchNetworkInterfaceManagerInitializeEnabled: 1
+<<<<<<< HEAD
   switchDisableHTCSPlayerConnection: 0
+=======
+>>>>>>> 5cc586b7071224472a0f357d5624fb202224c98e
   switchUseNewStyleFilepaths: 0
   switchUseLegacyFmodPriorities: 0
   switchUseMicroSleepForYield: 1
@@ -734,11 +795,15 @@ PlayerSettings:
   webGLMemoryLinearGrowthStep: 16
   webGLMemoryGeometricGrowthStep: 0.2
   webGLMemoryGeometricGrowthCap: 96
+<<<<<<< HEAD
   webGLEnableWebGPU: 0
   webGLPowerPreference: 2
   webGLWebAssemblyTable: 0
   webGLWebAssemblyBigInt: 0
   webGLCloseOnQuit: 0
+=======
+  webGLPowerPreference: 2
+>>>>>>> 5cc586b7071224472a0f357d5624fb202224c98e
   scriptingDefineSymbols:
     Android: UNITY_POST_PROCESSING_STACK_V2
     Bratwurst: UNITY_POST_PROCESSING_STACK_V2
@@ -752,6 +817,7 @@ PlayerSettings:
     QNX: UNITY_POST_PROCESSING_STACK_V2
     Stadia: UNITY_POST_PROCESSING_STACK_V2
     Standalone: UNITY_POST_PROCESSING_STACK_V2
+    VisionOS: UNITY_POST_PROCESSING_STACK_V2
     WebGL: UNITY_POST_PROCESSING_STACK_V2
     Windows Store Apps: UNITY_POST_PROCESSING_STACK_V2
     XboxOne: UNITY_POST_PROCESSING_STACK_V2
@@ -759,6 +825,7 @@ PlayerSettings:
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
+<<<<<<< HEAD
     Android: 1
   il2cppCompilerConfiguration: {}
   il2cppCodeGeneration: {}
@@ -766,6 +833,12 @@ PlayerSettings:
   managedStrippingLevel:
     Android: 1
     Bratwurst: 1
+=======
+    Android: 0
+  il2cppCompilerConfiguration: {}
+  il2cppCodeGeneration: {}
+  managedStrippingLevel:
+>>>>>>> 5cc586b7071224472a0f357d5624fb202224c98e
     EmbeddedLinux: 1
     GameCoreScarlett: 1
     GameCoreXboxOne: 1
@@ -773,6 +846,11 @@ PlayerSettings:
     PS4: 1
     PS5: 1
     QNX: 1
+<<<<<<< HEAD
+=======
+    Stadia: 1
+    VisionOS: 1
+>>>>>>> 5cc586b7071224472a0f357d5624fb202224c98e
     WebGL: 1
     Windows Store Apps: 1
     XboxOne: 1
@@ -869,6 +947,7 @@ PlayerSettings:
     m_VersionName: 
   hmiPlayerDataPath: 
   hmiForceSRGBBlit: 1
+<<<<<<< HEAD
   embeddedLinuxEnableGamepadInput: 0
   hmiCpuConfiguration: 
   hmiLogStartupTiming: 0
@@ -876,6 +955,13 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   captureStartupLogs: {}
   activeInputHandler: 0
+=======
+  embeddedLinuxEnableGamepadInput: 1
+  hmiLogStartupTiming: 0
+  hmiCpuConfiguration: 
+  apiCompatibilityLevel: 6
+  activeInputHandler: 1
+>>>>>>> 5cc586b7071224472a0f357d5624fb202224c98e
   windowsGamepadBackendHint: 0
   cloudProjectId: 24f9ea6d-648b-4a5c-9c51-e70256aa06d1
   framebufferDepthMemorylessMode: 0

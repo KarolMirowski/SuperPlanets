@@ -7,11 +7,14 @@ public class OnCollision : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
+        //Test buga pauzy,
+        
+        
         if (collision.collider.CompareTag("Add5Points") == true && gameObject.transform.parent.name == "PlayerOne")
         {
             GameManager.Instance.ScoreCount += 5;
             Destroy(collision.collider.gameObject);
-            print("5 points should be added");
+            
         }
 
 
@@ -24,7 +27,7 @@ public class OnCollision : MonoBehaviour
                 GetComponentInParent<PlayerController>().TrailTactBonus();
                 Destroy(collision.collider.gameObject);
                 
-                Debug.Log("player one bonus hit");
+                
 
             }
 
@@ -32,7 +35,7 @@ public class OnCollision : MonoBehaviour
             {
                 GetComponentInParent<Player2Controller>().TrailTactBonus();
                 Destroy(collision.collider.gameObject);
-                Debug.Log("player two bonus hit");
+                
 
             }
         }
@@ -45,7 +48,11 @@ public class OnCollision : MonoBehaviour
                 GetComponentInParent<PlayerController>().speed = 0;
                 
                 //Show Game Over Sign, score number, and disable player canvas     
-                CanvasManager.Instance.OnGameOver();
+                if (CanvasManager.Instance.isActiveAndEnabled)
+                {
+                    CanvasManager.Instance.OnGameOver();
+                    
+                }
                 
                 //Stop score counter
                 ScoreCount.Instance.ShouldAddPoint = false;
@@ -60,6 +67,7 @@ public class OnCollision : MonoBehaviour
                 GetComponentInParent<Player2Controller>().CanTurn = false;
             }
             GetComponentInParent<Rigidbody>().Sleep();
+            
 
             
             return;
