@@ -11,8 +11,8 @@ public class Teleport : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _teleportButton.onClick.AddListener(OnTeleportButtonPressed);
-
+        //_teleportButton.onClick.AddListener(OnTeleportButtonPressed);
+        OnTeleportButtonPressed();
     }
     void OnTeleportButtonPressed()
     {

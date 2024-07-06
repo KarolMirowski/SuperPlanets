@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public int ScoreCount { get { return _scoreCount; } set { _scoreCount = value; } }
 
     [SerializeField] private int _botCountNumber;
-    [SerializeField] private int _playCountNumber = 1;
+    [SerializeField] private int _playCountNumber = 2;
     [SerializeField] private int _fpsLocker = 60;
     public int BotCountNumber
     {

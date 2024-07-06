@@ -61,6 +61,7 @@
       },
       "url": "https://packages.unity.com"
     },
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
     "com.unity.ide.vscode": {
@@ -70,6 +71,8 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+=======
+>>>>>>> Stashed changes
     "com.unity.inputsystem": {
       "version": "1.7.0",
       "depth": 0,

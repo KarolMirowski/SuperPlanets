@@ -12,8 +12,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 3f;
     public float rotationSpeed = 200f;
     public float horizontal = 0.3f;
-    [SerializeField] private Camera camera;
-    [SerializeField] private Joystick joystick;
+    private Camera camera;
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private GameSettings gameSettings;
     [SerializeField] private PlayerInput _playerInput;
@@ -71,16 +70,16 @@ public class PlayerController : MonoBehaviour
     {
         //tempHorizontal = _playerInput.actions["Move"].ReadValue<Vector2>().x;
         //Debug.Log($"Horizontal Input: {tempHorizontal}");
-        if (turnAction.WasPressedThisFrame())
-        {
-            TurnLeft();
-            
-        }
     }
 
     void FixedUpdate()
     {
         ConstantMoveForward();
+        if (turnAction.WasPressedThisFrame())
+        {
+            TurnLeft();
+            
+        }
         //JustTurn();
     }
 
