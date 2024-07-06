@@ -12,7 +12,8 @@ public class PlayerController : MonoBehaviour
     public float speed = 3f;
     public float rotationSpeed = 200f;
     public float horizontal = 0.3f;
-    private Camera camera;
+    [SerializeField] private Camera camera;
+    [SerializeField] private Joystick joystick;
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private GameSettings gameSettings;
     [SerializeField] private PlayerInput _playerInput;
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour
         if (GetComponentInChildren<Camera>() != null)
         {
             camera = GetComponentInChildren<Camera>();
-            camera.fieldOfView = gameSettings.pOneFOV;
+            camera.fieldOfView = gameSettings.playerFOV;
         }
         if (GetComponentInChildren<TrailRenderer>() != null)
         {
@@ -53,9 +54,14 @@ public class PlayerController : MonoBehaviour
         //Rejestracja eventów starego systemu inpput
         if (this.gameObject.CompareTag("PlayerTwo"))
         {
+            transform.rotation = Quaternion.identity;
             turnLeftButton = CanvasManager.Instance.TurnLeftButton.GetComponent<Button>();
             turnRightButton = CanvasManager.Instance.TurnRightButton.GetComponent<Button>();
-            CanvasManager.Instance.trailMesh.tr = tr;
+            //CanvasManager.Instance.trailMesh.tr = tr;
+            GameObject.FindGameObjectWithTag("TrailonTwo").GetComponent<TrailMesh>().tr = tr;
+            //print(gameObject.name + ": " + camera.tag);
+            //print(gameObject.name + ": " + camera.tag);
+            
         }
         
         turnLeftButton.GetComponent<Button>().onClick.AddListener(OnTurnLeftButtonPressed);
@@ -65,21 +71,21 @@ public class PlayerController : MonoBehaviour
         //var gamepad = Game
 
     }
-
+    
     void Update()
     {
         //tempHorizontal = _playerInput.actions["Move"].ReadValue<Vector2>().x;
         //Debug.Log($"Horizontal Input: {tempHorizontal}");
-    }
-
-    void FixedUpdate()
-    {
-        ConstantMoveForward();
         if (turnAction.WasPressedThisFrame())
         {
             TurnLeft();
             
         }
+    }
+
+    void FixedUpdate()
+    {
+        ConstantMoveForward();
         //JustTurn();
     }
 
