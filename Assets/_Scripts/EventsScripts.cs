@@ -26,10 +26,11 @@ public class EventsScripts : MonoBehaviour
     private int looper = 0;
     public int explosionForce = 100;
     public int explosionRadius = 10;
+    
 
     void Start()
     {
-        StartCoroutine(Wait());
+        //StartCoroutine(Wait());
         if(GenerateBonus) StartCoroutine(SpeedBonus());
             
         if(GenerateAddPointsBonus) StartCoroutine(addPointsBonusRoutine());
@@ -37,7 +38,8 @@ public class EventsScripts : MonoBehaviour
         if(GenerateLetters) StartCoroutine(LettersGen());
             
         scoreCounts = FindObjectsOfType<ScoreCount>();
-
+        
+        
     }
 
     

@@ -13,6 +13,7 @@ TagManager:
   - Add5Points
   - 5
   - Managers
+  - TrailonTwo
   layers:
   - Default
   - TransparentFX

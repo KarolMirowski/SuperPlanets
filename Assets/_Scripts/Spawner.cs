@@ -4,36 +4,31 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    [SerializeField]
+    private bool _shouldSpawn = true;
     public float firstTime;
-    public float secondTime;
-    public float thirfTime;
     
-
-
     [SerializeField]
-    private GameObject obj;
-    [SerializeField]
-    private GameObject obj2;
-    [SerializeField]
-    private GameObject obj3;
+    private GameObject TrailTactBonusObject;
+    
 
 
     void Start()
     {
-        StartCoroutine(ObjectOne());
-
+        if(_shouldSpawn) StartCoroutine(ObjectOne());
+        
 
     }
     IEnumerator ObjectOne()
     {
         yield return new WaitForSecondsRealtime(firstTime);
-        Instantiate(obj, Random.onUnitSphere * 18f, Quaternion.identity);
+        Instantiate(TrailTactBonusObject, Random.onUnitSphere * 18f, Quaternion.identity);
         StartCoroutine(ObjectOne());
     }
     IEnumerator ObjectTwo()
     {
         yield return new WaitForSecondsRealtime(firstTime);
-        Instantiate(obj, Random.onUnitSphere * 18f, Quaternion.identity);
+        Instantiate(TrailTactBonusObject, Random.onUnitSphere * 18f, Quaternion.identity);
         StartCoroutine(ObjectTwo());
     }
 

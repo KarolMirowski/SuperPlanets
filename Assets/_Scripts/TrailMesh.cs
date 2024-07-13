@@ -1,130 +1,56 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Unity.Jobs;
-using Unity.Burst;
-
-using UnityEngine;
-using TMPro.Examples;
+using System.Threading.Tasks;
+using UnityEngine.Scripting;
 
 public class TrailMesh : MonoBehaviour
 {
     public TrailRenderer tr;
+    public GameObject thisObject;
     private Mesh mesh;
-    public Camera camera;
-    public float collisionThreshold = 0.1f; // Próg odległości dla kolizji
-    [SerializeField] private GameObject thisObject;
     private int counter = 0;
 
-    void Start()
+    void Awake()
     {
-        mesh = new Mesh();
-        mesh.MarkDynamic();
-        if (tr == null)
-        {
-            tr = GameObject.FindGameObjectWithTag("PlayerTwo").GetComponentInChildren<TrailRenderer>();
-            
-        }
-
+        mesh = new();
     }
-
     void Update()
     {
         UpdateMesh();
-        
-
     }
 
-    void UpdateMesh()
+    private void UpdateMesh()
     {
+        bool needsColliderUpdate = false;
+        GameObject newTrailon = null;
 
-        tr.BakeMesh(mesh, useTransform: true);
-        if (mesh.vertexCount > 5)
+
+
+        needsColliderUpdate = mesh.vertexCount > 5;
+
+        if (needsColliderUpdate)
         {
+            tr.BakeMesh(mesh, useTransform: true);
+            //counter++;
             var meshCollider = GetComponent<MeshCollider>();
-            meshCollider.sharedMesh = null;
             meshCollider.sharedMesh = mesh;
         }
-        counter++;
+        /*
         if (counter == 50)
         {
-            var newTrailon = Instantiate(thisObject, transform, false);
+            newTrailon = await CreateNewTrailAsync();
+        }
+
+        if (newTrailon != null)
+        {
             newTrailon.GetComponent<TrailMesh>().tr = tr;
             newTrailon.GetComponent<TrailMesh>().thisObject = thisObject;
             Destroy(this);
-            print("Osiągnęło 50");
-            
-            
-
         }
-
-
-
-
+        */
     }
 
-
+    private async Task<GameObject> CreateNewTrailAsync()
+    {
+        return await Task.Run(() => Instantiate(thisObject, transform, false));
+    }
 }
-/*
-public class TrailMesh : MonoBehaviour
-{
-
-
-
-
-    public TrailRenderer tr;
-
-    private Mesh mesh;
-    public Camera camera;
-
-    private bool collisionBool;
-    public void trInit()
-    {
-
-        //GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-
-
-    }
-    public void Awake()
-    {
-    }
-
-    void Start()
-    {
-        mesh = new Mesh();
-        //mesh.MarkDynamic();
-        //mesh.Optimize();
-        
-        
-        if (gameObject.name == "TrailonOne")
-            camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        if (gameObject.name == "TrailonTwo" )
-            camera = GameObject.FindGameObjectWithTag("MainCamera2").GetComponent<Camera>();
-        
-        //print(this.name + ": " +camera.gameObject.tag);
-    }
-
-
-    void FixedUpdate()
-    {
-        tr.BakeMesh(mesh, camera, useTransform: true);
-
-        //GetComponent<MeshFilter>().mesh = mesh;
-        
-        if (mesh.vertexCount > 5)
-            GetComponent<MeshCollider>().sharedMesh = mesh;
-        
-    }
-
-
-
-
-
-
-
-
-
-}
-
-*/

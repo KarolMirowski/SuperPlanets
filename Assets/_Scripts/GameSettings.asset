@@ -12,10 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e06958ca88866f0498c6683fd1c3179e, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
+  PlanetMat: {fileID: 0}
+  BackgroundMat: {fileID: 0}
+  PlayerOneMat: {fileID: 0}
+  PlayerTwoMat: {fileID: 0}
   _gameVersion: 1.0.0
-  _nickName: Karol
   pOneSpeed: 0.15
   pTwoSpeed: 0.15
-  pOneFOV: 72.8
-  pTwoFOV: 63
-  RotationSpeed: 0
+  playerFOV: 65
+  colorSets:
+  - PlanetColor: {r: 0.32941177, g: 0.627451, b: 1, a: 0}
+    BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
+    PlayerOneColor: {r: 0, g: 0, b: 0, a: 0}
+    PlayerTwoColor: {r: 0, g: 0, b: 0, a: 0}
+  - PlanetColor: {r: 0, g: 0, b: 0, a: 0}
+    BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
+    PlayerOneColor: {r: 0, g: 0, b: 0, a: 0}
+    PlayerTwoColor: {r: 0, g: 0, b: 0, a: 0}
+  - PlanetColor: {r: 0, g: 0, b: 0, a: 0}
+    BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
+    PlayerOneColor: {r: 0, g: 0, b: 0, a: 0}
+    PlayerTwoColor: {r: 0, g: 0, b: 0, a: 0}
+  currentColorSetIndex: 0

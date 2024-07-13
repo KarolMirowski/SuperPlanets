@@ -18,6 +18,7 @@ public class ScoreCount : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        
         if (Instance == null)
         {
             Instance = this;
@@ -27,7 +28,7 @@ public class ScoreCount : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        
 
     }
 

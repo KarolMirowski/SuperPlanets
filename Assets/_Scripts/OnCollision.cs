@@ -40,7 +40,7 @@ public class OnCollision : MonoBehaviour
             }
         }
 
-        if (collision.collider.CompareTag("Trailon") == true)
+        if (collision.collider.CompareTag("Trailon") == true || collision.collider.CompareTag("TrailonTwo") == true)
         {
             if (GetComponentInParent<PlayerController>() != null)
             {

@@ -58,7 +58,8 @@ public class PlayerController : MonoBehaviour
             turnLeftButton = CanvasManager.Instance.TurnLeftButton.GetComponent<Button>();
             turnRightButton = CanvasManager.Instance.TurnRightButton.GetComponent<Button>();
             //CanvasManager.Instance.trailMesh.tr = tr;
-            GameObject.FindGameObjectWithTag("TrailonTwo").GetComponent<TrailMesh>().tr = tr;
+            //GameObject.FindGameObjectWithTag("TrailonTwo").GetComponent<TrailMesh>().tr = tr;
+            GameObject.Find("TrailonTwo").GetComponent<TrailMesh>().tr = tr;
             //print(gameObject.name + ": " + camera.tag);
             //print(gameObject.name + ": " + camera.tag);
             
@@ -88,7 +89,7 @@ public class PlayerController : MonoBehaviour
         ConstantMoveForward();
         //JustTurn();
     }
-
+    
     public void JustTurn()
     {
         float threshold = 0.1f;
