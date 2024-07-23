@@ -17,57 +17,74 @@ public class ObjectPooler : MonoBehaviour
         public int size;
     }
     public static ObjectPooler Instance;
-    
-    [SerializeField] 
-    private bool _shouldSpawn = true;
-
-    public List<Pool> pools;
-    public Dictionary<string, Queue<GameObject>> poolDictionary;
 
     [SerializeField]
+    private bool _shouldSpawn = true;
 
-    async void Awake()
+    public List<Pool> Pools;
+    public Dictionary<string, Queue<GameObject>> poolDictionary;
+    public GameObject RootObjectForPools;
+    private CancellationTokenSource _cts;
+
+    void Awake()
     {
         //Wzor na singleton
         Instance = this;
+        _cts = new CancellationTokenSource();
+        InitializePools();
+
 
         //Wywolanie asynchroniczne metody do spawnu bonusow;
-        try
-        {
-            await SpawnRoutineAsync();
-        }
-        catch (OperationCanceledException)
-        {
-            print(this.name + ": Destroy Token zostal anulowany");
-        }
+
     }
-    private void Start()
+    void Start()
+    {
+        if (_shouldSpawn)
+        {
+            try
+            {
+                _ = SpawnRoutineAsync();
+                print(this.name + ": blok try w Awake, pod await SpawnRoutineAsync()");
+
+            }
+            catch (OperationCanceledException)
+            {
+                print(this.name + ": Destroy Token zostal anulowany");
+            }
+        }
+
+
+    }
+    
+    
+    void InitializePools()
     {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
-
-        foreach (Pool pool in pools)
+        foreach (Pool pool in Pools)
         {
             Queue<GameObject> objectPool = new Queue<GameObject>();
-
+            GameObject poolRootObject = new GameObject(name: pool.tag + "Pool");
+            poolRootObject.transform.SetParent(RootObjectForPools.transform, false);
             for (int i = 0; i < pool.size; i++)
             {
-                GameObject obj = Instantiate(pool.prefab);
+                GameObject obj = Instantiate(pool.prefab, parent: poolRootObject.transform);
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
             poolDictionary.Add(pool.tag, objectPool);
         }
-
-
     }
     public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
     {
+        //tutaj sprawwdzic
+        if (poolDictionary == null) return new();
         if (!poolDictionary.ContainsKey(tag))
         {
             Debug.LogWarning("Nie znajduje poola o tym tagu.");
             return null;
         }
 
+        
 
         GameObject objectToSpawn = poolDictionary[tag].Dequeue();
 
@@ -79,17 +96,22 @@ public class ObjectPooler : MonoBehaviour
         return objectToSpawn;
     }
 
-    private async Task SpawnRoutineAsync()
+    async Task SpawnRoutineAsync()
     {
-        if (!_shouldSpawn) return;
+
         //Przerwij jesli nie jest zaznaczone _shouldSpawnGameObject.
         //Losowe polozenie wokol kuli jednak z dala od powierzchni(18f), dlatego mnozenie razy 25f.
         while (!destroyCancellationToken.IsCancellationRequested)
         {
-            var position = UnityEngine.Random.onUnitSphere * 25f;
-            GameObject gameObjectToSpawn = SpawnFromPool("grass", position, Quaternion.identity);
-            Instantiate(gameObjectToSpawn);
-            await Task.Delay(1000);
+            foreach (var pool in Pools)
+            {
+                var position = UnityEngine.Random.onUnitSphere * 25f;
+                GameObject gameObjectToSpawn = SpawnFromPool(pool.tag, position, Quaternion.identity);
+    
+            }
+            
+            //Instantiate(gameObjectToSpawn);
+            await Task.Delay(1000, _cts.Token);
         }
 
 

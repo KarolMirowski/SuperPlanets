@@ -26,7 +26,7 @@ public class TestSpawn : MonoBehaviour
         {
             var newBot = Instantiate(bot, Random.onUnitSphere * _sphereRadius, Quaternion.identity);
             var newTrailon = Instantiate(_trailonPrefab, Vector3.zero, Quaternion.identity,parent:_trailonsParent.transform);
-            newTrailon.GetComponent<TrailMesh>().tr = newBot.GetComponentInChildren<TrailRenderer>();
+            newTrailon.GetComponent<TrailMesh>().Trail = newBot.GetComponentInChildren<TrailRenderer>();
             _bots.Add(newBot);
             _botTrailons.Add(newTrailon);
         }

@@ -13,8 +13,6 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private GameObject _resetSceneButton;
     [SerializeField] private GameObject _scoreCounter;
     [SerializeField] private bool Sprawdzenie;
-    public TrailMesh trailMesh;
-
     public Button TurnLeftButton;
     public Button TurnRightButton;
 
@@ -27,7 +25,7 @@ public class CanvasManager : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
 

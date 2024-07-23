@@ -5,14 +5,16 @@ using UnityEngine;
 public class InstantiateTrailon : MonoBehaviour
 {
     [SerializeField] private GameObject _trailonPrefab;
-    [SerializeField] private GameObject _trailonGroup;
+    
     void Awake()
     {
-        var trailonGroupTransform = GameObject.Find("Trailons").transform;
-        var trailon = Instantiate(_trailonPrefab, trailonGroupTransform);
-        trailon.GetComponent<TrailMesh>().tr = this.GetComponentInChildren<TrailRenderer>();
+       
+        GameObject trailon = Instantiate(_trailonPrefab, Vector3.zero, Quaternion.identity);
+        trailon.GetComponent<TrailMesh>().Trail = GetComponentInChildren<TrailRenderer>();
         trailon.tag = "Trailon";
-        trailon.layer = 9; //Trailon layer
+        trailon.layer = 10; //Trailon layer
+        GameObject trailonRootObject = GameObject.Find("Trailons");
+        trailon.transform.SetParent(trailonRootObject.transform);
         
     }
 

@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
             turnRightButton = CanvasManager.Instance.TurnRightButton.GetComponent<Button>();
             //CanvasManager.Instance.trailMesh.tr = tr;
             //GameObject.FindGameObjectWithTag("TrailonTwo").GetComponent<TrailMesh>().tr = tr;
-            GameObject.Find("TrailonTwo").GetComponent<TrailMesh>().tr = tr;
+            //GameObject.Find("TrailonTwo").GetComponent<TrailMesh>().Trail = tr;
             //print(gameObject.name + ": " + camera.tag);
             //print(gameObject.name + ": " + camera.tag);
             

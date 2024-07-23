@@ -19,7 +19,7 @@ MonoBehaviour:
   _gameVersion: 1.0.0
   pOneSpeed: 0.15
   pTwoSpeed: 0.15
-  playerFOV: 65
+  playerFOV: 72.8
   colorSets:
   - PlanetColor: {r: 0.32941177, g: 0.627451, b: 1, a: 0}
     BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
