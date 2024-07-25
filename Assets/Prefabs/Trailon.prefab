@@ -55,11 +55,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Trail: {fileID: 0}
-  thisObject: {fileID: 0}
   needsColliderUpdate: 1
   _trailonPrefab: {fileID: 375110473259021272}
   _trailPrefab: {fileID: 215391111079927151, guid: 4afc8172b422636029b3f4e2f5437dc1,
     type: 3}
+  _cube: {fileID: 3589343620415015606, guid: 6e35496001c586698b735d3013eea6fa, type: 3}
 --- !u!64 &375110473259021279
 MeshCollider:
   m_ObjectHideFlags: 0

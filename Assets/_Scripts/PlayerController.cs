@@ -18,17 +18,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameSettings gameSettings;
     [SerializeField] private PlayerInput _playerInput;
     bool IsBonus1Active = false;
+    bool _shouldMove = true;
     int bonus1Reps = 0;
     public Button turnLeftButton;
     public Button turnRightButton;
     public InputAction turnAction;
     private float tempHorizontal;
     private TrailRenderer tr;
-
+    public bool StopTrailon = false;
     void OnValidate()
     {
         _playerInput = GetComponent<PlayerInput>();
-        
+
     }
 
     private void Start()
@@ -62,9 +63,9 @@ public class PlayerController : MonoBehaviour
             //GameObject.Find("TrailonTwo").GetComponent<TrailMesh>().Trail = tr;
             //print(gameObject.name + ": " + camera.tag);
             //print(gameObject.name + ": " + camera.tag);
-            
+
         }
-        
+
         turnLeftButton.GetComponent<Button>().onClick.AddListener(OnTurnLeftButtonPressed);
         turnRightButton.GetComponent<Button>().onClick.AddListener(OnTurnRightButtonPressed);
 
@@ -72,7 +73,7 @@ public class PlayerController : MonoBehaviour
         //var gamepad = Game
 
     }
-    
+
     void Update()
     {
         //tempHorizontal = _playerInput.actions["Move"].ReadValue<Vector2>().x;
@@ -80,7 +81,7 @@ public class PlayerController : MonoBehaviour
         if (turnAction.WasPressedThisFrame())
         {
             TurnLeft();
-            
+
         }
     }
 
@@ -89,7 +90,7 @@ public class PlayerController : MonoBehaviour
         ConstantMoveForward();
         //JustTurn();
     }
-    
+
     public void JustTurn()
     {
         float threshold = 0.1f;
@@ -118,6 +119,23 @@ public class PlayerController : MonoBehaviour
             IsBonus1Active = true;
             //Debug.Log("Trailtactbonus petla");
         }
+    }
+    public void CollidedWithTrailon()
+    {
+        //Show Game Over Sign, score number, and disable player canvas     
+        if (CanvasManager.Instance.isActiveAndEnabled)
+        {
+            CanvasManager.Instance.OnGameOver();
+
+        }
+        
+        //Stop score counter
+        ScoreCount.Instance.ShouldAddPoint = false;
+        StopCoroutine(ScoreCount.Instance.ScoreCounter());
+        ScoreCount.Instance.gameObject.SetActive(false);
+        speed = 0;
+        StopTrailon = true;
+        _shouldMove = false;
     }
 
     IEnumerator TrailTact()
@@ -158,6 +176,7 @@ public class PlayerController : MonoBehaviour
 
     private void TurnLeft()
     {
+        if (!_shouldMove) return;
         transform.Rotate(Vector3.up * -90f);
         TurnCameraRight90();
 
@@ -166,6 +185,8 @@ public class PlayerController : MonoBehaviour
 
     private void TurnRight()
     {
+        if (!_shouldMove) return;
+        
         transform.Rotate(Vector3.up * 90f);
         TurnCameraLeft90();
 

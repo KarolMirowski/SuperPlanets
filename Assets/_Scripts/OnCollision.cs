@@ -7,36 +7,25 @@ public class OnCollision : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        //Test buga pauzy,
-        
-        
         if (collision.collider.CompareTag("Add5Points") == true && gameObject.transform.parent.name == "PlayerOne")
         {
             GameManager.Instance.ScoreCount += 5;
             Destroy(collision.collider.gameObject);
-            
         }
-
 
         if (collision.collider.CompareTag("BonusOne") == true)
         {
-
 
             if (GetComponentInParent<PlayerController>() != null)
             {
                 GetComponentInParent<PlayerController>().TrailTactBonus();
                 Destroy(collision.collider.gameObject);
-                
-                
-
             }
 
             else if (GetComponentInParent<Player2Controller>() != null)
             {
                 GetComponentInParent<Player2Controller>().TrailTactBonus();
                 Destroy(collision.collider.gameObject);
-                
-
             }
         }
 
@@ -45,21 +34,7 @@ public class OnCollision : MonoBehaviour
             if (GetComponentInParent<PlayerController>() != null)
             {
                 //Stop player movement.
-                GetComponentInParent<PlayerController>().speed = 0;
-                
-                //Show Game Over Sign, score number, and disable player canvas     
-                if (CanvasManager.Instance.isActiveAndEnabled)
-                {
-                    CanvasManager.Instance.OnGameOver();
-                    
-                }
-                
-                //Stop score counter
-                ScoreCount.Instance.ShouldAddPoint = false;
-                StopCoroutine(ScoreCount.Instance.ScoreCounter());
-                ScoreCount.Instance.gameObject.SetActive(false);
-            
-            
+                GetComponentInParent<PlayerController>().CollidedWithTrailon();
             }
             else if (GetComponentInParent<Player2Controller>() != null)
             {
@@ -67,10 +42,8 @@ public class OnCollision : MonoBehaviour
                 GetComponentInParent<Player2Controller>().CanTurn = false;
             }
             GetComponentInParent<Rigidbody>().Sleep();
-            
-
-            
             return;
         }
     }
+
 }

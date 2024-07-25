@@ -3,7 +3,7 @@
     "m_SelectedProcess": {
         "deviceId": "HVA5HNA3",
         "name": "com.DefaultCompany.PlanetsMobile",
-        "processId": 10028,
+        "processId": 28790,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -96,6 +96,12 @@
             "deviceId": "HVA5HNA3",
             "name": "com.DefaultCompany.PlanetsMobile",
             "processId": 10028,
+            "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 28790,
             "exited": false
         }
     ],
