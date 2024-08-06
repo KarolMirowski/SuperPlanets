@@ -13,22 +13,27 @@ public enum NumberOfPlayers { OnePlayer, TwoPlayers }
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public PlayerController _playerOneObject;
-    public PlayerController _playerTwoObject;
-
     public Button playerTurnLeftButton;
     public Button playerTutnRightButton;
+    
 
     public GameState State;
     public static event Action<GameState> OnGameStateChange;
     //public static event Action<BotsNumber> OnBotCountChange;
 
-    [SerializeField] private int _scoreCount;
-    public int ScoreCount { get { return _scoreCount; } set { _scoreCount = value; } }
+    [SerializeField] private int _playerOneScore;
+    public int PlayerOneScore { get { return _playerOneScore; } set { _playerOneScore = value; } }
+    [SerializeField] private int _playerTwoScore;
+    public int PlayerTwoScore { get { return _playerTwoScore; } set { _playerTwoScore = value; } }
 
     [SerializeField] private int _botCountNumber;
-    [SerializeField] private int _playCountNumber = 2;
+    [SerializeField] private int _numberOfPlayers = 2;
     [SerializeField] private int _fpsLocker = 60;
+
+    public GameManager()
+    {
+    }
+
     public int BotCountNumber
     {
         get { return _botCountNumber; }
@@ -36,8 +41,8 @@ public class GameManager : MonoBehaviour
     }
     public int PlayerCountNumber
     {
-        get { return _playCountNumber; }
-        set { _playCountNumber = Mathf.Clamp(value, 1, 2); }
+        get { return _numberOfPlayers; }
+        set { _numberOfPlayers = Mathf.Clamp(value, 1, 2); }
     }
 
 
@@ -47,32 +52,23 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            
         }
         else
         {
             Destroy(gameObject);
         }
+        Application.targetFrameRate = _fpsLocker;
 
         //Setting for a framerate to be checked later.
     }
     void OnValidate()
     {
         Application.targetFrameRate = _fpsLocker;
-        
-        if (GameObject.Find("PlayerOne") != null)
-        {
-            _playerOneObject = GameObject.Find("PlayerOne").gameObject.GetComponent<PlayerController>();
-        }
-        if (GameObject.Find("PlayerTwo (Clone)") != null)
-        {
-           print("Czy znalazł prefaba game manager");
-           PlayerController playerController = GameObject.Find("PlayerTwo (Clone)").GetComponent<PlayerController>();
-           print(this.name + ": " +playerController.gameObject.name);
-           //playerController.turnLeftButton = CanvasManager.Instance.TurnLeftButton;
-           //playerController.turnRightButton = CanvasManager.Instance.TurnRightButton;
-        }
+
         
     }
+    
     public void ValidateGameManager()
     {
         OnValidate();
@@ -105,18 +101,18 @@ public class GameManager : MonoBehaviour
         switch (numberOfPlayers)
         {
             case NumberOfPlayers.OnePlayer:
-                _playCountNumber = 1;
+                _numberOfPlayers = 1;
+                
                 break;
             case NumberOfPlayers.TwoPlayers:
-                _playCountNumber = 2;
+                _numberOfPlayers = 2;
                 break;
         }
     }
+    
 
     public void UpdateBotCount(BotCount newBotCount)
     {
-
-
         switch (newBotCount)
         {
             case BotCount.OneBot:

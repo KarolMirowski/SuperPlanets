@@ -12,22 +12,22 @@ public class JoinPlayer : MonoBehaviour
     private GameObject playerPrefab;
     void Awake()
     {
-            
+
     }
     void SetTwoPlayersGameplay()
     {
-        
+
         inputManager.playerPrefab = playerPrefab;
         //inputManager.playerPrefab.GetComponent<PlayerController>().turnLeftButton = CanvasManager.Instance.TurnLeftButton;
         //inputManager.playerPrefab.GetComponent<PlayerController>().turnRightButton = CanvasManager.Instance.TurnRightButton;
         inputManager.JoinPlayer();
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
 
     }
 

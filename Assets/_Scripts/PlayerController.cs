@@ -6,35 +6,35 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.OnScreen;
+using System.Threading.Tasks;
+using UnityEditor;
+//using UnityEngine.UIElements;
+
 
 public class PlayerController : MonoBehaviour
 {
     public float speed = 3f;
     public float rotationSpeed = 200f;
     public float horizontal = 0.3f;
-    [SerializeField] private Camera camera;
-    [SerializeField] private Joystick joystick;
-    [SerializeField] private TextMeshProUGUI text;
+    private Camera camera;
+    [SerializeField] private TextMeshProUGUI text; //Change it to getcomponent.
     [SerializeField] private GameSettings gameSettings;
     [SerializeField] private PlayerInput _playerInput;
     bool IsBonus1Active = false;
     bool _shouldMove = true;
     int bonus1Reps = 0;
-    public Button turnLeftButton;
-    public Button turnRightButton;
-    public InputAction turnAction;
-    private float tempHorizontal;
+    public Button turnLeftButton, turnRightButton;
     private TrailRenderer tr;
     public bool StopTrailon = false;
     void OnValidate()
     {
         _playerInput = GetComponent<PlayerInput>();
-
     }
-
-    private void Start()
+    void Start()
     {
-        //Calling empty function to Validate GameManager so that it can see second player. 
+        //await Task.Delay(3000);
+        //Calling empty function to Validate GameManager so that it can see second player.CHECK IF NECESSARY.
+
         GameManager.Instance.ValidateGameManager();
 
         if (GetComponentInChildren<Camera>() != null)
@@ -46,65 +46,27 @@ public class PlayerController : MonoBehaviour
         {
             tr = GetComponentInChildren<TrailRenderer>();
         }
-
-        if (this.gameObject.tag == "PlayerOne")
+        if (CompareTag("PlayerOne"))
             speed = gameSettings.pOneSpeed;
         else
             speed = gameSettings.pTwoSpeed;
 
         //Rejestracja eventów starego systemu inpput
-        if (this.gameObject.CompareTag("PlayerTwo"))
+        if (CompareTag("PlayerTwo"))
         {
             transform.rotation = Quaternion.identity;
             turnLeftButton = CanvasManager.Instance.TurnLeftButton.GetComponent<Button>();
             turnRightButton = CanvasManager.Instance.TurnRightButton.GetComponent<Button>();
-            //CanvasManager.Instance.trailMesh.tr = tr;
-            //GameObject.FindGameObjectWithTag("TrailonTwo").GetComponent<TrailMesh>().tr = tr;
-            //GameObject.Find("TrailonTwo").GetComponent<TrailMesh>().Trail = tr;
-            //print(gameObject.name + ": " + camera.tag);
-            //print(gameObject.name + ": " + camera.tag);
-
         }
 
         turnLeftButton.GetComponent<Button>().onClick.AddListener(OnTurnLeftButtonPressed);
         turnRightButton.GetComponent<Button>().onClick.AddListener(OnTurnRightButtonPressed);
-
-        //var gamepad = Game
-        //var gamepad = Game
-
+        
     }
-
-    void Update()
-    {
-        //tempHorizontal = _playerInput.actions["Move"].ReadValue<Vector2>().x;
-        //Debug.Log($"Horizontal Input: {tempHorizontal}");
-        if (turnAction.WasPressedThisFrame())
-        {
-            TurnLeft();
-
-        }
-    }
-
     void FixedUpdate()
     {
         ConstantMoveForward();
-        //JustTurn();
     }
-
-    public void JustTurn()
-    {
-        float threshold = 0.1f;
-        if (tempHorizontal < -threshold)
-        {
-            TurnLeft();
-        }
-        else if (tempHorizontal > threshold)
-        {
-            TurnRight();
-
-        }
-    }
-
     void ConstantMoveForward()
     {
         transform.Translate(Vector3.forward * speed);
@@ -120,24 +82,19 @@ public class PlayerController : MonoBehaviour
             //Debug.Log("Trailtactbonus petla");
         }
     }
-    public void CollidedWithTrailon()
+    public async Task TrailTactBonusAsync(int maxReps)
     {
-        //Show Game Over Sign, score number, and disable player canvas     
-        if (CanvasManager.Instance.isActiveAndEnabled)
+        var repsCounter = 0;
+        while (repsCounter < maxReps)
         {
-            CanvasManager.Instance.OnGameOver();
-
+            print("TrailTactBonusAsync ruszylo");
+            tr.emitting = false;
+            await Task.Delay(500);
+            tr.emitting = true;
+            await Task.Delay(500);
+            repsCounter++;
         }
-        
-        //Stop score counter
-        ScoreCount.Instance.ShouldAddPoint = false;
-        StopCoroutine(ScoreCount.Instance.ScoreCounter());
-        ScoreCount.Instance.gameObject.SetActive(false);
-        speed = 0;
-        StopTrailon = true;
-        _shouldMove = false;
     }
-
     IEnumerator TrailTact()
     {
         if (bonus1Reps < 12)
@@ -156,71 +113,34 @@ public class PlayerController : MonoBehaviour
             IsBonus1Active = false;
         }
     }
-
-    public void TextSpeed()
+    public void CollidedWithTrailon()
     {
-        text.text = speed.ToString();
+        //Show Game Over Sign, score number, and disable player canvas     
+        if (CanvasManager.Instance.isActiveAndEnabled)
+        {
+            CanvasManager.Instance.OnGameOver();
+        }
+        //Stop score counter
+        ScoreCount.Instance.ShouldAddPoint = false;
+        StopCoroutine(ScoreCount.Instance.ScoreCounter());
+        ScoreCount.Instance.gameObject.SetActive(false);
+        speed = 0;
+        StopTrailon = true;
+        _shouldMove = false;
     }
 
-    public void OnTurnLeftButtonPressed()
-    {
-        TurnLeft();
-        //print("moved left!");
-    }
-
-    public void OnTurnRightButtonPressed()
-    {
-        TurnRight();
-        //print("A teraz nam poszło right");
-    }
-
-    private void TurnLeft()
+    
+    public void TextSpeed() => text.text = speed.ToString();
+    public void OnTurnLeftButtonPressed() => Turn(-90f);
+    public void OnTurnRightButtonPressed() => Turn(90f);
+    private void Turn(float turnAngle)
     {
         if (!_shouldMove) return;
-        transform.Rotate(Vector3.up * -90f);
-        TurnCameraRight90();
-
-
+        TurnCamera(turnAngle);
+        transform.Rotate(Vector3.up * turnAngle);
     }
-
-    private void TurnRight()
+    void TurnCamera(float turnAngle)
     {
-        if (!_shouldMove) return;
-        
-        transform.Rotate(Vector3.up * 90f);
-        TurnCameraLeft90();
-
-    }
-    public void OnTurnLeft(InputAction.CallbackContext context)
-    {
-        if (context.performed && context.control.name == "a")
-        {
-            TurnLeft();
-        }
-    }
-
-    public void OnTurnRight(InputAction.CallbackContext context)
-    {
-        if (context.performed && context.control.name == "d")
-        {
-            TurnRight();
-        }
-    }
-    private bool IsTurning()
-    {
-        return tempHorizontal != 0;
-    }
-
-    void TurnCameraLeft90()
-    {
-        camera.transform.Rotate(Vector3.forward * 90f);
-        //camera.transform.LookAt(Vector3.zero, Vector3.up);
-    }
-
-    void TurnCameraRight90()
-    {
-        //Lookat as a method to stop camera from slight jitter
-        //camera.transform.LookAt(Vector3.zero, Vector3.up);
-        camera.transform.Rotate(Vector3.forward * -90f);
+        camera.transform.Rotate(Vector3.forward * turnAngle);
     }
 }

@@ -5,75 +5,38 @@ using UnityEngine.SceneManagement;
 
 public class EventsScripts : MonoBehaviour
 {
-    // Start is called before the first frame update
-    [SerializeField] private bool GenerateBonus   = true;
-    [SerializeField] private bool GenerateLetters = true;
-    [SerializeField] private bool GenerateAddPointsBonus = true;
-
-
-    [SerializeField] private GameObject playerOne;
-    [SerializeField] private GameObject playerTwo;
+    public PlayerController _playerOneController;
+    public PlayerController _playerTwoController;
     [SerializeField] private GameObject playerThree;
     [SerializeField] private GameObject playerFour;
-    [SerializeField] private TMPro.TMP_Text   text;
+    [SerializeField] private TMPro.TMP_Text text;
     [SerializeField] private GameSettings gameSettings;
-    [SerializeField] private GameObject speedBonus;
-    [SerializeField] private GameObject addPointsBonus;
-    [SerializeField] private GameObject letter;
-    
-
     private ScoreCount[] scoreCounts;
     private int looper = 0;
-    public int explosionForce = 100;
-    public int explosionRadius = 10;
-    
-
+    private Camera _playerOneCamera;
+    private Camera _playerTwoCamera;
+    private GameManager _gameManager;
     void Start()
     {
-        //StartCoroutine(Wait());
-        if(GenerateBonus) StartCoroutine(SpeedBonus());
-            
-        if(GenerateAddPointsBonus) StartCoroutine(addPointsBonusRoutine());
-            
-        if(GenerateLetters) StartCoroutine(LettersGen());
-            
+        _gameManager = GameManager.Instance;
+        
         scoreCounts = FindObjectsOfType<ScoreCount>();
+        _playerOneCamera = _playerOneController.GetComponentInChildren<Camera>();
+        _playerTwoCamera = _playerTwoController.GetComponentInChildren<Camera>();
         
-        
-    }
-
+        SetNumberOfPlayers();
     
-    IEnumerator LettersGen()
-    {
-        Vector3 letterPosition = playerOne.transform.position - playerOne.transform.forward + new Vector3(0, 0.1f, 0);
-        Quaternion letterRotation = playerOne.transform.rotation;
-        Instantiate(letter, letterPosition, letterRotation);
-        yield return new WaitForSeconds(0.2f);
-        StartCoroutine(LettersGen());
-
-        /*
-        looper += 1;
-        while (looper < 1000)
-        {
-
-        }
-        while (looper >= 1000)
-        {
-            StopCoroutine(LettersGen());
-        }
-        */
-
+    
     }
+
     IEnumerator Wait()
     {
+        _playerOneController.speed = 0f;
+        _playerOneController.GetComponent<Rigidbody>().Sleep();
 
-
-        playerOne.GetComponent<PlayerController>().speed = 0f;
-        playerOne.GetComponent<Rigidbody>().Sleep();
-        
         //playerTwo.GetComponent<Player2Controller>().speed = 0f;
         //playerTwo.GetComponent<Rigidbody>().Sleep();
-//
+        //
         //playerThree.GetComponent<Player2Controller>().speed = 0f;
         //playerThree.GetComponent<Rigidbody>().Sleep();
         //
@@ -82,11 +45,11 @@ public class EventsScripts : MonoBehaviour
 
 
         text.text = "3";
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.5f);
         text.text = "2";
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.5f);
         text.text = "1";
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.5f);
         text.text = "Start";
         yield return new WaitForSeconds(0.3f);
         text.text = "";
@@ -94,15 +57,14 @@ public class EventsScripts : MonoBehaviour
         scoreCounts[0].StartCoroutine(scoreCounts[0].ScoreCounter());
         //scoreCounts[1].StartCoroutine(scoreCounts[1].ScoreCounter());
 
-        playerOne.GetComponent<PlayerController>().speed = gameSettings.pOneSpeed;
-       // playerTwo.GetComponent<Player2Controller>().speed = gameSettings.pTwoSpeed;
-       // playerThree.GetComponent<Player2Controller>().speed = gameSettings.pTwoSpeed;
-       // playerFour.GetComponent<Player2Controller>().speed = gameSettings.pTwoSpeed;
+        // playerTwo.GetComponent<Player2Controller>().speed = gameSettings.pTwoSpeed;
+        // playerThree.GetComponent<Player2Controller>().speed = gameSettings.pTwoSpeed;
+        // playerFour.GetComponent<Player2Controller>().speed = gameSettings.pTwoSpeed;
         //StartCoroutine(playerTwo.GetComponent<Player2Controller>().TurnTact(2f));
-        
+
         StopCoroutine(Wait());
     }
-
+    /*
     public IEnumerator SpeedBonus()
     {
         MeshRenderer instance = Instantiate(speedBonus, Random.onUnitSphere * 50, Quaternion.identity).GetComponentInChildren<MeshRenderer>();
@@ -111,6 +73,7 @@ public class EventsScripts : MonoBehaviour
         yield return new WaitForSeconds(2f);
         StartCoroutine(SpeedBonus());
     }
+
     public IEnumerator addPointsBonusRoutine()
     {
         MeshRenderer instance = Instantiate(addPointsBonus, Random.onUnitSphere * 50, Quaternion.identity).GetComponentInChildren<MeshRenderer>();
@@ -119,20 +82,38 @@ public class EventsScripts : MonoBehaviour
         yield return new WaitForSeconds(2f);
         StartCoroutine(addPointsBonusRoutine());
     }
+    */
+    public void SetNumberOfPlayers()
+    {
+        if (_gameManager.PlayerCountNumber == 1)
+        {
+            
+            _playerOneCamera.rect = new Rect(0f,0f,1f,1f);
+            _playerTwoController.gameObject.SetActive(false);
+        }
+        if (_gameManager.PlayerCountNumber == 2)
+        {
+            _playerOneCamera.rect = new Rect(0f,0f,0.5f,1f);
+            _playerTwoCamera.rect = new Rect(0.5f,0f,0.5f,1f);
+            _playerTwoController.gameObject.SetActive(true);
+        }
+
+    }
+
     public void ResetScene()
     {
         //Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene("WorkingScene");
-        GameManager.Instance.ScoreCount = 0;
+        _gameManager.PlayerOneScore = 0;
     }
     public void BackToMenu()
     {
         SceneManager.LoadScene("MenuScene");
-        
+
     }
     public void GoToOptions()
     {
         SceneManager.LoadScene("Options");
     }
-   
+
 }

@@ -22,12 +22,13 @@ public class CanvasManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            
         }
         else
         {
             //Destroy(gameObject);
         }
-
+        
 
 
     }
@@ -50,7 +51,7 @@ public class CanvasManager : MonoBehaviour
 
         if (_yourScoreSign != null && !_yourScoreSign.activeInHierarchy)
         {
-            _yourScoreSign.GetComponent<TMPro.TMP_Text>().text += GameManager.Instance.ScoreCount.ToString();
+            _yourScoreSign.GetComponent<TMPro.TMP_Text>().text += GameManager.Instance.PlayerOneScore.ToString();
             _yourScoreSign.SetActive(true);
         }
 

@@ -168,6 +168,7 @@ public class MenuManager : MonoBehaviour, IPointerDownHandler
     {
         Application.Quit();
         print("ExitGame naciśnięto");
+        
     }
 
 }

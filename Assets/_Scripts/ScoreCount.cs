@@ -37,8 +37,8 @@ public class ScoreCount : MonoBehaviour
         if (GameManager.Instance != null)
         {
 
-            GameManager.Instance.ScoreCount += 1;
-            text.text = "Score: " + GameManager.Instance.ScoreCount.ToString();
+            GameManager.Instance.PlayerOneScore += 1;
+            text.text = "Score: " + GameManager.Instance.PlayerOneScore.ToString();
             yield return new WaitForSecondsRealtime(1);
 
             if (ShouldAddPoint == false)

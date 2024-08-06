@@ -12,14 +12,16 @@ public class ObjectPooler : MonoBehaviour
     [System.Serializable]
     public class Pool
     {
+        public bool _shouldSpawn = true;
         public string tag;
         public GameObject prefab;
         public int size;
+
     }
     public static ObjectPooler Instance;
 
     [SerializeField]
-    private bool _shouldSpawn = true;
+    private bool _shouldSpawnAll = true;
 
     public List<Pool> Pools;
     public Dictionary<string, Queue<GameObject>> poolDictionary;
@@ -39,24 +41,24 @@ public class ObjectPooler : MonoBehaviour
     }
     void Start()
     {
-        if (_shouldSpawn)
+        if (_shouldSpawnAll)
         {
             try
             {
                 _ = SpawnRoutineAsync();
-                print(this.name + ": blok try w Awake, pod await SpawnRoutineAsync()");
+                //Task.Run(() => SpawnRoutineAsync());
 
             }
             catch (OperationCanceledException)
             {
-                print(this.name + ": Destroy Token zostal anulowany");
+
             }
         }
 
 
     }
-    
-    
+
+
     void InitializePools()
     {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
@@ -68,6 +70,7 @@ public class ObjectPooler : MonoBehaviour
             for (int i = 0; i < pool.size; i++)
             {
                 GameObject obj = Instantiate(pool.prefab, parent: poolRootObject.transform);
+                obj.name = pool.prefab.name;
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
@@ -77,23 +80,33 @@ public class ObjectPooler : MonoBehaviour
     public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
     {
         //tutaj sprawwdzic
-        if (poolDictionary == null) return new();
+        if (poolDictionary == null)
+            return new();
         if (!poolDictionary.ContainsKey(tag))
         {
-            Debug.LogWarning("Nie znajduje poola o tym tagu.");
+            Debug.LogWarning("Couldn't find a pool with the tag.");
             return null;
         }
-
-        
 
         GameObject objectToSpawn = poolDictionary[tag].Dequeue();
 
         objectToSpawn.SetActive(true);
-        objectToSpawn.transform.position = position;
-        objectToSpawn.transform.rotation = rotation;
-
+        objectToSpawn.transform.SetPositionAndRotation(position, rotation);
         poolDictionary[tag].Enqueue(objectToSpawn);
         return objectToSpawn;
+    }
+    public void ReturnToPool(GameObject objectToPool)
+    {
+        string tag = objectToPool.tag;
+        print($"Tag obiektu ktory mial wyjsc z puli to: {tag}");
+        if (!poolDictionary.ContainsKey(tag))
+            return;
+        objectToPool.SetActive(false);
+        poolDictionary[tag].Enqueue(objectToPool);
+        
+        print($"Po pool dictionary enqueue: {tag}");
+        //poolDictionary[tag].Dequeue();
+
     }
 
     async Task SpawnRoutineAsync()
@@ -105,11 +118,13 @@ public class ObjectPooler : MonoBehaviour
         {
             foreach (var pool in Pools)
             {
+                if (pool._shouldSpawn == false)
+                    continue;
                 var position = UnityEngine.Random.onUnitSphere * 25f;
                 GameObject gameObjectToSpawn = SpawnFromPool(pool.tag, position, Quaternion.identity);
-    
+
             }
-            
+
             //Instantiate(gameObjectToSpawn);
             await Task.Delay(1000, _cts.Token);
         }

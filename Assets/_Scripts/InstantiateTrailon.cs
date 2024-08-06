@@ -15,7 +15,9 @@ public class InstantiateTrailon : MonoBehaviour
         trailon.layer = 10; //Trailon layer
         GameObject trailonRootObject = GameObject.Find("Trailons");
         trailon.transform.SetParent(trailonRootObject.transform);
-        
+        trailon.gameObject.name = "TrailonTwo";
+        if(GetComponent<PlayerController>() == null)
+            trailon.gameObject.name = "TrailonBot";
     }
 
     // Update is called once per frame

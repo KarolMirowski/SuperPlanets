@@ -12,22 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e06958ca88866f0498c6683fd1c3179e, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  PlanetMat: {fileID: 0}
-  BackgroundMat: {fileID: 0}
-  PlayerOneMat: {fileID: 0}
-  PlayerTwoMat: {fileID: 0}
+  PlanetMat: {fileID: 2100000, guid: a17e8017a1d7a9542a897d4a0a648251, type: 2}
+  BackgroundMat: {fileID: 2100000, guid: 9cf696eb11166064ea1781f45a4e76c6, type: 2}
+  PlayerOneMat: {fileID: 2100000, guid: 68a5a6e07ca95381486d048f26f65963, type: 2}
+  PlayerTwoMat: {fileID: 2100000, guid: 82365d2d7160fe64f9078fd62d63eead, type: 2}
   _gameVersion: 1.0.0
-  pOneSpeed: 0.15
-  pTwoSpeed: 0.15
+  pOneSpeed: 0.1
+  pTwoSpeed: 0.1
   playerFOV: 72.8
   colorSets:
-  - PlanetColor: {r: 0.32941177, g: 0.627451, b: 1, a: 0}
-    BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
-    PlayerOneColor: {r: 0, g: 0, b: 0, a: 0}
-    PlayerTwoColor: {r: 0, g: 0, b: 0, a: 0}
-  - PlanetColor: {r: 0, g: 0, b: 0, a: 0}
-    BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
-    PlayerOneColor: {r: 0, g: 0, b: 0, a: 0}
+  - PlanetColor: {r: 1, g: 0.3019608, b: 0.3019608, a: 0}
+    BackgroundColor: {r: 0.6313726, g: 0.6039216, b: 0.99215686, a: 0}
+    PlayerOneColor: {r: 1, g: 0.9803922, b: 0.39607847, a: 1}
+    PlayerTwoColor: {r: 0.80392164, g: 0.5176471, b: 0.9450981, a: 1}
+  - PlanetColor: {r: 1, g: 0, b: 0, a: 0}
+    BackgroundColor: {r: 0.67395794, g: 1, b: 0, a: 0}
+    PlayerOneColor: {r: 0.8446512, g: 0, b: 1, a: 0}
     PlayerTwoColor: {r: 0, g: 0, b: 0, a: 0}
   - PlanetColor: {r: 0, g: 0, b: 0, a: 0}
     BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
