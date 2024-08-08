@@ -30,6 +30,7 @@ public class MySceneManager : MonoBehaviour
 
     public void LoadMainMenuScene(){
         SceneManager.LoadScene("MenuScene");
+        //MenuManager.Instance.GetComponent<PlayerListManager>().UpdatePlayerList();
     }
     //Tu były testy, usunąć niepotrzebne
     public void LoadScene(string sceneName){

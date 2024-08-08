@@ -5,9 +5,8 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 
 [Serializable]
-public class PlayerData : MonoBehaviour
+public class PlayerData 
 {
-    [SerializeField]
     public string PlayerName;
     public int HighestScore;
 

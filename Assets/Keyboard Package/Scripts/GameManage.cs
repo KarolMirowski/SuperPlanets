@@ -29,7 +29,7 @@ public class GameManage : MonoBehaviour
     public void SubmitWord()
     {
         printBox.text = textBox.text;
-        textBox.text = "";
+        //textBox.text = "";
         // Debug.Log("Text submitted successfully!");
     }
 }
