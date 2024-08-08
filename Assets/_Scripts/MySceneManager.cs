@@ -11,6 +11,7 @@ public class MySceneManager : MonoBehaviour
     
     public string checkDontDestroy;
     public string checkDontDestroyGetSet{get;set;}
+    public event Action OnMainMenuSceneLoad;
     void Awake()
     {
         //GameManager.OnGameStateChange += Sprawdzam;
@@ -30,6 +31,7 @@ public class MySceneManager : MonoBehaviour
 
     public void LoadMainMenuScene(){
         SceneManager.LoadScene("MenuScene");
+        OnMainMenuSceneLoad?.Invoke();
         //MenuManager.Instance.GetComponent<PlayerListManager>().UpdatePlayerList();
     }
     //Tu były testy, usunąć niepotrzebne

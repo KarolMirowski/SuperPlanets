@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerListManager : MonoBehaviour
@@ -36,10 +37,14 @@ public class PlayerListManager : MonoBehaviour
         ChoosePlayerOneButton.onClick.AddListener(ChoosingPlayerOne);
         ChoosePlayerTwoButton.onClick.AddListener(ChoosingPlayerTwo);
 
+        PlayerDataHandler.Instance.OnPlayerDataDeserialized += UpdatePlayerList;
         UpdatePlayerList();
-        print($"Start metody Start() w PlayerListManager mial miejsce{i++}");
+        
     }
+    void OnDestroy(){
+        PlayerDataHandler.Instance.OnPlayerDataDeserialized -= UpdatePlayerList;
 
+    }
     private void ChoosingPlayerTwo()
     {
         PlayerDataHandler.Instance._isPlayerTwoChoosing = !PlayerDataHandler.Instance._isPlayerTwoChoosing;
@@ -50,10 +55,6 @@ public class PlayerListManager : MonoBehaviour
         PlayerDataHandler.Instance._isPlayerOneChoosing = !PlayerDataHandler.Instance._isPlayerOneChoosing;
     }
 
-    void OnSceneLoad()
-    {
-        UpdatePlayerList();
-    }
     private void EnterButtonPressed()
     {
         Keyboard.SetActive(false);
@@ -82,7 +83,9 @@ public class PlayerListManager : MonoBehaviour
                 HighestScore = 0
             };
             _listOfPlayers.Add(_newPlayerData);
+            
             UpdatePlayerList();
+            PlayerDataHandler.Instance.SerializeJson();
         }
         NewPlayerText.text = string.Empty;
 
@@ -90,7 +93,7 @@ public class PlayerListManager : MonoBehaviour
 
     public void UpdatePlayerList()
     {
-
+        print("Update Player List() z PlayerListManager() urchomnione.");
         foreach (var prefab in _listOfPlayersPrefabs)
         {
             Destroy(prefab);
@@ -101,9 +104,9 @@ public class PlayerListManager : MonoBehaviour
         foreach (var item in _listOfPlayers)
         {
             var player = Instantiate(PlayerListElementPrefab, parent: ScrollViewContent.transform);
-            player.GetComponent<PlayerElementData>().ListIndex = i;
-            player.GetComponent<PlayerElementData>().PlayerName = item.PlayerName;
-            player.GetComponent<PlayerElementData>().HighestScore = item.HighestScore;
+            player.GetComponent<PlayerElementData>().SinglePlayerData.ListIndex = i;
+            player.GetComponent<PlayerElementData>().SinglePlayerData.PlayerName = item.PlayerName;
+            player.GetComponent<PlayerElementData>().SinglePlayerData.HighestScore = item.HighestScore;
             _listOfPlayersPrefabs.Add(player);
             //player.transform.SetParent(ScrollViewContent.transform);
             var highestScoreObj = player.GetComponentInChildren<HighestScore>();

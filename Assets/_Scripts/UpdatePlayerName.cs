@@ -8,7 +8,7 @@ public class UpdatePlayerName : MonoBehaviour
     [SerializeField] TMP_Text _playerNameText;
     void Start()
     {
-        _playerNameText.text = GetComponent<PlayerElementData>().PlayerName;
+        _playerNameText.text = GetComponent<PlayerElementData>().SinglePlayerData.PlayerName;
     }
 
     

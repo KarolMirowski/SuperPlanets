@@ -3,7 +3,7 @@
     "m_SelectedProcess": {
         "deviceId": "HVA5HNA3",
         "name": "com.DefaultCompany.PlanetsMobile",
-        "processId": 24136,
+        "processId": 3873,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -193,6 +193,12 @@
             "name": "com.DefaultCompany.PlanetsMobile",
             "processId": 24136,
             "exited": false
+        },
+        {
+            "deviceId": "HVA5HNA3",
+            "name": "com.DefaultCompany.PlanetsMobile",
+            "processId": 3873,
+            "exited": false
         }
     ],
     "m_Tags": {
@@ -249,7 +255,7 @@
         "AutoCapture": true
     },
     "m_FilterOptions": {
-        "m_Filter": "",
+        "m_Filter": "js",
         "m_UseRegularExpressions": false,
         "m_MatchCase": false
     },
