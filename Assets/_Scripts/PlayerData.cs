@@ -8,12 +8,14 @@ using UnityEngine;
 public class PlayerData
 {
     public string PlayerName;
-    public int HighestScore;
+    public int CurrentScore = 0;
+    public int HighestScore = 0;
     public int ListIndex;
-
-    public PlayerData(string playerName, int highestScore, int listIndex){
+    
+    public PlayerData(string playerName, int currentScore, int highestScore, int listIndex){
         PlayerName = playerName;   
         HighestScore = highestScore;
+        CurrentScore = currentScore;
         ListIndex = listIndex;
     } 
     

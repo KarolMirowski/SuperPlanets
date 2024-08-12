@@ -13,7 +13,7 @@ public class JsonDataService : IDataService
 
     public bool SaveData<T>(string relativePath, T data, bool encrypted)
     {
-        string path = Application.persistentDataPath + relativePath;
+        string path = Path.Combine(Application.persistentDataPath, relativePath);
 
         try
         {
@@ -42,7 +42,7 @@ public class JsonDataService : IDataService
 
     public T LoadData<T>(string relativePath, bool encrypted)
     {
-        var path = Application.persistentDataPath + relativePath;
+        var path = Path.Combine(Application.persistentDataPath, relativePath);
 
         if (!File.Exists(path))
         {

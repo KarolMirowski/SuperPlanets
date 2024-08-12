@@ -9,10 +9,15 @@ public class OnCollision : MonoBehaviour
 {
     private PlayerController _playerController;
     private PlayerController _playerTwoController;
+    private GameObject _pObj;
     void Start()
     {
         _playerController = GetComponentInParent<PlayerController>();
-        
+        if(_playerController != null)
+            _pObj = _playerController.gameObject;
+    
+    
+    
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -20,12 +25,11 @@ public class OnCollision : MonoBehaviour
         {
             try
             {
-                GameManager.Instance.PlayerOneScore += 5;
+                _pObj.GetComponent<ScoreCounter>().Score += 5;
                 Destroy(collision.collider);
             }
             catch (System.Exception e)
             {
-                print($"OnCollision Enter wykonal catch w Add5Points bonus a error odnosi sie do {e}");
                 throw;
             }
 
@@ -43,35 +47,36 @@ public class OnCollision : MonoBehaviour
             else if (GetComponentInParent<Player2Controller>() != null)
             {
                 GetComponentInParent<Player2Controller>().TrailTactBonus();
-                print($"ten gracz to {gameObject.tag}, a collision to {collision.collider.name}");
                 Destroy(collision.collider);
             }
         }
         if (collision.collider.CompareTag("EnlargeBonus"))
         {
-            var cameraTransform = _playerController.gameObject.GetComponentInChildren<Camera>().gameObject.transform.position;
-            var playerTransform = _playerController.gameObject.transform.position;
+            var cameraTransform = _playerController.GetComponentInChildren<Camera>().gameObject.transform.position;
+            var playerTransform = _playerController.transform.position;
             var position = Vector3.Lerp(cameraTransform, playerTransform, 0f);
             _playerController.transform.localScale += new Vector3(0.4f, 0.4f, 0.4f);
-            _playerController.gameObject.GetComponentInChildren<TrailRenderer>().widthMultiplier += 0.4f;
-            _playerController.gameObject.GetComponentInChildren<Camera>().gameObject.transform.position = position;
+            _pObj.GetComponentInChildren<TrailRenderer>().widthMultiplier += 0.4f;
+            _pObj.GetComponentInChildren<Camera>().gameObject.transform.position = position;
             print("Doszlo do zderzenia z enlarge");
             //collision.collider.gameObject.SetActive(false)
             Destroy(collision.gameObject);
         }
         if (collision.collider.CompareTag("ShrinkBonus"))
         {
-            var cameraTransform = _playerController.gameObject.GetComponentInChildren<Camera>().gameObject.transform.position;
-            var playerTransform = _playerController.gameObject.transform.position;
+            
+            
+            var cameraTransform = _playerController.GetComponentInChildren<Camera>().gameObject.transform.position;
+            var playerTransform = _playerController.transform.position;
             var position = Vector3.Lerp(cameraTransform, playerTransform, 0f);
             if (_playerController.transform.localScale.x >= 0.2f)
             {
                 _playerController.transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
-                _playerController.gameObject.GetComponentInChildren<TrailRenderer>().widthMultiplier -= 0.1f;
-                print(_playerController.gameObject.GetComponentInChildren<TrailRenderer>().widthMultiplier.ToString());
+                _pObj.GetComponentInChildren<TrailRenderer>().widthMultiplier -= 0.1f;
+                
             }
 
-            _playerController.gameObject.GetComponentInChildren<Camera>().gameObject.transform.position = position;
+            _pObj.GetComponentInChildren<Camera>().gameObject.transform.position = position;
             print("Doszlo do zderzenia z enlarge");
             //collision.collider.gameObject.SetActive(false)
             Destroy(collision.gameObject);

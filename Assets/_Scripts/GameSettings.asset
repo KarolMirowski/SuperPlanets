@@ -33,4 +33,8 @@ MonoBehaviour:
     BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
     PlayerOneColor: {r: 0, g: 0, b: 0, a: 0}
     PlayerTwoColor: {r: 0, g: 0, b: 0, a: 0}
+  - PlanetColor: {r: 1, g: 1, b: 1, a: 0}
+    BackgroundColor: {r: 0, g: 0, b: 0, a: 0}
+    PlayerOneColor: {r: 0, g: 0, b: 0, a: 0}
+    PlayerTwoColor: {r: 1, g: 1, b: 1, a: 0}
   currentColorSetIndex: 0

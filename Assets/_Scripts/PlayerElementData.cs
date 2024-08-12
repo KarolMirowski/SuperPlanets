@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 [Serializable]
 public class PlayerElementData : MonoBehaviour
@@ -17,6 +18,7 @@ public class PlayerElementData : MonoBehaviour
         if (CompareTag("PlayerTwo"))
             UpdatePlayerTwoData();
         
+        GetComponentInChildren<TMP_Text>().text = SinglePlayerData.PlayerName;
     }
     private void UpdatePlayerOneData()
     {

@@ -19,6 +19,12 @@ public class PlayerListManager : MonoBehaviour
     public TMP_Text NewPlayerText;
     public GameObject ScrollViewContent;
     public GameObject PlayerListElementPrefab;
+    public GameObject PlayerToDelete;
+    public GameObject DeletePanel;
+    public GameObject MenuPanel;
+    public Button YesDeleteButton;
+    public Button NoDeleteButton;
+
     private List<GameObject> _listOfPlayersPrefabs = new List<GameObject>();
     public GameObject Keyboard;
     public Button EnterButton;
@@ -27,6 +33,19 @@ public class PlayerListManager : MonoBehaviour
 
     private bool _isKeyboardActive = false;
     private int i=1;
+    public static PlayerListManager Instance;
+    private void Awake()
+{
+    if (Instance == null)
+    {
+        Instance = this;
+        //DontDestroyOnLoad(gameObject);
+    }
+    else if (Instance != this)
+    {
+        Destroy(gameObject);
+    }
+}
     void Start()
     {
         //PlayerDataHandler.Instance._playersDataList = _listOfPlayers;
@@ -36,6 +55,10 @@ public class PlayerListManager : MonoBehaviour
         EnterButton.onClick.AddListener(EnterButtonPressed);
         ChoosePlayerOneButton.onClick.AddListener(ChoosingPlayerOne);
         ChoosePlayerTwoButton.onClick.AddListener(ChoosingPlayerTwo);
+        YesDeleteButton.onClick.AddListener(DeletePlayer);
+        NoDeleteButton.onClick.AddListener(CancelDeletePlayer);
+        SendPlayerData.SendDataEvent += UpdatePlayerOneName;
+        SendPlayerData.SendDataEvent += UpdatePlayerTwoName;
 
         PlayerDataHandler.Instance.OnPlayerDataDeserialized += UpdatePlayerList;
         UpdatePlayerList();
@@ -48,11 +71,13 @@ public class PlayerListManager : MonoBehaviour
     private void ChoosingPlayerTwo()
     {
         PlayerDataHandler.Instance._isPlayerTwoChoosing = !PlayerDataHandler.Instance._isPlayerTwoChoosing;
+        PlayerDataHandler.Instance._isPlayerOneChoosing = false;
     }
 
     private void ChoosingPlayerOne()
     {
         PlayerDataHandler.Instance._isPlayerOneChoosing = !PlayerDataHandler.Instance._isPlayerOneChoosing;
+        PlayerDataHandler.Instance._isPlayerTwoChoosing = false;
     }
 
     private void EnterButtonPressed()
@@ -90,7 +115,23 @@ public class PlayerListManager : MonoBehaviour
         NewPlayerText.text = string.Empty;
 
     }
+    public void ActivateDeletePanel(){
+        DeletePanel.SetActive(true);
+        MenuPanel.SetActive(false);
+    }
+    public void DeletePlayer(){
+        _listOfPlayers.RemoveAll(p => p.PlayerName == PlayerToDelete.name);
+        Destroy(PlayerToDelete.gameObject);
+        Destroy(PlayerToDelete);
+        DeletePanel.SetActive(false);
+        MenuPanel.SetActive(true);
+        UpdatePlayerList();
+    }
+    public void CancelDeletePlayer(){
 
+        DeletePanel.SetActive(false);
+        MenuPanel.SetActive(true);
+    }
     public void UpdatePlayerList()
     {
         print("Update Player List() z PlayerListManager() urchomnione.");
@@ -112,6 +153,9 @@ public class PlayerListManager : MonoBehaviour
             var highestScoreObj = player.GetComponentInChildren<HighestScore>();
             var listPlayerNameObj = player.GetComponentInChildren<ListPlayerName>();
             highestScoreObj.gameObject.GetComponentInChildren<TMP_Text>().text = item.HighestScore.ToString();
+            print(item.HighestScore.ToString() + "UPDATEPLAYERLSIT");
+            print(item.PlayerName+"UPDATEPLAYER LIST");
+            print($"i w update player list prefaby wynosi {i}");
             listPlayerNameObj.gameObject.GetComponentInChildren<TMP_Text>().text = item.PlayerName;
             i++;
         }
@@ -130,6 +174,15 @@ public class PlayerListManager : MonoBehaviour
             //NewPlayerNameButton.GetComponent<Image>().color = _originalButtonColor;
             return;
         }
+    }
+    void UpdatePlayerOneName(){ 
+        if(PlayerDataHandler.Instance.PlayerOneData.PlayerName == null) return; 
+        ChoosePlayerOneButton.GetComponentInChildren<TMP_Text>().text = PlayerDataHandler.Instance.PlayerOneData.PlayerName;
+
+    } void UpdatePlayerTwoName(){
+        if(PlayerDataHandler.Instance.PlayerTwoData.PlayerName == null) return; 
+        ChoosePlayerOneButton.GetComponentInChildren<TMP_Text>().text = PlayerDataHandler.Instance.PlayerTwoData.PlayerName;
+
     }
 
 }

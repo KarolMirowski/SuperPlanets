@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 2109453739074570503}
   - component: {fileID: 1158498052874266992}
   - component: {fileID: 4093254243784980657}
+  - component: {fileID: 993082972650442459}
   m_Layer: 0
   m_Name: bonusObj1
   m_TagString: BonusOne
@@ -194,6 +195,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &993082972650442459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539347023142823250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 715ba2a973abf4786a557adc13904319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3485906235581133172
 GameObject:
   m_ObjectHideFlags: 0

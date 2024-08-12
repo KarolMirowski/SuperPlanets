@@ -13,15 +13,15 @@ public class PlayerDataHandler : MonoBehaviour
     public List<PlayerData> _playersDataList;
     public static PlayerDataHandler Instance;
     //PlayerData ore PlayewrElementData;
-    private PlayerData dummyData;
-    [SerializeField] public PlayerData PlayerOneData;
-    [SerializeField] public PlayerData PlayerTwoData;
+    public PlayerData PlayerOneData;
+    public PlayerData PlayerTwoData;
     public bool _isPlayerOneChoosing = false;
     public bool _isPlayerTwoChoosing = false;
-    public TMP_Text PlayerOneText;
-    public TMP_Text PlayerTwoText;
+    [SerializeField] public TMP_Text PlayerOneText;
+    [SerializeField] public TMP_Text PlayerTwoText;
     public IDataService DataService = new JsonDataService();
     public event Action OnPlayerDataDeserialized;
+    public event Action OnPlayerDataHandlerValidate;
     void Awake()
     {
         if (Instance == null)
@@ -38,17 +38,13 @@ public class PlayerDataHandler : MonoBehaviour
     void Start()
     {
         DeserializePlayerDataList();
-        MySceneManager.Instance.OnMainMenuSceneLoad += DeserializePlayerDataList;
-        MySceneManager.Instance.OnMainMenuSceneLoad += PrintOn;
+        
     }
-    public void PrintOn()
-    {
-        print("Wczytanie sceny wywolalo metode print poprzez event ze scene manager");
-    }
+    
     public void SerializeJson()
     {
-        Debug.Log(Application.persistentDataPath);
-        if (DataService.SaveData<List<PlayerData>>("/player-data.json", _playersDataList, false))
+        
+        if (DataService.SaveData<List<PlayerData>>("player-data.json", _playersDataList, false))
         {
 
         }
@@ -58,22 +54,66 @@ public class PlayerDataHandler : MonoBehaviour
         }
 
     }
-
-    void OnMenuSceneLoaded()
-    {
-        DeserializePlayerDataList();
-        Debug.Log("Udalo sie zdeserializowac ze wzgledu na powrot do menu");
+    public void ValidateNames(){
+        OnPlayerDataHandlerValidate?.Invoke();
     }
-    void OnValidate()
-    {
-        //SerializeJson(_playersDataList);
-        //_playersDataList = DeserializePlayerDataList();
+    void OnApplicationQuit(){
+        SerializeJson();
     }
 
     public void DeserializePlayerDataList()
     {
-        _playersDataList = DataService.LoadData<List<PlayerData>>("/player-data.json", false);
+        _playersDataList.Clear();
+        _playersDataList = new();
+        _playersDataList = DataService.LoadData<List<PlayerData>>("player-data.json", false);
         OnPlayerDataDeserialized?.Invoke();
+    }
+
+    public void UpdateHighestScore()
+    {
+        
+        print("UPDATE LAYER DATA LIST POSZLO : " + _playersDataList[0].ToString());
+        if (PlayerOneData.HighestScore < PlayerOneData.CurrentScore)
+        {
+            PlayerData existingPlayer = _playersDataList.Find(p => p.PlayerName == PlayerOneData.PlayerName);
+            if (existingPlayer != null)
+            {
+                // Aktualizujemy pola istniejącego obiektu
+                existingPlayer.CurrentScore = PlayerOneData.CurrentScore;
+                existingPlayer.HighestScore = PlayerOneData.HighestScore;
+                existingPlayer.ListIndex = PlayerOneData.ListIndex;
+                // ... aktualizuj inne pola według potrzeb
+                
+            }
+            else
+            {
+                // Gracz nie istnieje, dodajemy nowy obiekt do listy
+                _playersDataList.Add(PlayerOneData);
+            }
+
+        }
+
+        if (PlayerTwoData.HighestScore < PlayerTwoData.CurrentScore)
+        {
+            PlayerData existingPlayer = _playersDataList.Find(p => p.PlayerName == PlayerTwoData.PlayerName);
+            if (existingPlayer != null)
+            {
+                // Aktualizujemy pola istniejącego obiektu
+                existingPlayer.CurrentScore = PlayerTwoData.CurrentScore;
+                existingPlayer.HighestScore = PlayerTwoData.HighestScore;
+                existingPlayer.ListIndex = PlayerTwoData.ListIndex;
+                // ... aktualizuj inne pola według potrzeb
+            }
+            else
+            {
+                // Gracz nie istnieje, dodajemy nowy obiekt do listy
+                _playersDataList.Add(PlayerTwoData);
+            }
+        }
+        SerializeJson();
+        
+
+
     }
 
 }

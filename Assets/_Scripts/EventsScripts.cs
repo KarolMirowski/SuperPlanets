@@ -11,7 +11,6 @@ public class EventsScripts : MonoBehaviour
     [SerializeField] private GameObject playerFour;
     [SerializeField] private TMPro.TMP_Text text;
     [SerializeField] private GameSettings gameSettings;
-    private ScoreCount[] scoreCounts;
     private int looper = 0;
     private Camera _playerOneCamera;
     private Camera _playerTwoCamera;
@@ -20,7 +19,7 @@ public class EventsScripts : MonoBehaviour
     {
         _gameManager = GameManager.Instance;
         
-        scoreCounts = FindObjectsOfType<ScoreCount>();
+        //scoreCounts = FindObjectsOfType<ScoreCount>();
         _playerOneCamera = _playerOneController.GetComponentInChildren<Camera>();
         _playerTwoCamera = _playerTwoController.GetComponentInChildren<Camera>();
         
@@ -54,7 +53,7 @@ public class EventsScripts : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         text.text = "";
 
-        scoreCounts[0].StartCoroutine(scoreCounts[0].ScoreCounter());
+        //scoreCounts[0].StartCoroutine(scoreCounts[0].ScoreCounter());
         //scoreCounts[1].StartCoroutine(scoreCounts[1].ScoreCounter());
 
         // playerTwo.GetComponent<Player2Controller>().speed = gameSettings.pTwoSpeed;
@@ -104,7 +103,8 @@ public class EventsScripts : MonoBehaviour
     {
         //Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene("WorkingScene");
-        _gameManager.PlayerOneScore = 0;
+        //TUTAJ WROCIC
+        //_gameManager.PlayerOneScore = 0;
     }
     public void BackToMenu()
     {

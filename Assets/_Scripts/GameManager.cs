@@ -15,17 +15,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public Button playerTurnLeftButton;
     public Button playerTutnRightButton;
-    
-
     public GameState State;
     public static event Action<GameState> OnGameStateChange;
-    //public static event Action<BotsNumber> OnBotCountChange;
-
-    [SerializeField] private int _playerOneScore;
-    public int PlayerOneScore { get { return _playerOneScore; } set { _playerOneScore = value; } }
-    [SerializeField] private int _playerTwoScore;
-    public int PlayerTwoScore { get { return _playerTwoScore; } set { _playerTwoScore = value; } }
-
+    //public static event Action<BotsNumber> OnBotCountChange
     [SerializeField] private int _botCountNumber;
     [SerializeField] private int _numberOfPlayers = 2;
     [SerializeField] private int _fpsLocker = 60;
@@ -64,9 +56,9 @@ public class GameManager : MonoBehaviour
     }
     void OnValidate()
     {
-        Application.targetFrameRate = _fpsLocker;
-
         
+
+
     }
     
     public void ValidateGameManager()
