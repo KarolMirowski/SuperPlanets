@@ -24,11 +24,13 @@ public class PlayerController : MonoBehaviour
     private PlayerDataHandler _dataHandler;
     private List<PlayerData> _playerDataList;
     private PlayerDataHandler _playerDataHandler;
+    private LifesCounter _lifesCounter;
     [SerializeField] private TextMeshProUGUI text; //Change it to getcomponent.
     [SerializeField] private GameSettings gameSettings;
     [SerializeField] private PlayerInput _playerInput;
     bool IsBonus1Active = false;
     bool _shouldMove = true;
+    bool _canDie = true;
     int bonus1Reps = 0;
     public Button turnLeftButton, turnRightButton;
     private TrailRenderer tr;
@@ -37,20 +39,23 @@ public class PlayerController : MonoBehaviour
     public bool _isLeftClicked = false;
     public bool _isRightClicked = false;
     public bool _shouldTurn90 = false;
+    private bool _isInvulnerable = false;
+    private Coroutine _invulnerabilityCoroutine;
     void OnValidate()
     {
         //_playerInput = GetComponent<PlayerInput>();
     }
     void Start()
     {
-        //await Task.Delay(3000);
         //Calling empty function to Validate GameManager so that it can see second player.CHECK IF NECESSARY.
-
         GameManager.Instance.ValidateGameManager();
         _scoreCounter = GetComponent<ScoreCounter>();
         _playerData = GetComponent<PlayerElementData>().SinglePlayerData;
         _playerDataHandler = PlayerDataHandler.Instance;
         _playerDataList = _playerDataHandler._playersDataList;
+        _lifesCounter = GetComponent<LifesCounter>();
+        //Poczatek rutyn, dotyczy cyklu rund i calego meczu.
+        //StartCoroutine(RoundRoutine());
 
 
         if (GetComponentInChildren<Camera>() != null)
@@ -62,15 +67,10 @@ public class PlayerController : MonoBehaviour
         {
             tr = GetComponentInChildren<TrailRenderer>();
         }
-        if (CompareTag("PlayerOne"))
-            speed = gameSettings.pOneSpeed;
-        else
-            speed = gameSettings.pTwoSpeed;
-
         //Rejestracja eventów starego systemu inpput
         if (CompareTag("PlayerTwo"))
         {
-            transform.rotation = Quaternion.identity;
+            //transform.rotation = Quaternion.identity;
             turnLeftButton = CanvasManager.Instance.TurnLeftButton.GetComponent<Button>();
             turnRightButton = CanvasManager.Instance.TurnRightButton.GetComponent<Button>();
         }
@@ -96,6 +96,50 @@ public class PlayerController : MonoBehaviour
             //Debug.Log("Trailtactbonus petla");
         }
     }
+    public void CollidedWithTrailon()
+    {
+        if (_isInvulnerable) return;
+
+        if (_lifesCounter.LifesLeft > 1)
+        {
+            _lifesCounter.TakeOneLife();
+            StartInvulnerabilityPeriod();
+        }
+        else
+        {
+            StopPlayer();
+            if (CompareTag("PlayerOne")) CanvasManager.Instance.OnOneGameOver(_scoreCounter.Score);
+            if (CompareTag("PlayerTwo")) CanvasManager.Instance.OnTwoGameOver(_scoreCounter.Score);
+        }
+    }
+    private void StartInvulnerabilityPeriod()
+    {
+        if (_invulnerabilityCoroutine != null)
+        {
+            StopCoroutine(_invulnerabilityCoroutine);
+        }
+        _invulnerabilityCoroutine = StartCoroutine(InvulnerabilityRoutine());
+    }
+
+    private IEnumerator InvulnerabilityRoutine()
+    {
+        _isInvulnerable = true;
+        StopTrailon = true;
+        tr.emitting = false;
+
+        for (int i = 4; i > 0; i--)
+        {
+            _lifesCounter.ShowCountdown(i);
+            yield return new WaitForSeconds(1f);
+        }
+
+        _isInvulnerable = false;
+        StopTrailon = false;
+        tr.emitting = true;
+        _lifesCounter.HideCountdown();
+    }
+
+
     public async Task TrailTactBonusAsync(int maxReps)
     {
         var repsCounter = 0;
@@ -108,6 +152,7 @@ public class PlayerController : MonoBehaviour
             repsCounter++;
         }
     }
+
     IEnumerator TrailTact()
     {
         if (bonus1Reps < 12)
@@ -126,17 +171,15 @@ public class PlayerController : MonoBehaviour
             IsBonus1Active = false;
         }
     }
-    public void CollidedWithTrailon()
+
+    private IEnumerator Immortal()
     {
-        if (_collideWithTrailon) return;
-        _collideWithTrailon = true;
-        //Show Game Over Sign, score number, and disable player canvas     
-        if (CanvasManager.Instance.isActiveAndEnabled)
-        {
-            CanvasManager.Instance.OnGameOver();
-        }
-        //Stop score counter
-        //ScoreCount.Instance.ShouldAddPoint = false;
+
+        yield return new WaitForSeconds(5);
+    }
+
+    private void StopPlayer()
+    {
         _scoreCounter.StopCounter();
         //_scoreCounter.SetActive(false);
         speed = 0;
@@ -155,18 +198,18 @@ public class PlayerController : MonoBehaviour
             print(_playerData.ToString());
         }
 
-        //_playerDataHandler.UpdateHighestScore();
     }
     public void TextSpeed() => text.text = speed.ToString();
-    void SendPlayerDataToList(PlayerData playerData){
-        int index = _playerDataList.FindIndex(p => p.PlayerName == playerData.PlayerName);   
+    void SendPlayerDataToList(PlayerData playerData)
+    {
+        int index = _playerDataList.FindIndex(p => p.PlayerName == playerData.PlayerName);
         _playerDataList[index] = playerData;
-        
+
         print("listelement.playername to:" + _playerDataList[index].PlayerName);
         print("listelement.playername to:" + _playerDataList[index].HighestScore);
         print("higest score  to:" + _playerDataList.Find(p => p.PlayerName == playerData.PlayerName).HighestScore);
-        
-        
+
+
         _playerDataHandler.SerializeJson();
     }
     public void TurnSmoothly(float rotationSpeed)
