@@ -10,6 +10,8 @@ public class OnCollision : MonoBehaviour
     private PlayerController _playerController;
     private PlayerController _playerTwoController;
     private GameObject _pObj;
+    private Coroutine _speedBonusCoroutine;
+    private Coroutine _slowBonusCoroutine;
     void Start()
     {
         _playerController = GetComponentInParent<PlayerController>();
@@ -21,12 +23,37 @@ public class OnCollision : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.collider.CompareTag("SpeedBonus") == true)
+        {
+            try
+            {
+                AddSpeedBonus();
+                Destroy(collision.gameObject);
+            }
+            catch (System.Exception e)
+            {
+                throw;
+            }
+
+        }if (collision.collider.CompareTag("SlowBonus") == true)
+        {
+            try
+            {
+                AddSlowBonus();
+                Destroy(collision.gameObject);
+            }
+            catch (System.Exception e)
+            {
+                throw;
+            }
+
+        }
         if (collision.collider.CompareTag("Add5Points") == true)
         {
             try
             {
                 _pObj.GetComponent<ScoreCounter>().Score += 5;
-                Destroy(collision.collider);
+                Destroy(collision.gameObject);
             }
             catch (System.Exception e)
             {
@@ -42,12 +69,12 @@ public class OnCollision : MonoBehaviour
             {
                 //GetComponentInParent<PlayerController>().TrailTactBonus();
                 _ = _playerController.TrailTactBonusAsync(12);
-                Destroy(collision.collider);
+                Destroy(collision.gameObject);
             }
             else if (GetComponentInParent<Player2Controller>() != null)
             {
                 GetComponentInParent<Player2Controller>().TrailTactBonus();
-                Destroy(collision.collider);
+                Destroy(collision.gameObject);
             }
         }
         if (collision.collider.CompareTag("EnlargeBonus"))
@@ -97,6 +124,30 @@ public class OnCollision : MonoBehaviour
             return;
 
         }
+    }
+    private IEnumerator SpeedBonusCoroutine(){
+        _pObj.GetComponent<PlayerController>().speed *= 2;
+        yield return new WaitForSeconds(5);
+        _pObj.GetComponent<PlayerController>().speed /= 2;
+        
+        StopCoroutine(SpeedBonusCoroutine());
+        _speedBonusCoroutine = null;
+    }
+    private void AddSpeedBonus(){
+        if(_speedBonusCoroutine != null) return;
+        _speedBonusCoroutine = StartCoroutine(SpeedBonusCoroutine());
+    }
+    private IEnumerator SlowBonusCoroutine(){
+        _pObj.GetComponent<PlayerController>().speed /= 2;
+        yield return new WaitForSeconds(5);
+        _pObj.GetComponent<PlayerController>().speed *= 2;
+        
+        StopCoroutine(SlowBonusCoroutine());
+        _speedBonusCoroutine = null;
+    }
+    private void AddSlowBonus(){
+        if(_slowBonusCoroutine != null) return;
+        _slowBonusCoroutine = StartCoroutine(SlowBonusCoroutine());
     }
 
 }

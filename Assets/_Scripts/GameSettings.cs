@@ -63,7 +63,7 @@ public class GameSettings : ScriptableObject
     [SerializeField] public float pTwoSpeed = 0.4f;
     public float playerFOV = 45f;
     [SerializeField] private List<ColorSet> colorSets = new List<ColorSet>();
-    public IReadOnlyList<ColorSet> ColorSets => colorSets;
+    public List<ColorSet> ColorSets => colorSets;
     [SerializeField] private int currentColorSetIndex = 0;
 
     public int CurrentColorSetIndex

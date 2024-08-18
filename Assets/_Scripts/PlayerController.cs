@@ -127,7 +127,7 @@ public class PlayerController : MonoBehaviour
         StopTrailon = true;
         tr.emitting = false;
 
-        for (int i = 4; i > 0; i--)
+        for (int i = 3; i >= 0; i--)
         {
             _lifesCounter.ShowCountdown(i);
             yield return new WaitForSeconds(1f);

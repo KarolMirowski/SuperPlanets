@@ -32,8 +32,8 @@ public class ScoreCounter : MonoBehaviour
                 _playerData.HighestScore = _playerData.CurrentScore;
         }
         _playerData.CurrentScore = Score;
-            if (_playerData.CurrentScore > _playerData.HighestScore)
-                _playerData.HighestScore = _playerData.CurrentScore;
+        if (_playerData.CurrentScore > _playerData.HighestScore)
+            _playerData.HighestScore = _playerData.CurrentScore;
     }
     public void StopCounter()
     {
